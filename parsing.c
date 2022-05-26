@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/05/25 10:14:15 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/05/26 09:38:26 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,47 @@
 //     return (0);
 // }
 
+char    *get_meta(char *s)
+{
+    char    *s_se;
+    int i;
+
+    i = ft_strlen(s);
+    s_se = ft_calloc(i, sizeof(char));
+    i = 0;
+    while (s[i])
+    {
+        while (i == 0 || (s[i] && s[i - 1] != '"' && s[i - 1] != '\''))
+        {
+            if (s[i] == ' ')
+                s_se[i] = 's';
+            else
+               s_se[i] = 'u';
+            i++;
+        }
+        while (s[i] && s[i] != '"' && s[i] != '\'')
+            s_se[i++] = 'q';     
+    }
+    return (s_se);
+}
+
+int parsing(char *s)
+{
+    /*
+        echo "wow\nok" | grep "ok"
+        uuuusuqqqususuuuusuqqu
+        echo
+        "wow\nok"
+        |
+        grep
+        "ok"
+    */
+   char *ss;
+   ss = get_meta(s);
+   printf("%s\n", ss);
+   return (0);
+}
+
 int prompt_display()
 {
     int     i;
@@ -49,7 +90,8 @@ int prompt_display()
     {
         s = readline("half-bash-3.2$ ");
         add_history(s);
-        //printf("%s\n", s);
+        parsing(s);
+        free (s);
     }
     return (0);
 }

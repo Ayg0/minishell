@@ -2,9 +2,7 @@ CC = cc
 
 NAME = minishell
 
-USER = ted-dafi
-
-CFLAGS = -Wall -Werror -Wextra -I/Users/$(USER)/.brew/opt/readline/include
+CFLAGS = -Wall -Werror -Wextra -I/Users/$(USER)/goinfre/$(USER)/.brew/opt/readline/include
 
 SRCS = ft_split.c parsing.c utils1.c main.c
 
@@ -15,7 +13,7 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME):	$(OBJS)
-		$(CC) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib $(OBJS) -o $(NAME)
+		$(CC) -lreadline -L /Users/$(USER)/goinfre/$(USER)/.brew/opt/readline/lib $(OBJS) -o $(NAME)
 
 clean:
 		$(RM) $(OBJS) $(B_OBJS)
