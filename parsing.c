@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/04 13:43:31 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/04 14:03:38 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ char    decide(char c)
         return ('b');
     else if (c == '|')
         return ('p');
+	else if (c == '>' || c == '<')
+		return ('m');
     else
         return ('u');
 }
