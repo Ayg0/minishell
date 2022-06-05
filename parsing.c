@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/05 18:53:14 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/05 21:09:35 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char    *get_meta(char *s)
         else if (quoted || s_quoted)
             s_se[i] = 'q';
         else
-            s_se[i] = decide("\"' |<>", "dsbprw", s[i]);
+            s_se[i] = decide("\"' \t|<>", "dsbbprw", s[i]);
         i++;
     }
 	s_se[i] = 0;
