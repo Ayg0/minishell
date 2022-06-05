@@ -2,7 +2,7 @@ CC = cc
 
 NAME = minishell
 
-CFLAGS = -Wall -Werror -Wextra -g -I/Users/$(USER).brew/opt/readline/include
+CFLAGS = -Wall -Werror -Wextra -g
 
 SRCS = utils1.c main.c list_func.c split_list.c parsing.c
 
