@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/05 14:01:12 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/05 18:49:57 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ int prompt_display(t_data *data, char **envp)
 	i = 0;
     while(1)
     {
-    	data->cmd = readline("half-bash-3.2$ ");
+    	data->cmd = readline("\033[0;34mhalf-bash-3.2$\033[0;37m ");
     	add_history(data->cmd);
 		if (*data->cmd == '\0')
 			exit(1);
