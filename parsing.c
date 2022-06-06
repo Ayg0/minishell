@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/06 10:28:43 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/06 16:03:10 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,8 +150,9 @@ int prompt_display(t_data *data, char **envp)
 		if (*data->cmd == '\0')
 			exit(1);
 		proccess_data(data);
+		manage_errors(data);
 		clear_data(data);
-		system("leaks minishell");
+		// system("leaks minishell");
     }
     return (0);
 }

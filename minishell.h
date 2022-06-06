@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:15:08 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/06 10:26:23 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/06 22:23:47 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <sys/wait.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 typedef struct s_list
 {
@@ -30,16 +30,10 @@ typedef struct	s_tokens
 {
 	char			*meta_data;
 	char			*token;
+	int				max;
 	struct s_tokens	*previous;
 	struct s_tokens	*next;
 }	t_tokens;
-
-typedef struct s_allocated
-{
-	void	*pointer;
-	struct s_allocated	*next;
-}	t_allocated;
-
 
 typedef struct s_data
 {
@@ -48,7 +42,22 @@ typedef struct s_data
 	t_tokens	*list;
 }   t_data;
 
+typedef struct s_allocated
+{
+	void	*pointer;
+	struct s_allocated	*next;
+}	t_allocated;
 
+
+
+//mohamed
+void		manage_errors(t_data *data);
+char		*ft_strchr(const char *s, int c);
+int			*get_exit_code(void);
+void		set_exit_code(int status);
+
+
+//taha
 void		*ft_calloc(size_t count, size_t size);
 char		**ft_split(char *s, char c);
 int	    	ft_strlen(char *s);

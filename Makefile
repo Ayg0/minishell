@@ -4,16 +4,17 @@ NAME = minishell
 
 CFLAGS = -Wall -Werror -Wextra -g
 
-SRCS = utils1.c main.c list_func.c split_list.c parsing.c
+SRCS = utils1.c main.c list_func.c split_list.c parsing.c mohamed/error_managment.c \
+		mohamed/exit_code.c mohamed/ft_pstrjoin.c mohamed/ft_strchr.c
 
-OBJS = ${SRCS:.c=.o}
+OBJS = $(SRCS:.c=.o)
 
 RM = rm -f
 
 all: $(NAME)
 
 $(NAME):	$(OBJS)
-		$(CC) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
+		$(CC) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
 
 clean:
 		$(RM) $(OBJS) $(B_OBJS)
