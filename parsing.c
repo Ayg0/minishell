@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/05 21:09:35 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/06 10:28:43 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char    *get_meta(char *s)
         else if (quoted || s_quoted)
             s_se[i] = 'q';
         else
-            s_se[i] = decide("\"' \t|<>", "dsbbprw", s[i]);
+            s_se[i] = decide("\"' \t\n|<>", "dsbbbprw", s[i]);
         i++;
     }
 	s_se[i] = 0;
@@ -113,72 +113,25 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	return (p);
 }
 
-char	*get_token(t_data *data, int str_num)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = 0;
-	while (str_num > 0)
-	{
-		i += len;
-		while (data->meta_str[i] && data->meta_str[i] == 'b')
-			i++;
-		len = 0;
-		while (data->meta_str[i + len] && data->meta_str[i + len] != 'b')
-			len++;
-		str_num--;
-	}
-	return (ft_substr(data->cmd, i, len));
-}
-
-char	*ft_strdup(char *s1)
-{
-	size_t		i;
-	char		*bo;
-
-	i = ft_strlen(s1);
-	bo = (char *)ft_calloc(i + 1, sizeof(char));
-	if (bo == 0)
-		return (0);
-	i = 0;
-	while (s1[i])
-	{
-		bo[i] = s1[i];
-		i++;
-	}
-	return (bo);
-}
-
-//int	clear_list(t_data	*data)
-//{
-//	while (data->tokens)
-//	{
-//		free(data->tokens->s);
-//		free(data->tokens);
-//		data->tokens = data->tokens->next;
-//	}
-//	while (data->meta)
-//	{
-//		free(data->meta);
-//		data->meta = data->meta->next;
-//	}
-//	free(data->cmd);
-//	free(data->meta_str);
-//	data->tokens = NULL;
-//	data->meta = NULL;
-//	return (0);
-//}
-
 void	proccess_data(t_data *data)
 {
 	data->meta_str = get_meta(data->cmd);
 	data->list = ft_slpit_list(data->meta_str, data->cmd, 'b');
+}
+
+void	clear_data(t_data *data)
+{
+	void	*tmp;
+
+	free(data->cmd);
+	free(data->meta_str);
 	while (data->list)
 	{
-		printf("%s::%s\n", data->list->token, data->list->meta_data);
+		free(data->list->meta_data);
+		free(data->list->token);
+		tmp = data->list;
 		data->list = data->list->next;
+		free(tmp);
 	}
 	
 }
@@ -197,6 +150,8 @@ int prompt_display(t_data *data, char **envp)
 		if (*data->cmd == '\0')
 			exit(1);
 		proccess_data(data);
+		clear_data(data);
+		system("leaks minishell");
     }
     return (0);
 }

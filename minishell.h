@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:15:08 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/05 18:52:40 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/06 10:26:23 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ typedef struct	s_tokens
 	struct s_tokens	*previous;
 	struct s_tokens	*next;
 }	t_tokens;
+
+typedef struct s_allocated
+{
+	void	*pointer;
+	struct s_allocated	*next;
+}	t_allocated;
+
 
 typedef struct s_data
 {
