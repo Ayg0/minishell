@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:15:08 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/06 22:23:47 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/07 19:39:37 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ typedef struct s_allocated
 //mohamed
 void		manage_errors(t_data *data);
 char		*ft_strchr(const char *s, int c);
-int			*get_exit_code(void);
+int			*exit_code(void);
 void		set_exit_code(int status);
+int			get_exit_code(void);
 
 
 //taha

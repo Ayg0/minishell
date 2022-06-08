@@ -1,14 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
 //check if the token is wreten correctly, if written false then devide it length by the max consucative acuramces of it and then print from the index of [max acurences * (length / the max consucative acuramces)] 
 //if written wright check before or after depending on the type of the operatore 
 
@@ -38,16 +27,19 @@ int	check_pip(t_tokens *itire)
 		set_exit_code(258);
 		return (0);
 	}
-	else if (ft_strchr("rw", *(itire->previous->meta_data)) != 0 || \
+	else if (ft_strchr("prw", *(itire->previous->meta_data)) != 0 || \
 			ft_strlen(itire->meta_data) > 1)
 	{
 		printf("pip error an operator before \n");
+		write (2, itire->meta_data, itire->max);
+		write (2, "\n", 1);
 		set_exit_code(258);
 		return (0);
 	}
 	return (1);
 }
-
+//parse error with pipe always say "syntax error near unexpected token `|'" no newline
+//but redirection if it is in the end it meantions new line "syntax error near unexpected token `newline'";
 int	check_redirect(t_tokens *itire)
 {
 	int	max;
