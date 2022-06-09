@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/06 16:03:10 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/09 19:58:39 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char    decide(char *s,char *s2, char c)
 	return ('u');
 }
 
+//i will change here
 char    *get_meta(char *s)
 {
     char    *s_se;
@@ -66,12 +67,12 @@ char    *get_meta(char *s)
     s_quoted = 0;
     while (s[i])
     {
-        if (s[i] == '"')
+        if (s[i] == '"' && s_quoted == 0)
         {
             quoted = !quoted;
             s_se[i] = 'd';
         }
-		else if (s[i] == '\'')
+		else if (s[i] == '\'' && quoted == 0)
         {
             s_quoted = !s_quoted;
             s_se[i] = 's';
@@ -79,7 +80,7 @@ char    *get_meta(char *s)
         else if (quoted || s_quoted)
             s_se[i] = 'q';
         else
-            s_se[i] = decide("\"' \t\n|<>", "dsbbbprw", s[i]);
+            s_se[i] = decide(" \t\n|<>", "bbbprw", s[i]);
         i++;
     }
 	s_se[i] = 0;

@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 11:47:51 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/06 22:28:06 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/09 20:06:51 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	meta_checker(char *s, char in_need, int k)
 t_tokens	*ft_slpit_list(char *s, char *s2, char delimiter)
 {
 	int			i;
-	int			 k;
+	int			k;
 	t_tokens	*tokens;
 	void		*previous;
 

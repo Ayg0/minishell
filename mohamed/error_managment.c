@@ -21,9 +21,23 @@ int	find_it(char *token_meta, char *charset)
 
 int	check_pip(t_tokens *itire)
 {
+	int	len;
+	int max;
+
+	max = itire->max;
+	len = ft_strlen(itire->meta_data);
 	if (!itire->next || !itire->previous)
 	{
 		printf("pip error \n");
+		set_exit_code(258);
+		return (0);
+	}
+	else if (len > max)
+	{
+		len = (len - max == 1) + ((len - max > 1) * max);
+		printf("redirection error missing opperand near \n");
+		write (2, &itire->token[max], len);
+		write (2, "\n", 1);
 		set_exit_code(258);
 		return (0);
 	}
@@ -45,7 +59,7 @@ int	check_redirect(t_tokens *itire)
 	int	max;
 	int	len;
 
-	max = 2;
+	max = itire->max;
 	len = ft_strlen(itire->meta_data);
 	if (!itire->next)
 	{
@@ -73,6 +87,29 @@ int	check_redirect(t_tokens *itire)
 	return (1);
 }
 
+int	check_quotes(t_tokens *itire)
+{
+	int i;
+	int quotes;
+
+	i = -1;
+	quotes = 0;
+	while (itire->meta_data[++i])
+	{
+		if (ft_strchr("sd", itire->meta_data[i]) != 0 && quotes == 0)
+			quotes = !quotes;
+		else if (ft_strchr("sd", itire->meta_data[i]) != 0 && quotes != 0)
+			quotes = !quotes;
+	}
+	if (quotes)
+	{
+		printf("parse error unclosed quote!!\n");
+		set_exit_code(258);
+		return (0);
+	}
+	return (1);
+}
+
 void	manage_errors(t_data *data)
 {
 	t_tokens	*itire;
@@ -82,11 +119,14 @@ void	manage_errors(t_data *data)
 	flag = 1;
 	while(itire && flag)
 	{
-		// printf("%s\n", itire->token);
+		// printf("%d\n", i++);
+		printf("%s ==> %s\n", itire->token, itire->meta_data);
 		if (*(itire->meta_data) == 'p')
 			flag = check_pip(itire);
 		else if (ft_strchr("wr", *(itire->meta_data)) != 0)
 			flag = check_redirect(itire);
+		else
+			flag = check_quotes(itire);
 		itire = itire->next;
 	}
 }
