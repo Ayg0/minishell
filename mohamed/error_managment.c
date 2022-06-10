@@ -35,7 +35,7 @@ int	check_pip(t_tokens *itire)
 	else if (len > max)
 	{
 		len = (len - max == 1) + ((len - max > 1) * max);
-		printf("redirection error missing opperand near \n");
+		printf("syntax error near unexpected token \n");
 		write (2, &itire->token[max], len);
 		write (2, "\n", 1);
 		set_exit_code(258);
@@ -110,7 +110,7 @@ int	check_quotes(t_tokens *itire)
 	return (1);
 }
 
-void	manage_errors(t_data *data)
+int	manage_errors(t_data *data)
 {
 	t_tokens	*itire;
 	int			flag;
@@ -120,7 +120,7 @@ void	manage_errors(t_data *data)
 	while(itire && flag)
 	{
 		// printf("%d\n", i++);
-		printf("%s ==> %s\n", itire->token, itire->meta_data);
+		// printf("%s ==> %s\n", itire->token, itire->meta_data);
 		if (*(itire->meta_data) == 'p')
 			flag = check_pip(itire);
 		else if (ft_strchr("wr", *(itire->meta_data)) != 0)
@@ -129,4 +129,5 @@ void	manage_errors(t_data *data)
 			flag = check_quotes(itire);
 		itire = itire->next;
 	}
+	return (flag);
 }

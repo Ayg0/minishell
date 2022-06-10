@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/09 19:58:39 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/10 17:10:14 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,17 +141,18 @@ int prompt_display(t_data *data, char **envp)
 {
     int     i;
 
-	(void) envp;
     write(1, "\e[H\e[2J", 8);
 	i = 0;
     while(1)
     {
     	data->cmd = readline("\033[0;34mhalf-bash-3.2$\033[0;37m ");
     	add_history(data->cmd);
-		if (*data->cmd == '\0')
-			exit(1);
+	//	if (*data->cmd == '\0')
+	//		exit(1);
 		proccess_data(data);
-		manage_errors(data);
+		if (manage_errors(data) == 0)
+			continue ;
+		launch_here_docs(data, envp);
 		clear_data(data);
 		// system("leaks minishell");
     }

@@ -1,43 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 15:40:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/10 12:59:22 by msouiyeh         ###   ########.fr       */
+/*   Created: 2021/11/22 18:26:01 by msouiyeh          #+#    #+#             */
+/*   Updated: 2022/06/10 13:14:44 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include <unistd.h>
+# include <stdlib.h>
+# include "../../minishell.h"
+# define BUFFER_SIZE 1
 
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s)
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
-	}
-	if (*s == c)
-		return ((char *)s);
-	return (NULL);
-}
+char	*free_it(char **target);
+char	*handel_the_shit(char **saved);
+char	*get_next_line(int fd);
+char	*ft_strjoin_all(char **s1, char *s2);
 
-char	*ft_strdup(char *s1)
-{
-	size_t	i;
-	char	*cpy;
-
-	cpy = (char *)ft_calloc(ft_strlen(s1) + 1, sizeof(char));
-	if (cpy == NULL)
-		return (0);
-	i = 0;
-	while (*s1)
-	{
-		cpy[i++] = *s1;
-		s1++;
-	}
-	return (cpy);
-}
+#endif
