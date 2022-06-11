@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/06 10:28:43 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/11 10:53:22 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,14 +133,28 @@ void	clear_data(t_data *data)
 		data->list = data->list->next;
 		free(tmp);
 	}
-	
+}
+
+int	ft_strstr(char *str, char *var)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != var[i])
+			break;
+		i++;
+	}
+	if (str[i] == '=')
+		return (i + 1);
+	return (-1);
 }
 
 int prompt_display(t_data *data, char **envp)
 {
     int     i;
 
-	(void) envp;
     write(1, "\e[H\e[2J", 8);
 	i = 0;
     while(1)
@@ -150,6 +164,7 @@ int prompt_display(t_data *data, char **envp)
 		if (*data->cmd == '\0')
 			exit(1);
 		proccess_data(data);
+		expand_all(*data, envp);
 		clear_data(data);
 		system("leaks minishell");
     }

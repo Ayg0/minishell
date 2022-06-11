@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:15:08 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/06 10:26:23 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/11 11:27:55 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ int     	prompt_display(t_data *data, char **envp);
 void		ft_lstadd_back(t_tokens **lst, t_tokens *new);
 t_tokens	*ft_lstnew(t_tokens *previous, void *meta, char *token);
 t_tokens	*ft_lstlast(t_tokens *lst);
+char		*ft_strjoin(char *s1, char *s2);
 char		*ft_substr(char *s, unsigned int start, size_t len);
 t_tokens	*ft_slpit_list(char *s, char *s2, char delimiter);
 char    	decide(char *s,char *s2, char c);
+int			expand_all(t_data data, char **envp);
 #endif
