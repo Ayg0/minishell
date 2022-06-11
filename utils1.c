@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:02:21 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/11 12:24:15 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:32:44 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t		j;
 	size_t		k;
 
-	if (!s1)
-		return (s2);
-	if (!s2)
-		return (s1);
 	j = ft_strlen(s1);
 	k = ft_strlen(s2);
 	s3 = (char *)ft_calloc((j + k + 1), sizeof(char));
@@ -45,14 +41,9 @@ char	*ft_strjoin(char *s1, char *s2)
     i = -1;
     while (++i < j)
         s3[i] = s1[i];
-    i = -1;
-    while (++i < j)
-        s3[i] = s1[i];
 	i = -1;
 	while (++i < k)
 		s3[i + j] = s2[i];
-	free(s1);
-	free(s2);
 	return (s3);
 }
 
