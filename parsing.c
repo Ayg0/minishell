@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/06/10 17:10:14 by msouiyeh         ###   ########.fr       */
-=======
-/*   Updated: 2022/06/10 17:10:14 by msouiyeh         ###   ########.fr       */
->>>>>>> 14c9fbb588c1118901c7b5f9575658ee018653cb
+/*   Updated: 2022/06/11 12:25:51 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,16 +165,10 @@ int prompt_display(t_data *data, char **envp)
 	//	if (*data->cmd == '\0')
 	//		exit(1);
 		proccess_data(data);
-<<<<<<< HEAD
 		expand_all(*data, envp);
 		if (manage_errors(data) == 0)
 			continue ;
 		launch_here_docs(data, envp);
-=======
-		if (manage_errors(data) == 0)
-			continue ;
-		launch_here_docs(data, envp);
->>>>>>> 14c9fbb588c1118901c7b5f9575658ee018653cb
 		clear_data(data);
 		// system("leaks minishell");
     }
