@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 15:40:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/10 12:59:22 by msouiyeh         ###   ########.fr       */
+/*   Created: 2022/06/11 14:19:12 by ted-dafi          #+#    #+#             */
+/*   Updated: 2022/06/11 14:19:48 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s)
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
-	}
-	if (*s == c)
-		return ((char *)s);
-	return (NULL);
-}
+#include "global_utils.h"
 
 char	*ft_strdup(char *s1)
 {
@@ -32,7 +19,7 @@ char	*ft_strdup(char *s1)
 
 	cpy = (char *)ft_calloc(ft_strlen(s1) + 1, sizeof(char));
 	if (cpy == NULL)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (*s1)
 	{

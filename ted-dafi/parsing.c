@@ -6,53 +6,12 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/11 12:25:51 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/11 15:02:53 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdio.h>
+#include "ted_dafi.h"
 
-// int prompt_display(char **env)
-// {
-//     int i;
-//     char **o;
-
-//     o = malloc(sizeof(char*) * 4);
-//     o[0] = "bash";
-//     o[1] = "-c";
-//     o[3] = '\0';
-//     write(1, "\e[H\e[2J", 8);
-//     while(1)
-//     {
-//         write(1, "half-bash-3.2$ ", 16);
-//         char    s[1000000] = {};
-//         i = 0;
-//         while (i == 0 || s[i - 1] != '\n'){
-//             read(1, &s[i], 1);i++;}
-//         o[2] = s;
-//         if (!fork())
-//             execve("/bin/bash", o, env);
-//         wait(NULL);
-//     }
-//     return (0);
-// }
-
-char    decide(char *s,char *s2, char c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (c == s[i])
-			return (s2[i]);
-		i++;
-	}
-	return ('u');
-}
-
-//i will change here
 char    *get_meta(char *s)
 {
     char    *s_se;
@@ -87,33 +46,6 @@ char    *get_meta(char *s)
     return (s_se);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
-{
-	char	*p;
-	size_t	i;
-	size_t	c;
-
-	i = 0;
-	if (!s)
-		return (NULL);
-	c = ft_strlen(s);
-	if (len > c)
-		len = c;
-	p = (char *)ft_calloc((len + 1), sizeof(char));
-	if (!p)
-		return (NULL);
-	if (start <= c)
-	{
-		while (s[i + start] && len)
-		{
-			p[i] = s[ i + start];
-			i++;
-			len--;
-		}
-	}
-	return (p);
-}
-
 void	proccess_data(t_data *data)
 {
 	data->meta_str = get_meta(data->cmd);
@@ -136,26 +68,11 @@ void	clear_data(t_data *data)
 	}
 }
 
-int	ft_strstr(char *str, char *var)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] != var[i])
-			break;
-		i++;
-	}
-	if (str[i] == '=')
-		return (i + 1);
-	return (-1);
-}
-
 int prompt_display(t_data *data, char **envp)
 {
     int     i;
 
+	(void)envp;
     write(1, "\e[H\e[2J", 8);
 	i = 0;
     while(1)
@@ -165,10 +82,10 @@ int prompt_display(t_data *data, char **envp)
 	//	if (*data->cmd == '\0')
 	//		exit(1);
 		proccess_data(data);
-		expand_all(*data, envp);
 		if (manage_errors(data) == 0)
 			continue ;
-		launch_here_docs(data, envp);
+		//launch_here_docs(data, envp);
+		//expand_all(*data, envp);
 		clear_data(data);
 		// system("leaks minishell");
     }

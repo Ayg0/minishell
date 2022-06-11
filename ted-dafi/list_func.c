@@ -6,11 +6,11 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 09:23:01 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/04 12:02:53 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/11 14:41:53 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "ted_dafi.h"
 
 t_tokens	*ft_lstnew(t_tokens *previous, void *meta, char *token)
 {

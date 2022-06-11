@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   split_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 11:47:51 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/09 20:06:51 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/11 14:42:05 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "ted_dafi.h"
 
 int	ft_serch(char c, char c2, char *elements)
 {

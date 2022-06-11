@@ -6,11 +6,11 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:52:56 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/11 11:28:11 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/11 14:41:16 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "ted_dafi.h"
 
 char *get_exp(char *var, char **envp)
 {
@@ -22,7 +22,7 @@ char *get_exp(char *var, char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		j = ft_strstr(envp[i], var);
+		j = env_scout(envp[i], var);
 		if (j != -1)
 		{
 			free(var);
@@ -54,7 +54,7 @@ char	*expand(t_tokens *list, char **envp)
 		if (list->token[i] == '$' && !flag[1])
 		{
 			j = i;
-			while (list->token[i] && decide(,))//list->token[i] != ' ' && list->token[i] != '\"' && list->token[i] != '\'')
+			while (list->token[i] && list->token[i] != ' ' && list->token[i] != '\"' && list->token[i] != '\'')
 				i++;
 			str = ft_strjoin(str, get_exp(ft_substr(list->token, j + 1, j - i - 1), envp));
 		}

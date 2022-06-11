@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/23 10:15:08 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/11 14:50:38 by ted-dafi         ###   ########.fr       */
+/*   Created: 2022/06/11 13:12:22 by ted-dafi          #+#    #+#             */
+/*   Updated: 2022/06/11 13:13:02 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <sys/wait.h>
-# include "global_utils/global_utils.h"
-# include <readline/readline.h>
-# include <readline/history.h>
-# include "ted-dafi/ted_dafi.h"
-# include "mohamed/get_next_line/get_next_line.h"
-# include "mohamed/mohamed.h"
-#endif
+#include "global_utils.h"
+
+void	*ft_calloc(int count, int size)
+{
+	void	*b;
+	int		i;
+
+	i = count * size;
+	b = malloc(i);
+	if (!b)
+		return (NULL);
+	while (i)
+		((char *)b)[--i] = 0;
+	return (b);
+}
