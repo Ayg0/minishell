@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 19:02:21 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/06 10:21:41 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/10 12:57:49 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,3 +90,4 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	}
 	return (0);
 }
+

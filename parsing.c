@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/06 10:28:43 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/10 17:10:14 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char    decide(char *s,char *s2, char c)
 	return ('u');
 }
 
+//i will change here
 char    *get_meta(char *s)
 {
     char    *s_se;
@@ -66,12 +67,12 @@ char    *get_meta(char *s)
     s_quoted = 0;
     while (s[i])
     {
-        if (s[i] == '"')
+        if (s[i] == '"' && s_quoted == 0)
         {
             quoted = !quoted;
             s_se[i] = 'd';
         }
-		else if (s[i] == '\'')
+		else if (s[i] == '\'' && quoted == 0)
         {
             s_quoted = !s_quoted;
             s_se[i] = 's';
@@ -79,7 +80,7 @@ char    *get_meta(char *s)
         else if (quoted || s_quoted)
             s_se[i] = 'q';
         else
-            s_se[i] = decide("\"' \t\n|<>", "dsbbbprw", s[i]);
+            s_se[i] = decide(" \t\n|<>", "bbbprw", s[i]);
         i++;
     }
 	s_se[i] = 0;
@@ -140,18 +141,20 @@ int prompt_display(t_data *data, char **envp)
 {
     int     i;
 
-	(void) envp;
     write(1, "\e[H\e[2J", 8);
 	i = 0;
     while(1)
     {
     	data->cmd = readline("\033[0;34mhalf-bash-3.2$\033[0;37m ");
     	add_history(data->cmd);
-		if (*data->cmd == '\0')
-			exit(1);
+	//	if (*data->cmd == '\0')
+	//		exit(1);
 		proccess_data(data);
+		if (manage_errors(data) == 0)
+			continue ;
+		launch_here_docs(data, envp);
 		clear_data(data);
-		system("leaks minishell");
+		// system("leaks minishell");
     }
     return (0);
 }

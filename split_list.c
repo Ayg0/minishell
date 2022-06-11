@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 11:47:51 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/06 10:24:11 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/09 20:06:51 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	meta_checker(char *s, char in_need, int k)
 t_tokens	*ft_slpit_list(char *s, char *s2, char delimiter)
 {
 	int			i;
-	int			 k;
+	int			k;
 	t_tokens	*tokens;
 	void		*previous;
 
@@ -59,6 +59,10 @@ t_tokens	*ft_slpit_list(char *s, char *s2, char delimiter)
 				k++;
 			ft_lstadd_back(&tokens, ft_lstnew(previous, ft_substr(s, i , k - i), ft_substr(s2, i, k - i)));
 			previous = ft_lstlast(tokens);
+			if (ft_strchr("wr", ((t_tokens *)previous)->meta_data[0]) != 0)
+				((t_tokens *)previous)->max = 2;
+			else
+				((t_tokens *)previous)->max = 1;
 			if (s[k] == ' ')
 				break ;
 		}
