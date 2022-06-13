@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/11 15:02:53 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/13 11:31:38 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char    *get_meta(char *s)
     int s_quoted;
 
     i = ft_strlen(s);
-    s_se = ft_calloc(i, sizeof(char));
+    s_se = ft_calloc(i + 1, sizeof(char));
     i = 0;
     quoted = 0;
     s_quoted = 0;
@@ -42,7 +42,6 @@ char    *get_meta(char *s)
             s_se[i] = decide(" \t\n|<>", "bbbprw", s[i]);
         i++;
     }
-	s_se[i] = 0;
     return (s_se);
 }
 
@@ -79,15 +78,15 @@ int prompt_display(t_data *data, char **envp)
     {
     	data->cmd = readline("\033[0;34mhalf-bash-3.2$\033[0;37m ");
     	add_history(data->cmd);
-	//	if (*data->cmd == '\0')
-	//		exit(1);
+		if (*data->cmd == '\0')
+			exit(1);
 		proccess_data(data);
 		if (manage_errors(data) == 0)
 			continue ;
 		//launch_here_docs(data, envp);
-		//expand_all(*data, envp);
+		expand_all(*data, envp);
 		clear_data(data);
-		// system("leaks minishell");
+		//system("leaks minishell");
     }
     return (0);
 }
