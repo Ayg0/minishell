@@ -2,12 +2,14 @@ CC = cc
 
 NAME = minishell
 
-CFLAGS = -Wall -Werror -Wextra -g 
+CFLAGS = -Wall -Werror -Wextra -g
 
 GSRCS = global_utils/decide.c global_utils/env_scout.c global_utils/ft_calloc.c			\
 		global_utils/ft_strcmp.c global_utils/ft_strjoin.c global_utils/ft_strlcpy.c	\
 		global_utils/ft_strlen.c global_utils/ft_substr.c global_utils/ft_strchr.c		\
-		global_utils/ft_strdup.c
+		global_utils/ft_strdup.c global_utils/ft_isalnum.c global_utils/ft_isalpha.c 	\
+		global_utils/ft_isascii.c global_utils/ft_isdigit.c global_utils/ft_isprint.c
+		
 TSRCS = ted-dafi/split_list.c ted-dafi/parsing.c ted-dafi/expan.c ted-dafi/list_func.c
 MSRCS = mohamed/error_managment.c mohamed/exit_code.c mohamed/ft_pstrjoin.c \
 		mohamed/get_next_line/get_next_line.c mohamed/get_next_line/get_next_line_utils.c mohamed/here_docs.c

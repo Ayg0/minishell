@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expan.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:52:56 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/13 12:01:37 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/13 18:20:55 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	expand_all(t_data data, char **envp)
 	while (data.list)
 	{	
 		char *str = expand(data.list, envp);
-		printf("%s\n", str);
+		// printf("%s\n", str);
 		if (str)
 			free(str);
 		data.list = data.list->next;
