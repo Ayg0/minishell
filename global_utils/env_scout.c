@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_scout.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 12:36:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/11 13:12:16 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/13 17:37:43 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	env_scout(char *str, char *var)
 			break;
 		i++;
 	}
-	if (str[i] == '=')
+	if (str[i] == '=' && !var[i])
 		return (i + 1);
 	return (-1);
 }
