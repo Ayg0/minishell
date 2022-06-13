@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:19:33 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/11 14:06:00 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/11 17:38:31 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "global_utils.h"
+#include <stdio.h>
 
 char	*ft_substr(char *s, int start, int len)
 {

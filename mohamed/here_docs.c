@@ -1,7 +1,7 @@
 #include "../minishell.h"
 
 
-int	compare(char *str, char *limiter)
+int	compare(char *str, char *limiter, int flag)
 {
 	int i;
 
@@ -17,23 +17,26 @@ int	compare(char *str, char *limiter)
 		}
 		i++;
 	}
-	free(str);
+	if (flag)
+		free(str);
 	return (1);
 }
 
-char *get_env_var()
-{
+// char *get_env_var()
+// { 
 
-}
+// }
 
 char	*check_and_expand(char *str, char **envp)
 {
-	char	*final;
+	// char	*final;
 	
-	final = ft_strdup("");
+	// final = ft_strdup("");
 
-	free(str);
-	return (final);
+	// free(str);
+	(void)envp;
+	printf("we have to expand here\n");
+	return (str);
 }
 
 char	*dynamic_read(char *limiter, int flag, char **envp)
@@ -46,13 +49,13 @@ char	*dynamic_read(char *limiter, int flag, char **envp)
 	str = NULL;
 	final = ft_strdup("");
 
-	while (compare(str, limiter))
+	while (compare(str, limiter, 1))
 	{
 		write (1, "> ", 2);
 		str = get_next_line(0);
 		if (str == NULL)
 			return (final);
-		if (flag == 0)
+		if (flag != -1 && compare(str, limiter, 0))
 			str = check_and_expand(str, envp);
 		final = ft_strjoin_all(&final, str);
 	}
@@ -68,9 +71,9 @@ void	here_doc(int fd, char *limiter, char **envp)
 	i = -1;
 	while (limiter[++i])
 	{
-		if (limiter[i] == '\'' || limiter == '"')
+		if (limiter[i] == '\'' || limiter[i] == '\"')
 		{
-			i = 0;
+			i = -1;
 			break ;
 		}
 		i++;
@@ -132,7 +135,7 @@ void	launch_here_docs(t_data *data, char **envp)
 			if (fd == -1)
 				printf("here_doc tmp file creation faild\n");
 			// printf("fd %d ::: %s\n", fd, path);
-			here_doc (fd, itire->next->token);
+			here_doc (fd, itire->next->token, envp);
 			change_here_doc(itire, path);
 			i++;
 		}
