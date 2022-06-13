@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/13 16:08:46 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/13 22:28:08 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,10 @@ int prompt_display(t_data *data, char **envp)
 		proccess_data(data);
 		if (manage_errors(data) == 0)
 			continue ;
-		//launch_here_docs(data, envp);
+		launch_here_docs(data, envp);
 		expand_all(*data, envp);
 		clear_data(data);
-		//system("leaks minishell");
+		// system("leaks minishell");
     }
     return (0);
 }

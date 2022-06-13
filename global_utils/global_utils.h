@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   global_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 12:37:21 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/11 14:23:58 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/13 18:12:05 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,10 @@ char    decide(char *main_str, char *mirror_str, char c);
 char	*ft_substr(char *s, int start, int len);
 char	*ft_strdup(char *s1);
 char	*ft_strchr(char *s, int c);
+int		ft_isalnum(int c);
+int		ft_isprint(int c);
+int		ft_isdigit(int c);
+int		ft_isascii(int c);
+int		ft_isalpha(int c);
+
 #endif

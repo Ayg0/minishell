@@ -12,7 +12,8 @@ int	compare(char *str, char *limiter, int flag)
 	{
 		if (!(limiter[i]) && str[i] == '\n')
 		{
-			free(str);
+			if (flag)
+				free(str);
 			return (0);
 		}
 		i++;
@@ -22,21 +23,86 @@ int	compare(char *str, char *limiter, int flag)
 	return (1);
 }
 
-// char *get_env_var()
-// { 
+char *here_doc_join(char *s1, char *s2, int flag)
+{
+	char	*final;
 
-// }
+	if (!s1 || !s2)
+		return (NULL);
+	final = ft_strjoin(s1, s2);
+	free (s1);
+	if (flag)
+		free(s2);
+	return (final);
+}
+
+int	check_name(char	*name, int *i)
+{
+	if (name[*i] != '_' && !ft_isalpha(name[*i]))
+		return ((*i)++);
+	while (name[*i] == '_' || ft_isalnum(name[*i]))
+		(*i)++;
+	return (*i);
+}
+
+char	*final_expand(char *str, int *i, char **envp)
+{
+	char	*tmp;
+	char	*final;
+	int		s;
+
+	s = *i;
+	tmp = ft_substr(str, s, check_name(str, i) - s);
+	final = ft_strdup("");
+	while (*envp)
+	{
+		if (env_scout(*envp, tmp) != -1)
+		{
+			free(final);
+			final = ft_substr(*envp, env_scout(*envp, tmp), ft_strlen(*envp));
+			break ;
+		}
+		envp++;
+	}
+	free(tmp);
+	return (final);
+}
 
 char	*check_and_expand(char *str, char **envp)
 {
-	// char	*final;
-	
-	// final = ft_strdup("");
+	int i;
+	char c[2];
+	char *final;
 
-	// free(str);
-	(void)envp;
-	printf("we have to expand here\n");
-	return (str);
+	final = ft_strdup("");
+	c[1] = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '$' && (str[i + 1] == '_' || ft_isalnum(str[i + 1])))
+		{
+			i++;
+			final = here_doc_join(final, final_expand(str, &i, envp), 1);
+		}
+		else
+		{
+			c[0] = str[i];
+			final = here_doc_join(final, c, 0);
+			i++;
+		}
+	}
+	free(str);
+	return (final);
+}
+
+int	limiter_len(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] && str[i] != '\'' && str[i] != '\"')
+		i++;
+	return (i);
 }
 
 char	*dynamic_read(char *limiter, int flag, char **envp)
@@ -45,10 +111,10 @@ char	*dynamic_read(char *limiter, int flag, char **envp)
 	char	*final;
 	int		size;
 
-	size = ft_strlen(limiter);
+	size = limiter_len(limiter);
+	limiter[size] = 0;
 	str = NULL;
 	final = ft_strdup("");
-
 	while (compare(str, limiter, 1))
 	{
 		write (1, "> ", 2);
@@ -56,10 +122,10 @@ char	*dynamic_read(char *limiter, int flag, char **envp)
 		if (str == NULL)
 			return (final);
 		if (flag != -1 && compare(str, limiter, 0))
-			str = check_and_expand(str, envp);
+		 	str = check_and_expand(str, envp);
 		final = ft_strjoin_all(&final, str);
 	}
-	*(ft_strchr(final, '\0') - (size + 1)) = 0;
+	*(ft_strchr(final, '\0') - (size + 1)) = 0; //the + 1 is for the '\n'
 	return (final);
 }
 
@@ -82,6 +148,7 @@ void	here_doc(int fd, char *limiter, char **envp)
 	write (fd, final, ft_strlen(final));
 	if (close (fd) == -1)
 		printf("error msg in heredoc to be changed\n");
+	free(final);
 }
 
 void	change_here_doc(t_tokens *itire, char *path)
