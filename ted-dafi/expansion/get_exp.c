@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   get_exp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/11 13:19:33 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/14 09:41:36 by ted-dafi         ###   ########.fr       */
+/*   Created: 2022/06/14 11:20:40 by ted-dafi          #+#    #+#             */
+/*   Updated: 2022/06/14 12:56:09 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "global_utils.h"
-#include <stdio.h>
+#include "../ted_dafi.h"
 
-char	*ft_substr(char *s, int start, int len)
+char	*get_exp(char *var, char **envp)
 {
-	int	length;
-	char	*ptr;
 	int	i;
+	int	j;
 
-	if (s == NULL)
+	if (!envp)
 		return (NULL);
 	i = 0;
-	length = ft_strlen(s);
-	if (start >= length)
-		length = 1;
-	else if (length - start > len)
-		length = len + 1;
-	else if (length - start <= len)
-		length = length - start + 1;
-	ptr = (char *)ft_calloc(length, 1);
-	if (ptr == NULL)
-		return (NULL);
-	while (i < length - 1)
+	while (envp[i])
 	{
-		ptr[i] = s[i + start];
+		j = env_scout(envp[i], var);
+		if (j != -1)
+		{
+			free(var);
+			return (ft_substr(envp[i], j, ft_strlen(envp[i]) - j));
+		}
 		i++;
 	}
-	return (ptr);
+	free(var);
+	return (NULL);
 }
