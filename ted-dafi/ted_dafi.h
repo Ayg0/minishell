@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:33:24 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/11 14:55:51 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/14 13:27:43 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,8 @@ t_tokens	*ft_lstnew(t_tokens *previous, void *meta, char *token);
 t_tokens	*ft_lstlast(t_tokens *lst);
 char		*ft_strjoin(char *s1, char *s2);
 t_tokens	*ft_slpit_list(char *s, char *s2, char delimiter);
-int			expand_all(t_data data, char **envp);
+int			expand_all(t_data *data, char **envp);
+char		*re_join(char *s1, char *s2);
+char 		*get_exp(char *var, char **envp);
+char		*get_meta(char *s);
 #endif
