@@ -95,14 +95,37 @@ char	*check_and_expand(char *str, char **envp)
 	return (final);
 }
 
-int	limiter_len(char *str)
-{
-	int i;
+// int	limiter_len(char *str)
+// {
+// 	int i;
+// 	i = 0;
+// 	while (str[i] && str[i] != '\'' && str[i] != '\"')
+// 		i++;
+// 	return (i);
+// }
 
+char	*remove_limiter_q(char *limiter)
+{
+	int		i;
+	char	c[2];
+	char	*final;
+
+	final = ft_strdup("");
+	c[1] = 0;
 	i = 0;
-	while (str[i] && str[i] != '\'' && str[i] != '\"')
-		i++;
-	return (i);
+	while (limiter[i])
+	{
+		if (limiter[i] == '\'' || limiter[i] == '\"')
+			i++;
+		else
+		{
+			c[0] = limiter[i];
+			final = here_doc_join(final, c, 0);
+			i++;
+		}
+	}
+	free(limiter);
+	return (final);
 }
 
 char	*dynamic_read(char *limiter, int flag, char **envp)
@@ -111,8 +134,9 @@ char	*dynamic_read(char *limiter, int flag, char **envp)
 	char	*final;
 	int		size;
 
-	size = limiter_len(limiter);
-	limiter[size] = 0;
+	limiter = remove_limiter_q(limiter);
+	size = ft_strlen(limiter);
+	// printf("%s\n", limiter);
 	str = NULL;
 	final = ft_strdup("");
 	while (compare(str, limiter, 1))

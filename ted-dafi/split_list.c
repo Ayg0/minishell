@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 11:47:51 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/11 17:21:35 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/15 13:20:15 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_tokens	*ft_slpit_list(char *s, char *s2, char delimiter)
 				((t_tokens *)previous)->max = 2;
 			else
 				((t_tokens *)previous)->max = 1;
-			if (s[k] == ' ')
+			if (s[k] == 'b')
 				break ;
 		}
 		i = k;

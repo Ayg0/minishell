@@ -25,8 +25,8 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME):	$(OBJS)
-#		$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
-		$(CC) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
+		$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
+#		$(CC) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
 
 clean:
 		$(RM) $(OBJS) $(B_OBJS)

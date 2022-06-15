@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/14 14:25:55 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/15 13:19:58 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	prompt_display(t_data *data, char **envp)
 		proccess_data(data);
 		if (manage_errors(data) == 0)
 			continue ;
-		//launch_here_docs(data, envp);
+		// launch_here_docs(data, envp);
 		expand_all(data, envp);
 		while (data->list)
 		{
