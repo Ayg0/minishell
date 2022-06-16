@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 11:47:51 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/16 10:37:01 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/16 14:29:33 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ t_tokens	*ft_slpit_list(char *s, char *s2, char delimiter)
 				((t_tokens *)previous)->max = 2;
 			else
 				((t_tokens *)previous)->max = 1;
-			if (s[k] == 'b')
-				break ;
 		}
 		i = k;
 	}
