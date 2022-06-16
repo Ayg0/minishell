@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   global_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 12:37:21 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/13 18:12:05 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/16 09:45:25 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strjoin(char *s1, char *s2);
 int		ft_strlcpy(char *dest, char *src, int size);
 int		ft_strcmp(char *s1, char *s2);
 void	*ft_calloc(int count, int size);
-char    decide(char *main_str, char *mirror_str, char c);
+char	decide(char *main_str, char *mirror_str, char c);
 char	*ft_substr(char *s, int start, int len);
 char	*ft_strdup(char *s1);
 char	*ft_strchr(char *s, int c);

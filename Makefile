@@ -10,7 +10,8 @@ GSRCS = global_utils/decide.c global_utils/env_scout.c global_utils/ft_calloc.c	
 		global_utils/ft_strdup.c global_utils/ft_isalnum.c global_utils/ft_isalpha.c 	\
 		global_utils/ft_isascii.c global_utils/ft_isdigit.c global_utils/ft_isprint.c
 
-TEXP  = ted-dafi/expansion/expan.c ted-dafi/expansion/re_join.c ted-dafi/expansion/get_exp.c
+TEXP  = ted-dafi/expansion/expan.c ted-dafi/expansion/re_join.c ted-dafi/expansion/get_exp.c \
+		ted-dafi/expansion/quote_rm.c
 
 TSRCS = $(TEXP) ted-dafi/split_list.c ted-dafi/parsing.c ted-dafi/list_func.c
 MSRCS = mohamed/error_managment.c mohamed/exit_code.c mohamed/ft_pstrjoin.c \

@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 11:33:31 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/04 11:36:39 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/16 09:42:06 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int ac, char **av, char **envp)
 {
-	t_data *data;
+	t_data	*data;
 
 	(void)ac;
 	(void)av;
