@@ -14,9 +14,14 @@ TEXP  = ted-dafi/expansion/expan.c ted-dafi/expansion/re_join.c ted-dafi/expansi
 		ted-dafi/expansion/quote_rm.c
 
 TSRCS = $(TEXP) ted-dafi/split_list.c ted-dafi/parsing.c ted-dafi/list_func.c
-MSRCS = mohamed/error_managment.c mohamed/exit_code.c mohamed/ft_pstrjoin.c \
-		mohamed/get_next_line/get_next_line.c mohamed/get_next_line/get_next_line_utils.c mohamed/here_docs.c
 
+MSRCS = mohamed/error_managment.c mohamed/exit_code.c mohamed/ft_pstrjoin.c \
+		mohamed/get_next_line/get_next_line.c mohamed/get_next_line/get_next_line_utils.c \
+		mohamed/here_docs.c mohamed/redirections.c \
+		mohamed/lst_functions/ft_lstadd_back_bonus.c  	mohamed/lst_functions/ft_lstclear_bonus.c     \
+		mohamed/lst_functions/ft_lstadd_front_bonus.c 	mohamed/lst_functions/ft_lstdelone_bonus.c    \
+		mohamed/lst_functions/ft_lstlast_bonus.c		mohamed/lst_functions/ft_lstnew_bonus.c	\
+		mohamed/lst_functions/ft_lstsize_bonus.c
 SRCS =  main.c $(TSRCS) $(MSRCS) $(GSRCS)
 
 OBJS = $(SRCS:.c=.o)
@@ -27,7 +32,7 @@ all: $(NAME)
 
 $(NAME):	$(OBJS)
 		$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
-#		$(CC) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
+#		$(CC) $(CFLAGS) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
 
 clean:
 		$(RM) $(OBJS) $(B_OBJS)

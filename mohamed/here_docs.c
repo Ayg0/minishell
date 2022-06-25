@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   here_docs.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/16 15:24:44 by msouiyeh          #+#    #+#             */
+/*   Updated: 2022/06/16 15:24:45 by msouiyeh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 
@@ -38,8 +50,6 @@ char *here_doc_join(char *s1, char *s2, int flag)
 
 int	check_name(char	*name, int *i)
 {
-	if (name[*i] != '_' && !ft_isalpha(name[*i]))
-		return ((*i)++);
 	while (name[*i] == '_' || ft_isalnum(name[*i]))
 		(*i)++;
 	return (*i);
@@ -79,7 +89,7 @@ char	*check_and_expand(char *str, char **envp)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '$' && (str[i + 1] == '_' || ft_isalnum(str[i + 1])))
+		if (str[i] == '$' && (str[i + 1] == '_' || ft_isalpha(str[i + 1])))
 		{
 			i++;
 			final = here_doc_join(final, final_expand(str, &i, envp), 1);
@@ -95,27 +105,20 @@ char	*check_and_expand(char *str, char **envp)
 	return (final);
 }
 
-// int	limiter_len(char *str)
-// {
-// 	int i;
-// 	i = 0;
-// 	while (str[i] && str[i] != '\'' && str[i] != '\"')
-// 		i++;
-// 	return (i);
-// }
-
 char	*remove_limiter_q(char *limiter)
 {
 	int		i;
 	char	c[2];
 	char	*final;
+	char	*meta;
 
+	meta = get_meta(limiter);
 	final = ft_strdup("");
 	c[1] = 0;
 	i = 0;
 	while (limiter[i])
 	{
-		if (limiter[i] == '\'' || limiter[i] == '\"')
+		if (meta[i] == 'd' || meta[i] == 's')
 			i++;
 		else
 		{
@@ -136,7 +139,6 @@ char	*dynamic_read(char *limiter, int flag, char **envp)
 
 	limiter = remove_limiter_q(limiter);
 	size = ft_strlen(limiter);
-	// printf("%s\n", limiter);
 	str = NULL;
 	final = ft_strdup("");
 	while (compare(str, limiter, 1))
@@ -225,7 +227,7 @@ void	launch_here_docs(t_data *data, char **envp)
 			fd = open(path, O_CREAT | O_WRONLY | O_TRUNC, 0666);
 			if (fd == -1)
 				printf("here_doc tmp file creation faild\n");
-			// printf("fd %d ::: %s\n", fd, path);
+			// printf("token %s ::: meta %s\n", itire->next->token, itire->next->meta_data);
 			here_doc (fd, itire->next->token, envp);
 			change_here_doc(itire, path);
 			i++;
