@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 12:40:11 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/25 16:22:56 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/26 14:45:14 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_pokets	*ft_new_poket(char **env)
 	final->redirects = (t_redirections *)malloc(sizeof(t_redirections));
 	if (final->redirects == NULL)
 		return (NULL);
+	final->redirects->read = NULL;
+	final->redirects->write = NULL;
 	final->index = index;
 	index++;
 	final->av = NULL;

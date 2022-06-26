@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 15:24:44 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/16 15:24:45 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/26 14:41:52 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,8 +181,6 @@ void	change_here_doc(t_tokens *itire, char *path)
 {
 	free(itire->next->token);
 	itire->next->token = ft_strdup(path);
-	(itire->meta_data)[1] = 0;
-	(itire->token)[1] = 0;
 }
 
 int	check_max_here_doc(t_tokens *itire)
