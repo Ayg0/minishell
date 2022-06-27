@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/27 22:53:59 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/27 23:24:31 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ int	prompt_display(t_data *data, char **envp)
 		clear_data(data);
 		data->cmd = readline("\033[0;34mhalf-bash-3.2$\033[0;37m ");
 		add_history(data->cmd);
-		if (*data->cmd == '\0')
-			exit(1);
+		//if (*data->cmd == '\0')
+		//	exit(1);
 		proccess_data(data);
 		if (manage_errors(data) == 0)
 			continue ;
