@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_code.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 19:27:41 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/27 16:48:36 by msouiyeh         ###   ########.fr       */
+/*   Created: 2021/11/11 13:09:24 by msouiyeh          #+#    #+#             */
+/*   Updated: 2022/06/25 15:53:17 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../mohamed.h"
 
-int	*exit_code(void)
+int	ft_poketsize(t_pokets *lst)
 {
-	static int code;
-	return (&code);
-}
+	int	i;
 
-int get_exit_code(void)
-{
-	int i;
-
-	i = *(exit_code());
+	i = 1;
+	if (lst == NULL)
+		return (0);
+	while (lst->next)
+	{
+		lst = lst->next;
+		i++;
+	}
 	return (i);
-}
-
-
-void	set_exit_code(int status)
-{
-	int *p;
-
-	p = exit_code();
-	*p = status;
 }

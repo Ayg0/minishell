@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_code.c                                        :+:      :+:    :+:   */
+/*   global_error_var.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 19:27:41 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/27 16:48:36 by msouiyeh         ###   ########.fr       */
+/*   Created: 2022/06/27 16:34:42 by msouiyeh          #+#    #+#             */
+/*   Updated: 2022/06/27 16:38:32 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "mohamed.h"
 
-int	*exit_code(void)
+int	*global_error(void)
 {
 	static int code;
 	return (&code);
 }
 
-int get_exit_code(void)
+int	get_global_error(void)
 {
 	int i;
 
-	i = *(exit_code());
+	i = *(global_error());
 	return (i);
 }
 
-
-void	set_exit_code(int status)
+void	set_global_error(int error)
 {
 	int *p;
 
-	p = exit_code();
-	*p = status;
+	p = global_error();
+	*p = error;
 }

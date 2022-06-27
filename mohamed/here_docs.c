@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   here_docs.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/16 15:24:44 by msouiyeh          #+#    #+#             */
+/*   Updated: 2022/06/27 18:14:06 by msouiyeh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 
@@ -38,8 +50,6 @@ char *here_doc_join(char *s1, char *s2, int flag)
 
 int	check_name(char	*name, int *i)
 {
-	if (name[*i] != '_' && !ft_isalpha(name[*i]))
-		return ((*i)++);
 	while (name[*i] == '_' || ft_isalnum(name[*i]))
 		(*i)++;
 	return (*i);
@@ -79,7 +89,7 @@ char	*check_and_expand(char *str, char **envp)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '$' && (str[i + 1] == '_' || ft_isalnum(str[i + 1])))
+		if (str[i] == '$' && (str[i + 1] == '_' || ft_isalpha(str[i + 1])))
 		{
 			i++;
 			final = here_doc_join(final, final_expand(str, &i, envp), 1);
@@ -95,14 +105,30 @@ char	*check_and_expand(char *str, char **envp)
 	return (final);
 }
 
-int	limiter_len(char *str)
+char	*remove_limiter_q(char *limiter)
 {
-	int i;
+	int		i;
+	char	c[2];
+	char	*final;
+	char	*meta;
 
+	meta = get_meta(limiter);
+	final = ft_strdup("");
+	c[1] = 0;
 	i = 0;
-	while (str[i] && str[i] != '\'' && str[i] != '\"')
-		i++;
-	return (i);
+	while (limiter[i])
+	{
+		if (meta[i] == 'd' || meta[i] == 's')
+			i++;
+		else
+		{
+			c[0] = limiter[i];
+			final = here_doc_join(final, c, 0);
+			i++;
+		}
+	}
+	free(meta);
+	return (final);
 }
 
 char	*dynamic_read(char *limiter, int flag, char **envp)
@@ -111,8 +137,9 @@ char	*dynamic_read(char *limiter, int flag, char **envp)
 	char	*final;
 	int		size;
 
-	size = limiter_len(limiter);
-	limiter[size] = 0;
+	if (flag != -1)
+		limiter = remove_limiter_q(limiter);
+	size = ft_strlen(limiter);
 	str = NULL;
 	final = ft_strdup("");
 	while (compare(str, limiter, 1))
@@ -134,8 +161,8 @@ void	here_doc(int fd, char *limiter, char **envp)
 	char 	*final;
 	int 	i;
 
-	i = -1;
-	while (limiter[++i])
+	i = 0;
+	while (limiter[i])
 	{
 		if (limiter[i] == '\'' || limiter[i] == '\"')
 		{
@@ -155,8 +182,6 @@ void	change_here_doc(t_tokens *itire, char *path)
 {
 	free(itire->next->token);
 	itire->next->token = ft_strdup(path);
-	(itire->meta_data)[1] = 0;
-	(itire->token)[1] = 0;
 }
 
 int	check_max_here_doc(t_tokens *itire)
@@ -201,7 +226,7 @@ void	launch_here_docs(t_data *data, char **envp)
 			fd = open(path, O_CREAT | O_WRONLY | O_TRUNC, 0666);
 			if (fd == -1)
 				printf("here_doc tmp file creation faild\n");
-			// printf("fd %d ::: %s\n", fd, path);
+			// printf("token %s ::: meta %s\n", itire->next->token, itire->next->meta_data);
 			here_doc (fd, itire->next->token, envp);
 			change_here_doc(itire, path);
 			i++;

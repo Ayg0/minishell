@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 11:47:51 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/16 14:29:33 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/16 15:20:12 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	meta_checker(char *s, char in_need, int k)
 	return (1);
 }
 
-t_tokens	*ft_slpit_list(char *s, char *s2, char delimiter)
+t_tokens	*ft_split_list(char *s, char *s2, char delimiter)
 {
 	int			i;
 	int			k;

@@ -45,7 +45,7 @@ int	check_pip(t_tokens *itire)
 			ft_strlen(itire->meta_data) > 1)
 	{
 		printf("pip error an operator before \n");
-		write (2, itire->meta_data, itire->max);
+		write (2, itire->token, itire->max);
 		write (2, "\n", 1);
 		set_exit_code(258);
 		return (0);

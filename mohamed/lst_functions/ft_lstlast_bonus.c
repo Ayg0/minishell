@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_code.c                                        :+:      :+:    :+:   */
+/*   ft_lastpoket_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 19:27:41 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/27 16:48:36 by msouiyeh         ###   ########.fr       */
+/*   Created: 2021/11/11 13:15:44 by msouiyeh          #+#    #+#             */
+/*   Updated: 2022/06/25 15:44:43 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../mohamed.h"
 
-int	*exit_code(void)
+t_pokets	*ft_lastpoket(t_pokets *lst)
 {
-	static int code;
-	return (&code);
-}
-
-int get_exit_code(void)
-{
-	int i;
-
-	i = *(exit_code());
-	return (i);
-}
-
-
-void	set_exit_code(int status)
-{
-	int *p;
-
-	p = exit_code();
-	*p = status;
+	if (lst)
+	{
+		while (lst->next)
+			lst = lst->next;
+	}
+	return (lst);
 }

@@ -3,17 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   global_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 12:37:21 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/16 09:45:25 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:49:53 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GLOBAL_UTILS_H
 # define GLOBAL_UTILS_H
 # include <stdlib.h>
+# include <unistd.h>
 
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
 int		env_scout(char *str, char *var);
 int		ft_strlen(char *s);
 char	*ft_strjoin(char *s1, char *s2);
