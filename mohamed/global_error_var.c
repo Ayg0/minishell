@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_delpoket_bonus.c                               :+:      :+:    :+:   */
+/*   global_error_var.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 14:14:37 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/25 15:44:43 by msouiyeh         ###   ########.fr       */
+/*   Created: 2022/06/27 16:34:42 by msouiyeh          #+#    #+#             */
+/*   Updated: 2022/06/27 16:38:32 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mohamed.h"
+#include "mohamed.h"
 
-void	ft_delpoket(t_pokets *lst, void (*del)(void *))
+int	*global_error(void)
 {
-	if (lst != NULL && del != NULL)
-	{
-		del(lst->av);
-		del(lst->path);
-		free((void *)lst);
-	}
+	static int code;
+	return (&code);
+}
+
+int	get_global_error(void)
+{
+	int i;
+
+	i = *(global_error());
+	return (i);
+}
+
+void	set_global_error(int error)
+{
+	int *p;
+
+	p = global_error();
+	*p = error;
 }

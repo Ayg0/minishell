@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_code.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 19:27:41 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/27 16:48:36 by msouiyeh         ###   ########.fr       */
+/*   Created: 2021/11/10 21:36:16 by msouiyeh          #+#    #+#             */
+/*   Updated: 2022/06/27 17:45:25 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "global_utils.h"
 
-int	*exit_code(void)
+void	ft_putendl_fd(char *s, int fd)
 {
-	static int code;
-	return (&code);
-}
-
-int get_exit_code(void)
-{
-	int i;
-
-	i = *(exit_code());
-	return (i);
-}
-
-
-void	set_exit_code(int status)
-{
-	int *p;
-
-	p = exit_code();
-	*p = status;
+	if (s != NULL)
+	{
+		ft_putstr_fd(s, fd);
+		write (fd, "\n", 1);
+	}
 }

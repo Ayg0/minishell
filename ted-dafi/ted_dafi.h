@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:33:24 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/25 16:21:30 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:33:18 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,23 @@
 # define TED_DAFI_H
 # include "../minishell.h"
 
-#ifndef S_READ
-# define S_READ
-typedef struct s_read
+#ifndef S_REDIRECT
+# define S_REDIRECT
+typedef struct s_redirect
 {
-	char			*file_name;
-	char			type;
-	struct s_read	*next;
-}	t_read;
-#endif
-
-#ifndef S_WRITE
-# define S_WRITE
-typedef struct s_write
-{
-	char			*file_name;
-	int				code;
-	struct s_write	*next;
-}	t_write;
+	char				*file_name;
+	char				type;
+	int					code;
+	struct s_redirect	*next;
+}	t_redirect;
 #endif
 
 #ifndef S_REDIRECTIONS
 # define S_REDIRECTIONS
 typedef struct s_redirections
 {
-	t_read	*read;
-	t_write	*write;
+	t_redirect	*read;
+	t_redirect	*write;
 	
 }	t_redirections;
 #endif

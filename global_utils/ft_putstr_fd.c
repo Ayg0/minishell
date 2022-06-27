@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_poketsclear_bonus.c                                :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 14:18:24 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/25 15:44:43 by msouiyeh         ###   ########.fr       */
+/*   Created: 2021/11/10 21:32:09 by msouiyeh          #+#    #+#             */
+/*   Updated: 2022/06/27 17:45:32 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mohamed.h"
+#include "global_utils.h"
 
-void	ft_poketsclear(t_pokets **lst, void (*del)(void *))
+void	ft_putstr_fd(char *s, int fd)
 {
-	t_pokets	*tmp;
-
-	if (lst == NULL)
-		return ;
-	tmp = NULL;
-	while (*lst)
-	{
-		tmp = *lst;
-		*lst = (*lst)->next;
-		ft_delpoket(tmp, del);
-	}
-	*lst = NULL;
+	if (s != NULL)
+		write(fd, s, ft_strlen(s));
 }

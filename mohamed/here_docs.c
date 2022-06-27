@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 15:24:44 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/26 14:41:52 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/27 18:14:06 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ char	*remove_limiter_q(char *limiter)
 			i++;
 		}
 	}
-	free(limiter);
+	free(meta);
 	return (final);
 }
 
@@ -137,7 +137,8 @@ char	*dynamic_read(char *limiter, int flag, char **envp)
 	char	*final;
 	int		size;
 
-	limiter = remove_limiter_q(limiter);
+	if (flag != -1)
+		limiter = remove_limiter_q(limiter);
 	size = ft_strlen(limiter);
 	str = NULL;
 	final = ft_strdup("");
@@ -160,8 +161,8 @@ void	here_doc(int fd, char *limiter, char **envp)
 	char 	*final;
 	int 	i;
 
-	i = -1;
-	while (limiter[++i])
+	i = 0;
+	while (limiter[i])
 	{
 		if (limiter[i] == '\'' || limiter[i] == '\"')
 		{
