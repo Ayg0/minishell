@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 11:47:51 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/16 15:20:12 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/27 22:49:19 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ t_tokens	*ft_split_list(char *s, char *s2, char delimiter)
 	{
 		while (s[i] && s[i] == delimiter)
 			i++;
-		if (!s[i])
-			break ;
 		k = i;
 		while (s[k] && s[k] != delimiter)
 		{
@@ -58,7 +56,7 @@ t_tokens	*ft_split_list(char *s, char *s2, char delimiter)
 			while (k == 0 || meta_checker(s, s[i], k))
 				k++;
 			ft_lstadd_back(&tokens, ft_lstnew(previous,
-					ft_substr(s, i , k - i), ft_substr(s2, i, k - i)));
+					ft_substr(s, i, k - i), ft_substr(s2, i, k - i)));
 			previous = ft_lstlast(tokens);
 			if (ft_strchr("wr", ((t_tokens *)previous)->meta_data[0]) != 0)
 				((t_tokens *)previous)->max = 2;
