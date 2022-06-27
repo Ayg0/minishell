@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_docs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 15:24:44 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/27 18:14:06 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/27 23:06:39 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,8 @@ void	change_here_doc(t_tokens *itire, char *path)
 {
 	free(itire->next->token);
 	itire->next->token = ft_strdup(path);
+	free(itire->next->meta_data);
+	itire->next->meta_data = get_meta(itire->next->token);
 }
 
 int	check_max_here_doc(t_tokens *itire)
