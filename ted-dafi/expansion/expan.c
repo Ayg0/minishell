@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:52:56 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/16 09:49:40 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/27 22:26:09 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ int	get_and_join(int *i, t_tokens *list, char **str, char **envp)
 	j = *i;
 	while (list->token[*i] && check_validation(list->token[*i], 1))
 		(*i)++;
-	*str = re_join(*str, get_exp(ft_substr(list->token, j, (*i) - j), envp));
+	if (*i > j)
+		*str = re_join(*str, get_exp(ft_substr(list->token, j, (*i) - j), envp));
+	else
+		(*i)++;
 	return (0);
 }
 

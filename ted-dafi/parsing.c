@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/16 10:35:02 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/27 22:16:25 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char	*get_meta(char *s)
 void	proccess_data(t_data *data)
 {
 	data->meta_str = get_meta(data->cmd);
+	//printf("++  %s\n", data->meta_str);
 	data->list = ft_slpit_list(data->meta_str, data->cmd, 'b');
 }
 
@@ -100,7 +101,6 @@ int	prompt_display(t_data *data, char **envp)
 			printf("%s\n", data->list->token);
 			data->list = data->list->next;
 		}
-		//system("leaks minishell");
 	}
 	return (0);
 }

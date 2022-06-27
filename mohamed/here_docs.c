@@ -145,7 +145,7 @@ void	here_doc(int fd, char *limiter, char **envp)
 		i++;
 	}
 	final = dynamic_read(limiter, i, envp);
-	write (fd, final, ft_strlen(final));
+	write(fd, final, ft_strlen(final));
 	if (close (fd) == -1)
 		printf("error msg in heredoc to be changed\n");
 	free(final);
