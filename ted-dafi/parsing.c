@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/27 22:24:00 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/27 22:53:59 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	proccess_data(t_data *data)
 	data->list = ft_split_list(data->meta_str, data->cmd, 'b');
 }
 
-void	clear_data(t_data *data)
+void	clear_data(t_data *data, t_pokets *pokets)
 {
 	void	*tmp;
 
@@ -74,6 +74,7 @@ void	clear_data(t_data *data)
 		data->list = data->list->next;
 		free(tmp);
 	}
+	clean_big_one(pokets);
 }
 
 int	prompt_display(t_data *data, char **envp)
