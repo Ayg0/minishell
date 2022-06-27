@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/27 22:16:25 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/27 22:49:10 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ char	*get_meta(char *s)
 void	proccess_data(t_data *data)
 {
 	data->meta_str = get_meta(data->cmd);
-	//printf("++  %s\n", data->meta_str);
-	data->list = ft_slpit_list(data->meta_str, data->cmd, 'b');
+	data->list = ft_split_list(data->meta_str, data->cmd, 'b');
 }
 
 void	clear_data(t_data *data)
@@ -79,9 +78,11 @@ void	clear_data(t_data *data)
 
 int	prompt_display(t_data *data, char **envp)
 {
-	int	i;
+	t_pokets	*pokets;
+	int			i;
 
 	write(1, "\e[H\e[2J", 8);
+	pokets = NULL;
 	i = 0;
 	while (1)
 	{
@@ -95,12 +96,14 @@ int	prompt_display(t_data *data, char **envp)
 			continue ;
 		launch_here_docs(data, envp);
 		expand_all(data, envp);
-		while (data->list)
-		{
-			printf("%s ---> ", data->list->meta_data);
-			printf("%s\n", data->list->token);
-			data->list = data->list->next;
-		}
+		fill_redirections(&pokets, envp, data);
+		// while (data->list)
+		// {
+		// 	printf("%s ---> ", data->list->meta_data);
+		// 	printf("%s\n", data->list->token);
+		// 	data->list = data->list->next;
+		// }
+		// system("leaks minishell");
 	}
 	return (0);
 }

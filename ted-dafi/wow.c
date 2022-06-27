@@ -36,7 +36,7 @@ char    *get_meta(char *s)
 void	proccess_data(t_data *data)
 {
 	data->meta_str = get_meta(data->cmd);
-	data->list = ft_slpit_list(data->meta_str, data->cmd, 'b');
+	data->list = ft_split_list(data->meta_str, data->cmd, 'b');
 }
 
 void	clear_data(t_data *data)

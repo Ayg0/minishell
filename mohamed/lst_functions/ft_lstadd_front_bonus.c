@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_code.c                                        :+:      :+:    :+:   */
+/*   ft_poketadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 19:27:41 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/27 16:48:36 by msouiyeh         ###   ########.fr       */
+/*   Created: 2021/11/11 12:52:39 by msouiyeh          #+#    #+#             */
+/*   Updated: 2022/06/25 15:50:22 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../mohamed.h"
 
-int	*exit_code(void)
+void	ft_poketadd_front(t_pokets	**lst, t_pokets	*new)
 {
-	static int code;
-	return (&code);
-}
-
-int get_exit_code(void)
-{
-	int i;
-
-	i = *(exit_code());
-	return (i);
-}
-
-
-void	set_exit_code(int status)
-{
-	int *p;
-
-	p = exit_code();
-	*p = status;
+	if (!lst || !new)
+		return ;
+	new->next = *lst;
+	new->prev = ft_lastpoket(*lst);
+	*lst = new;
 }
