@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_exp.c                                          :+:      :+:    :+:   */
+/*   empty_value.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/14 11:20:40 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 17:26:33 by ted-dafi         ###   ########.fr       */
+/*   Created: 2022/06/28 17:27:30 by ted-dafi          #+#    #+#             */
+/*   Updated: 2022/06/28 17:30:41 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ted_dafi.h"
 
-char	*get_exp(char *var, char **envp)
-{
-	int	i;
-	int	j;
+#include "../minishell.h"
 
-	if (!envp)
-		return (NULL);
-	i = 0;
-	while (envp[i])
-	{
-		j = env_scout(envp[i], var);
-		if (j != -1)
-		{
-			free(var);
-			return (ft_substr(envp[i], j, ft_strlen(envp[i]) - j));
-		}
-		i++;
-	}
-	free(var);
-	return (NULL);
+char	*variable(void)
+{
+	static char	*variable;
+
+	return (variable);
+}
+
+char	*get_variable(void)
+{
+	char	*val;
+
+	val = exit_code();
+	return (val);
+}
+
+void	set_variable(char *value)
+{
+	char	*p;
+
+	p = variable();
+	*p = value;
 }
