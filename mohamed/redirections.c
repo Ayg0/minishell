@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:42:56 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/28 17:27:26 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:07:23 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,8 +155,8 @@ void	finish_redirections(t_data *data, t_pokets **pokets)
 	while (itire && itire->previous)
 		itire = itire->previous;
 	data->list = itire;
-	resplit_tokens(data);
-	redirection_helper(data, *pokets);
+	//resplit_tokens(data);
+	//redirection_helper(data, *pokets);
 }
 
 void	fill_redirections(t_pokets	**pokets, char **envp, t_data *data)

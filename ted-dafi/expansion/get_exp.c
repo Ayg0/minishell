@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:20:40 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 17:26:33 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:14:33 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ char	*get_exp(char *var, char **envp)
 		}
 		i++;
 	}
-	free(var);
+	if (!get_variable())
+		set_variable(var);
+	else
+		free(var);
 	return (NULL);
 }
