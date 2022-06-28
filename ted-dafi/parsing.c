@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 11:48:15 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/28 15:01:51 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,13 @@ int	prompt_display(t_data *data, char **envp)
 			continue ;
 		launch_here_docs(data, envp);
 		expand_all(data, envp);
-		fill_redirections(&pokets, envp, data);
+		while (data->list)
+		{
+			printf("%s --> ", data->list->token);
+			printf("%s\n", data->list->meta_data);
+			data->list = data->list->next;
+		}
+		//fill_redirections(&pokets, envp, data);
 	}
 	return (0);
 }

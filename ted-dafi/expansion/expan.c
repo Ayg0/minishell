@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:52:56 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 11:48:28 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/28 17:23:52 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*check_if_empty(char *s)
 int	check_validation(char c, int flag)
 {
 	return (((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
-			|| c == '_' || ((c >= '0' && c <= '9') * flag)));
+			|| c == '_' || c == '?' || ((c >= '0' && c <= '9') * flag)));
 }
 
 int	get_and_join(int *i, t_tokens *list, char **str, char **envp)
@@ -32,11 +32,19 @@ int	get_and_join(int *i, t_tokens *list, char **str, char **envp)
 
 	(*i)++;
 	j = *i;
-	while (list->token[*i] && check_validation(list->token[*i], 1))
+	if (list->token[*i] == '?')
+	{
+		*str = re_join(*str, ft_itoa(get_exit_code()));
 		(*i)++;
-	if (*i > j)
-		*str = re_join(*str,
-				get_exp(ft_substr(list->token, j, (*i) - j), envp));
+	}
+	else
+	{
+		while (list->token[*i] && check_validation(list->token[*i], 1))
+			(*i)++;
+		if (*i > j)
+			*str = re_join(*str,
+					get_exp(ft_substr(list->token, j, (*i) - j), envp));
+	}
 	return (0);
 }
 
@@ -49,7 +57,7 @@ char	*expand(t_tokens *list, char **envp)
 	i = 0;
 	flag[0] = 0;
 	flag[1] = 0;
-	str = NULL;
+	str = ft_strdup("");
 	while (list->token[i])
 	{
 		if (list->meta_data[i] == 'd' && !flag[1])
@@ -64,7 +72,7 @@ char	*expand(t_tokens *list, char **envp)
 		else
 			str = re_join(str, ft_substr(list->token, i++, 1));
 	}
-	return (check_if_empty(str));
+	return (str);
 }
 
 int	expand_all(t_data *data, char **envp)
