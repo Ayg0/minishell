@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 19:27:41 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/27 16:48:36 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/28 02:01:45 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 int	*exit_code(void)
 {
-	static int code;
+	static int	code;
+
 	return (&code);
 }
 
-int get_exit_code(void)
+int	get_exit_code(void)
 {
-	int i;
+	int	i;
 
 	i = *(exit_code());
 	return (i);
 }
 
-
 void	set_exit_code(int status)
 {
-	int *p;
+	int	*p;
 
 	p = exit_code();
 	*p = status;

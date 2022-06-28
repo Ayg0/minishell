@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 12:40:11 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/26 14:45:14 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/28 02:13:16 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_pokets	*ft_new_poket(char **env)
 {
 	t_pokets		*final;
-	static int	index = 1;
+	static int		index = 1;
 
 	final = (t_pokets *)malloc(sizeof(t_pokets));
 	if (final == NULL)

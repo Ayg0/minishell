@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:48:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/27 18:11:26 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/28 02:10:50 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define MOHAMED_H
 # include "../minishell.h"
 
-#ifndef S_REDIRECT
-# define S_REDIRECT
+# ifndef S_REDIRECT
+#  define S_REDIRECT
+
 typedef struct s_redirect
 {
 	char				*file_name;
@@ -23,20 +24,21 @@ typedef struct s_redirect
 	int					code;
 	struct s_redirect	*next;
 }	t_redirect;
-#endif
+# endif
 
-#ifndef S_REDIRECTIONS
-# define S_REDIRECTIONS
+# ifndef S_REDIRECTIONS
+#  define S_REDIRECTIONS
+
 typedef struct s_redirections
 {
 	t_redirect	*read;
 	t_redirect	*write;
-	
 }	t_redirections;
-#endif
+# endif
 
-#ifndef S_POKETS
-# define S_POKETS
+# ifndef S_POKETS
+#  define S_POKETS
+
 typedef struct s_pokets
 {
 	int				index;
@@ -51,11 +53,12 @@ typedef struct s_pokets
 	struct s_pokets	*next;
 	struct s_pokets	*prev;
 }	t_pokets;
-#endif
+# endif
 
-#ifndef S_TOKEN
-# define S_TOKEN
-typedef struct	s_tokens
+# ifndef S_TOKEN
+#  define S_TOKEN
+
+typedef struct s_tokens
 {
 	char			*meta_data;
 	char			*token;
@@ -63,18 +66,37 @@ typedef struct	s_tokens
 	struct s_tokens	*previous;
 	struct s_tokens	*next;
 }	t_tokens;
-#endif
+# endif
 
-#ifndef S_DATA
-# define S_DATA
+# ifndef S_DATA
+#  define S_DATA
+
 typedef struct s_data
 {
 	char		*cmd;
 	char		*meta_str;
 	t_tokens	*list;
-}   t_data;
-#endif
+}	t_data;
+# endif
 
+char		*mft_strdup(char *str);
+t_redirect	*ft_newredi(char *file_name, char type, int code);
+t_redirect	*ft_lastredi(t_redirect *lst);
+void		ft_rediadd_back(t_redirect	**lst, t_redirect	*new);
+
+void		read_redirect(t_tokens *itire, t_pokets *poket);
+void		write_redirect(t_tokens *itire, t_pokets *poket);
+void		delet_token(t_tokens **token);
+void		process_redirect(t_tokens **itire, t_pokets *poket);
+
+char		*here_doc_join(char *s1, char *s2, int flag);
+int			check_name(char	*name, int *i);
+char		*final_expand(char *str, int *i, char **envp);
+char		*check_and_expand(char *str, char **envp);
+char		*remove_limiter_q(char *limiter);
+int			check_max_here_doc(t_tokens *itire);
+
+void		clean_big_one(t_pokets *pokets);
 int			get_global_error(void);
 void		set_global_error(int error);
 void		ft_poketadd_back(t_pokets **lst, t_pokets	*new);

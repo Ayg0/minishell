@@ -2,7 +2,7 @@ CC = cc
 
 NAME = minishell
 
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g 
 
 GSRCS = global_utils/decide.c global_utils/env_scout.c global_utils/ft_calloc.c			\
 		global_utils/ft_strcmp.c global_utils/ft_strjoin.c global_utils/ft_strlcpy.c	\
@@ -17,13 +17,15 @@ TEXP  = ted-dafi/expansion/expan.c ted-dafi/expansion/re_join.c ted-dafi/expansi
 
 TSRCS = $(TEXP) ted-dafi/split_list.c ted-dafi/parsing.c ted-dafi/list_func.c
 
-MSRCS = mohamed/error_managment.c mohamed/exit_code.c mohamed/ft_pstrjoin.c \
-		mohamed/get_next_line/get_next_line.c mohamed/get_next_line/get_next_line_utils.c \
-		mohamed/here_docs.c mohamed/redirections.c \
+MSRCS = mohamed/error_managment.c mohamed/exit_code.c 	mohamed/ft_pstrjoin.c \
+		mohamed/get_next_line/get_next_line.c 			mohamed/get_next_line/get_next_line_utils.c \
+		mohamed/here_docs.c mohamed/redirections.c 		mohamed/redirections_lst_utils.c\
 		mohamed/lst_functions/ft_lstadd_back_bonus.c  	mohamed/lst_functions/ft_lstadd_front_bonus.c \
-		mohamed/lst_functions/ft_lstlast_bonus.c		\
+		mohamed/lst_functions/ft_lstlast_bonus.c		mohamed/here_doc_expand.c\
 		mohamed/lst_functions/ft_lstnew_bonus.c			mohamed/lst_functions/ft_lstsize_bonus.c	\
-		mohamed/global_error_var.c
+		mohamed/global_error_var.c						mohamed/big_one_cleaner.c \
+		mohamed/here_doc_q_remov.c						mohamed/redirects_processing.c \
+
 SRCS =  main.c $(TSRCS) $(MSRCS) $(GSRCS)
 
 OBJS = $(SRCS:.c=.o)
@@ -33,8 +35,8 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME):	$(OBJS)
-#		$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
-		$(CC) $(CFLAGS) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
+		$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
+#		$(CC) $(CFLAGS) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
 
 clean:
 		$(RM) $(OBJS) $(B_OBJS)
