@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ted_dafi.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:33:24 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/27 16:33:18 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:57:52 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define TED_DAFI_H
 # include "../minishell.h"
 
-#ifndef S_REDIRECT
-# define S_REDIRECT
+# ifndef S_REDIRECT
+#  define S_REDIRECT
+
 typedef struct s_redirect
 {
 	char				*file_name;
@@ -23,20 +24,21 @@ typedef struct s_redirect
 	int					code;
 	struct s_redirect	*next;
 }	t_redirect;
-#endif
+# endif
 
-#ifndef S_REDIRECTIONS
-# define S_REDIRECTIONS
+# ifndef S_REDIRECTIONS
+#  define S_REDIRECTIONS
+
 typedef struct s_redirections
 {
 	t_redirect	*read;
 	t_redirect	*write;
-	
 }	t_redirections;
-#endif
+# endif
 
-#ifndef S_POKETS
-# define S_POKETS
+# ifndef S_POKETS
+#  define S_POKETS
+
 typedef struct s_pokets
 {
 	int				index;
@@ -51,7 +53,7 @@ typedef struct s_pokets
 	struct s_pokets	*next;
 	struct s_pokets	*prev;
 }	t_pokets;
-#endif
+# endif
 
 # ifndef S_TOKEN
 #  define S_TOKEN
