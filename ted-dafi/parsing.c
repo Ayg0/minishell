@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 11:36:59 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:48:15 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,46 +90,12 @@ int	prompt_display(t_data *data, char **envp)
 		clear_data(data, pokets);
 		data->cmd = readline("\033[0;34mhalf-bash-3.2$\033[0;37m ");
 		add_history(data->cmd);
-		//if (*data->cmd == '\0')
-		//	exit(1);
 		proccess_data(data);
 		if (manage_errors(data) == 0)
 			continue ;
 		launch_here_docs(data, envp);
 		expand_all(data, envp);
 		fill_redirections(&pokets, envp, data);
-		 while (data->list)
-		 {
-		 	printf("%s ---> ", data->list->meta_data);
-		 	printf("%s\n", data->list->token);
-		 	data->list = data->list->next;
-		 }
-		// int i;
-	// while (pokets)
-	// {
-	// 	printf("**************pip redirections***********\n");
-	// 	printf("--------------read redirections-------------------\n");
-	// 	while (pokets->redirects->read)
-	// 	{
-	// 		printf("%s----%c\n", pokets->redirects->read->file_name, pokets->redirects->read->type);
-	// 		pokets->redirects->read = pokets->redirects->read->next;
-	// 	}
-	// 	printf("---------------write redirections-----------------\n");
-	// 	while (pokets->redirects->write)
-	// 	{
-	// 		printf("%s----%c\n", pokets->redirects->write->file_name, pokets->redirects->write->type);
-	// 		pokets->redirects->write = pokets->redirects->write->next;
-	// 	}
-	// 	printf("---------------argv-----------------\n");
-	// 	i = 0;
-	// 	while (pokets->av && pokets->av[i])
-	// 	{
-	// 		printf("%s\n", pokets->av[i]);
-	// 		i++;
-	// 	}
-	// 	pokets = pokets->next;
-	// }
-	//	system("leaks minishell");
 	}
 	return (0);
 }

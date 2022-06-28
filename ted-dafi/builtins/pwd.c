@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:34:13 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/25 14:46:02 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:47:01 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	main(void)
 {
-	char *s;
+	char	*s;
+
 	s = getcwd(NULL, 0);
 	printf("%s\n", s);
 	free(s);

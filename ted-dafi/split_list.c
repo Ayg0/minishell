@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 11:47:51 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/27 22:49:19 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:54:32 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	meta_checker(char *s, char in_need, int k)
 {
 	if (!s[k] || s[k] == 'b')
 		return (0);
-	else if ((decide("prw","|<>", s[k]) != 'u') && s[k] != in_need)
+	else if ((decide("prw", "|<>", s[k]) != 'u') && s[k] != in_need)
 		return (0);
 	else if (ft_serch(s[k], in_need, "uqds") == 1)
 		return (0);
@@ -40,7 +40,7 @@ t_tokens	*ft_split_list(char *s, char *s2, char delimiter)
 	int			i;
 	int			k;
 	t_tokens	*tokens;
-	void		*previous;
+	t_tokens	*previous;
 
 	i = 0;
 	tokens = NULL;
@@ -58,10 +58,7 @@ t_tokens	*ft_split_list(char *s, char *s2, char delimiter)
 			ft_lstadd_back(&tokens, ft_lstnew(previous,
 					ft_substr(s, i, k - i), ft_substr(s2, i, k - i)));
 			previous = ft_lstlast(tokens);
-			if (ft_strchr("wr", ((t_tokens *)previous)->meta_data[0]) != 0)
-				((t_tokens *)previous)->max = 2;
-			else
-				((t_tokens *)previous)->max = 1;
+			previous->max = (ft_strchr("wr", previous->meta_data[0]) != 0) + 1;
 		}
 		i = k;
 	}
