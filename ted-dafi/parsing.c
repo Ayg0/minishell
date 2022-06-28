@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 11:48:15 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/28 15:25:55 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	prompt_display(t_data *data, char **envp)
 	i = 0;
 	while (1)
 	{
+		global_initializer();
 		clear_data(data, pokets);
 		data->cmd = readline("\033[0;34mhalf-bash-3.2$\033[0;37m ");
 		add_history(data->cmd);
@@ -96,6 +97,8 @@ int	prompt_display(t_data *data, char **envp)
 		launch_here_docs(data, envp);
 		expand_all(data, envp);
 		fill_redirections(&pokets, envp, data);
+		if (get_global_error() != 0)
+			continue ;
 	}
 	return (0);
 }
