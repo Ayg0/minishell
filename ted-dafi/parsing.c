@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 17:33:24 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:23:39 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	clear_data(t_data *data, t_pokets *pokets)
 
 	free(data->cmd);
 	free(data->meta_str);
+	if (get_variable())
+		free(get_variable());
 	while (data->list)
 	{
 		free(data->list->meta_data);
@@ -87,8 +89,8 @@ int	prompt_display(t_data *data, char **envp)
 	i = 0;
 	while (1)
 	{
-		global_initializer();
 		clear_data(data, pokets);
+		global_initializer();
 		data->cmd = readline("\033[0;34mhalf-bash-3.2$\033[0;37m ");
 		add_history(data->cmd);
 		proccess_data(data);
@@ -99,6 +101,7 @@ int	prompt_display(t_data *data, char **envp)
 		fill_redirections(&pokets, envp, data);
 		if (get_global_error() != 0)
 			continue ;
+		system("leaks minishell");
 	}
 	return (0);
 }

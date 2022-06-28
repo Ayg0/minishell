@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   global_error_var.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 16:34:42 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/28 15:18:57 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:13:53 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	set_global_error(int error)
 
 void	global_initializer(void)
 {
+	set_variable(NULL);
 	set_global_error(0);
 	set_exit_code(0);
 }

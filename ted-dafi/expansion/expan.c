@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:52:56 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 17:23:52 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/28 18:21:21 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char	*expand(t_tokens *list, char **envp)
 		else
 			str = re_join(str, ft_substr(list->token, i++, 1));
 	}
+	//printf("--%s--\n", get_variable());
 	return (str);
 }
 
