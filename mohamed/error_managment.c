@@ -1,7 +1,14 @@
-//check if the token is wreten correctly, if written false then devide it length by the max consucative acuramces of it and then print from the index of [max acurences * (length / the max consucative acuramces)] 
-//if written wright check before or after depending on the type of the operatore 
-
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_managment.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/28 01:58:31 by msouiyeh          #+#    #+#             */
+/*   Updated: 2022/06/28 01:59:55 by msouiyeh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../minishell.h"
 
@@ -119,8 +126,6 @@ int	manage_errors(t_data *data)
 	flag = 1;
 	while(itire && flag)
 	{
-		// printf("%d\n", i++);
-		// printf("%s ==> %s\n", itire->token, itire->meta_data);
 		if (*(itire->meta_data) == 'p')
 			flag = check_pip(itire);
 		else if (ft_strchr("wr", *(itire->meta_data)) != 0)

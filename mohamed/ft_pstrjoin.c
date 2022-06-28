@@ -6,13 +6,13 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 13:36:51 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/06 19:57:11 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/28 02:02:49 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*ft_alloc(int	size)
+char	*ft_alloc(int size)
 {
 	char	*re;
 
@@ -28,7 +28,7 @@ char	*ft_alloc(int	size)
 	return (re);
 }
 
-int	ft_count_len(int	size, char	**strs, char	*sep)
+int	ft_count_len(int size, char **strs, char *sep)
 {
 	int	i;
 	int	counter;
@@ -55,7 +55,7 @@ int	ft_count_len(int	size, char	**strs, char	*sep)
 	return (counter + 1);
 }
 
-void	ft_fill_str(int	size, char	**strs, char	*sep, char	**result)
+void	ft_fill_str(int size, char **strs, char *sep, char **result)
 {
 	int	i;
 	int	j;
@@ -78,7 +78,7 @@ void	ft_fill_str(int	size, char	**strs, char	*sep, char	**result)
 	result[0][r] = '\0';
 }
 
-char	*ft_pstrjoin(int	size, char	**strs, char	*sep)
+char	*ft_pstrjoin(int size, char **strs, char *sep)
 {
 	char	*result;
 	int		alloc_size;

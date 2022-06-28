@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/27 22:57:39 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/28 01:26:43 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	proccess_data(t_data *data)
 	data->list = ft_split_list(data->meta_str, data->cmd, 'b');
 }
 
-void	clear_data(t_data *data)
+void	clear_data(t_data *data, t_pokets *pokets)
 {
 	void	*tmp;
 
@@ -74,6 +74,7 @@ void	clear_data(t_data *data)
 		data->list = data->list->next;
 		free(tmp);
 	}
+	clean_big_one(pokets);
 }
 
 int	prompt_display(t_data *data, char **envp)
@@ -86,7 +87,7 @@ int	prompt_display(t_data *data, char **envp)
 	i = 0;
 	while (1)
 	{
-		clear_data(data);
+		clear_data(data, pokets);
 		data->cmd = readline("\033[0;34mhalf-bash-3.2$\033[0;37m ");
 		add_history(data->cmd);
 		//if (*data->cmd == '\0')
@@ -103,7 +104,32 @@ int	prompt_display(t_data *data, char **envp)
 		// 	printf("%s\n", data->list->token);
 		// 	data->list = data->list->next;
 		// }
-		// system("leaks minishell");
+		// int i;
+	// while (pokets)
+	// {
+	// 	printf("**************pip redirections***********\n");
+	// 	printf("--------------read redirections-------------------\n");
+	// 	while (pokets->redirects->read)
+	// 	{
+	// 		printf("%s----%c\n", pokets->redirects->read->file_name, pokets->redirects->read->type);
+	// 		pokets->redirects->read = pokets->redirects->read->next;
+	// 	}
+	// 	printf("---------------write redirections-----------------\n");
+	// 	while (pokets->redirects->write)
+	// 	{
+	// 		printf("%s----%c\n", pokets->redirects->write->file_name, pokets->redirects->write->type);
+	// 		pokets->redirects->write = pokets->redirects->write->next;
+	// 	}
+	// 	printf("---------------argv-----------------\n");
+	// 	i = 0;
+	// 	while (pokets->av && pokets->av[i])
+	// 	{
+	// 		printf("%s\n", pokets->av[i]);
+	// 		i++;
+	// 	}
+	// 	pokets = pokets->next;
+	// }
+		system("leaks minishell");
 	}
 	return (0);
 }
