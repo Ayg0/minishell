@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:54:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/28 01:55:29 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/28 16:33:40 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,28 @@ void	delet_token(t_tokens **token)
 	}
 }
 
+int	check_opperand_errors(t_tokens *itire)
+{
+	int i;
+
+	i = 0;
+	while (itire->meta_data[i])
+	{
+		if (itire->meta_data[i] == 'b')
+			return (0);
+		i++;
+	}	
+	return (1);
+}
+
 void	process_redirect(t_tokens **itire, t_pokets *poket)
 {
+	if (check_opperand_errors((*itire)->next) == 0)
+	{
+		set_global_error(3);
+		ft_putendl_fd("ambiguous redirect", 2);
+		return ;
+	}
 	if (*((*itire)->meta_data) == 'r')
 		read_redirect(*itire, poket);
 	else if (*((*itire)->meta_data) == 'w')

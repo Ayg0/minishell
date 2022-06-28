@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 16:34:42 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/28 02:03:22 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/28 15:18:57 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,10 @@ void	set_global_error(int error)
 
 	p = global_error();
 	*p = error;
+}
+
+void	global_initializer(void)
+{
+	set_global_error(0);
+	set_exit_code(0);
 }
