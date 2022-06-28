@@ -2,7 +2,7 @@ CC = cc
 
 NAME = minishell
 
-CFLAGS = -Wall -Werror -Wextra -g 
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 
 GSRCS = global_utils/decide.c global_utils/env_scout.c global_utils/ft_calloc.c			  \
 		global_utils/ft_strcmp.c global_utils/ft_strjoin.c global_utils/ft_strlcpy.c	  \
@@ -35,8 +35,8 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME):	$(OBJS)
-#		$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
-		$(CC) $(CFLAGS) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
+		$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
+#		$(CC) $(CFLAGS) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
 
 clean:
 		$(RM) $(OBJS) $(B_OBJS)

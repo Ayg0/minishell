@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 15:01:51 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/28 17:33:24 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	prompt_display(t_data *data, char **envp)
 	i = 0;
 	while (1)
 	{
+		global_initializer();
 		clear_data(data, pokets);
 		data->cmd = readline("\033[0;34mhalf-bash-3.2$\033[0;37m ");
 		add_history(data->cmd);
@@ -95,13 +96,9 @@ int	prompt_display(t_data *data, char **envp)
 			continue ;
 		launch_here_docs(data, envp);
 		expand_all(data, envp);
-		while (data->list)
-		{
-			printf("%s --> ", data->list->token);
-			printf("%s\n", data->list->meta_data);
-			data->list = data->list->next;
-		}
-		//fill_redirections(&pokets, envp, data);
+		fill_redirections(&pokets, envp, data);
+		if (get_global_error() != 0)
+			continue ;
 	}
 	return (0);
 }
