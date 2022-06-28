@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 01:26:43 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:36:59 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,12 @@ int	prompt_display(t_data *data, char **envp)
 		launch_here_docs(data, envp);
 		expand_all(data, envp);
 		fill_redirections(&pokets, envp, data);
-		// while (data->list)
-		// {
-		// 	printf("%s ---> ", data->list->meta_data);
-		// 	printf("%s\n", data->list->token);
-		// 	data->list = data->list->next;
-		// }
+		 while (data->list)
+		 {
+		 	printf("%s ---> ", data->list->meta_data);
+		 	printf("%s\n", data->list->token);
+		 	data->list = data->list->next;
+		 }
 		// int i;
 	// while (pokets)
 	// {
@@ -129,7 +129,7 @@ int	prompt_display(t_data *data, char **envp)
 	// 	}
 	// 	pokets = pokets->next;
 	// }
-		system("leaks minishell");
+	//	system("leaks minishell");
 	}
 	return (0);
 }

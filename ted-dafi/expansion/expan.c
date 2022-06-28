@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expan.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:52:56 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 01:15:46 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:41:37 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ int	get_and_join(int *i, t_tokens *list, char **str, char **envp)
 		(*i)++;
 	if (*i > j)
 		*str = re_join(*str, get_exp(ft_substr(list->token, j, (*i) - j), envp));
-	else
-		(*i)++;
 	return (0);
 }
 
@@ -60,6 +58,8 @@ char	*expand(t_tokens *list, char **envp)
 		if (list->token[i] == '$' && !flag[1]
 			&& check_validation(list->token[i + 1], 0))
 			get_and_join(&i, list, &str, envp);
+		else if (list->token[i] == '$' && list->token[i] == 'u')
+			i++;
 		else
 			str = re_join(str, ft_substr(list->token, i++, 1));
 	}
