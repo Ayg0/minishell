@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:48:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 15:19:15 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/28 23:13:42 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ typedef struct s_data
 	t_tokens	*list;
 }	t_data;
 # endif
+
+void	execute_pipline(t_pokets *pokets);
 
 void		global_initializer(void);
 

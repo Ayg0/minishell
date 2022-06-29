@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:42:56 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/28 18:07:23 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/28 21:56:02 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	redirection_helper(t_data	*data, t_pokets	*poket)
 	{	
 		if (*(itire->meta_data) == 'p')
 			poket = poket->next;
-		else
+		else if (*(itire->meta_data) != '\0')
 			process_av(&itire, poket);
 		itire = itire->next;
 	}
@@ -85,20 +85,23 @@ void	redirection_helper(t_data	*data, t_pokets	*poket)
 void	reattach(t_tokens **itire, t_tokens *new)
 {
 	t_tokens	*tmp;
+	t_tokens	*tmp2;
 
 	tmp = NULL;
+	tmp2 = NULL;
 	if (*itire)
 	{
 		free((*itire)->token);
 		free((*itire)->meta_data);
 		tmp = *itire;
-		ft_lstlast(new)->next = (*itire)->next;
+		tmp2 = ft_lstlast(new);
+		tmp2->next = (*itire)->next;
 		if ((*itire)->next)
-			(*itire)->next->previous = ft_lstlast(new);
+			(*itire)->next->previous = tmp2;
 		new->previous = (*itire)->previous;
 		if ((*itire)->previous)
 			(*itire)->previous->next = new;
-		*itire = ft_lstlast(new);
+		*itire = tmp2;
 		free(tmp);
 	}
 }
@@ -109,18 +112,19 @@ void	resplit_tokens(t_data	*data)
 	t_tokens	*tmp;
 	int			i;
 
-	i = -1;
-	tmp = NULL;
 	itire = data->list;
 	while (itire)
 	{
+		i = -1;
+		tmp = NULL;
 		while (itire->meta_data[++i])
 			if (itire->meta_data[i] == 'b')
 			{
 				tmp = ft_split_list(itire->meta_data, itire->token, 'b');
 				break ;	
 			}
-		reattach(&itire, tmp);
+		if (tmp)
+			reattach(&itire, tmp);
 		if (itire->next == NULL)
 			break ;
 		itire = itire->next;
@@ -155,8 +159,8 @@ void	finish_redirections(t_data *data, t_pokets **pokets)
 	while (itire && itire->previous)
 		itire = itire->previous;
 	data->list = itire;
-	//resplit_tokens(data);
-	//redirection_helper(data, *pokets);
+	resplit_tokens(data);
+	redirection_helper(data, *pokets);
 }
 
 void	fill_redirections(t_pokets	**pokets, char **envp, t_data *data)
