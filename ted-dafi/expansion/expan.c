@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expan.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:52:56 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 20:59:50 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/29 10:21:40 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	get_and_join(int *i, t_tokens *list, char **str, char **envp)
 			(*i)++;
 		if (*i > j)
 			*str = re_join(*str,
-					get_exp(ft_substr(list->token, j, (*i) - j), envp));
+					get_exp(ft_substr(list->token, j,
+							(*i) - j), list->meta_data[j], envp));
 	}
 	return (0);
 }

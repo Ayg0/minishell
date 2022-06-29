@@ -3,19 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   get_exp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:20:40 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 19:07:29 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/29 10:17:13 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ted_dafi.h"
 
-char	*get_exp(char *var, char **envp)
+int		check_if_blank(char *s)
 {
 	int	i;
-	int	j;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] && s[i] != ' ' && s[i] != '\t')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+char	*get_exp(char *var, char c, char **envp)
+{
+	int		i;
+	int		j;
+	char	*ret_value;
 
 	if (!envp)
 		return (NULL);
@@ -25,8 +40,11 @@ char	*get_exp(char *var, char **envp)
 		j = env_scout(envp[i], var);
 		if (j != -1)
 		{
+			ret_value = ft_substr(envp[i], j, ft_strlen(envp[i]) - j);
+			if (c != 'q' && check_if_blank(ret_value))
+				break ;
 			free(var);
-			return (ft_substr(envp[i], j, ft_strlen(envp[i]) - j));
+			return (ret_value);
 		}
 		i++;
 	}
