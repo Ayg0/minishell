@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 12:37:21 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 17:17:11 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/29 12:49:05 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int		ft_isprint(int c);
 int		ft_isdigit(int c);
 int		ft_isascii(int c);
 int		ft_isalpha(int c);
-int		ft_atoi(char *str);
+int		ft_atoi(char *str, int *flag);
 char	*ft_itoa(int n);
 #endif

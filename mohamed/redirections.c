@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:42:56 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/28 21:56:02 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:39:29 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mohamed.h"
 
-t_pokets	*allocat_pipelines(char **envp, t_data *data, t_pokets *tmp)
+t_pokets	*allocat_pipelines(char ***envp, t_data *data)
 {
 	t_tokens	*itire;
 	t_pokets	*final;
@@ -28,16 +28,7 @@ t_pokets	*allocat_pipelines(char **envp, t_data *data, t_pokets *tmp)
 		itire = itire->next;
 	}
 	while (i-- > 0)
-	{
-		tmp = ft_new_poket(envp);
-		if (tmp == NULL)
-		{
-			printf("malloc faild\n");
-			set_global_error(2);
-			return (NULL);
-		}
-		ft_poketadd_back(&final, tmp);
-	}
+		ft_poketadd_back(&final, ft_new_poket(envp));
 	return (final);
 }
 
@@ -163,8 +154,8 @@ void	finish_redirections(t_data *data, t_pokets **pokets)
 	redirection_helper(data, *pokets);
 }
 
-void	fill_redirections(t_pokets	**pokets, char **envp, t_data *data)
+void	fill_redirections(t_pokets	**pokets, char ***envp, t_data *data)
 {
-	*pokets = allocat_pipelines(envp, data, NULL);
+	*pokets = allocat_pipelines(envp, data);
 	finish_redirections(data, pokets);
 }

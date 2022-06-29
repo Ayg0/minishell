@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 17:27:30 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 18:27:42 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:24:09 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*get_variable(void)
 void	set_variable(char *value)
 {
 	char	**p;
-	
+
 	p = variable();
 	*p = value;
 }

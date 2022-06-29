@@ -6,13 +6,13 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 17:05:39 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 17:08:12 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/29 13:00:46 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "global_utils.h"
 
-int	ft_atoi(char *str)
+int	ft_atoi(char *str, int *flag)
 {
 	int				i;
 	int				sign;
@@ -29,11 +29,15 @@ int	ft_atoi(char *str)
 			sign *= -1;
 		i++;
 	}
+	if (!(str[i] >= '0' && str[i] <= '9') && flag)
+		*flag = -1;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		num *= 10;
 		num += str[i] - '0';
 		i++;
 	}
+	if (str[i] && flag)
+		*flag = -1;
 	return (num * sign);
 }

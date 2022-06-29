@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 09:23:01 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/11 14:41:53 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/29 17:59:26 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ t_tokens	*ft_lstnew(t_tokens *previous, void *meta, char *token)
 {
 	t_tokens	*new;
 
-	new = (t_tokens *)malloc(sizeof(t_tokens));
-	if (new == NULL)
-		return (NULL);
+	new = (t_tokens *)ft_calloc(sizeof(t_tokens), 1);
 	(*new).meta_data = meta;
 	(*new).token = token;
 	(*new).next = NULL;

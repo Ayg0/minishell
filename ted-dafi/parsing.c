@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/29 10:29:14 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/29 19:16:26 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,33 @@ void	proccess_data(t_data *data)
 	data->list = ft_split_list(data->meta_str, data->cmd, 'b');
 }
 
-void	clear_data(t_data *data, t_pokets *pokets)
+void	free_triple_pp(char ***envpd)
+{
+	char	**tmp;
+
+	if (!envpd)
+		return ;
+	tmp = *envpd;
+	while (*envpd && **envpd)
+	{
+		free(**envpd);
+		(*envpd)++;
+	}
+	free (tmp);
+	free(envpd);
+}
+
+void	clear_data(t_data *data, t_pokets *pokets, char	***envpd)
 {
 	void	*tmp;
+	char	*wow;
 
 	free(data->cmd);
 	free(data->meta_str);
-	if (get_variable())
-		free(get_variable());
+	wow = get_variable();
+	if (wow)
+		free(wow);
+	free_triple_pp(envpd);
 	while (data->list)
 	{
 		free(data->list->meta_data);
@@ -83,14 +102,15 @@ int	prompt_display(t_data *data, char **envp)
 {
 	t_pokets	*pokets;
 	int			i;
+	char		***envpd;
 
-	//write(1, "\e[H\e[2J", 8);
 	pokets = NULL;
+	envpd = NULL;
 	i = 0;
 	while (1)
 	{
-		clear_data(data, pokets);
-		global_initializer();
+		clear_data(data, pokets, envpd);
+		envpd = global_initializer(envp);
 		data->cmd = readline("\033[0;34mhalf-bash-3.2$\033[0;37m ");
 		add_history(data->cmd);
 		proccess_data(data);
@@ -98,9 +118,10 @@ int	prompt_display(t_data *data, char **envp)
 			continue ;
 		launch_here_docs(data, envp);
 		expand_all(data, envp);
-		fill_redirections(&pokets, envp, data);
+		fill_redirections(&pokets, envpd, data);
 		if (get_global_error() != 0)
 			continue ;
+		system("leaks minishell");	
 		// execute_pipline(pokets);
 		// int i;
 		// t_pokets	*tmp;
@@ -125,14 +146,13 @@ int	prompt_display(t_data *data, char **envp)
 		// 	}
 		// 	printf("---------------argv-----------------\n");
 		// 	i = 0;
-		// 	while (tmp->av[i])
+		// 	while (tmp->av && tmp->av[i])
 		// 	{
 		// 		printf("%s\n", tmp->av[i]);
 		// 		i++;
 		// 	}
 		// 	tmp = tmp->next;
 		// }
-		// system("leaks minishell");
 	}
 	return (0);
 }

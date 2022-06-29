@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 16:34:42 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/28 18:13:53 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/29 19:00:54 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,44 @@ void	set_global_error(int error)
 	*p = error;
 }
 
-void	global_initializer(void)
+int	ft_count(char **s)
 {
+	int	i;
+
+	i = 0;
+	while (s && s[i])
+		i++;
+	return (i);
+}
+
+char **re_envp(char **envp, int flag)
+{
+	int		i;
+	char	**final;
+
+	i = ft_count(envp);
+	final = ft_calloc(i + 1, sizeof(char *));
+	i = 0;
+	while (envp && envp[i])
+	{
+		final[i] = ft_strdup(envp[i]);
+		if (flag)
+			free(envp[i]);
+		i++;
+	}
+	if (flag)
+		free(envp);
+	return(final);
+}
+
+char	***global_initializer(char **envp)
+{
+	char	***final;
+
+	final = ft_calloc(sizeof(char **), 1);
+	*final = re_envp(envp, 0);
 	set_variable(NULL);
 	set_global_error(0);
 	set_exit_code(0);
+	return (final);
 }
