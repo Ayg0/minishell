@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 18:23:39 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/29 05:22:57 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,38 @@ int	prompt_display(t_data *data, char **envp)
 		fill_redirections(&pokets, envp, data);
 		if (get_global_error() != 0)
 			continue ;
-		system("leaks minishell");
+		// execute_pipline(pokets);
+		// int i;
+		// t_pokets	*tmp;
+		// t_redirect	*tmp2;
+		// tmp = pokets;
+		// while (tmp)
+		// {
+		// 	printf("**************pip redirections***********\n");
+		// 	printf("--------------read redirections-------------------\n");
+		// 	tmp2 = tmp->redirects->read;
+		// 	while (tmp2)
+		// 	{
+		// 		printf("%s----%c\n", tmp2->file_name, tmp2->type);
+		// 		tmp2 = tmp2->next;
+		// 	}
+		// 	printf("---------------write redirections-----------------\n");
+		// 	tmp2 = tmp->redirects->write;
+		// 	while (tmp2)
+		// 	{
+		// 		printf("%s----%c\n", tmp2->file_name, tmp2->type);
+		// 		tmp2 = tmp2->next;
+		// 	}
+		// 	printf("---------------argv-----------------\n");
+		// 	i = 0;
+		// 	while (tmp->av[i])
+		// 	{
+		// 		printf("%s\n", tmp->av[i]);
+		// 		i++;
+		// 	}
+		// 	tmp = tmp->next;
+		// }
+		// system("leaks minishell");
 	}
 	return (0);
 }
