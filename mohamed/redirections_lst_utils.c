@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_lst_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:52:00 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/28 01:53:23 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/29 17:54:24 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_redirect	*ft_newredi(char *file_name, char type, int code)
 {
 	t_redirect	*final;
 
-	final = (t_redirect *)malloc(sizeof(t_redirect));
+	final = (t_redirect *)ft_calloc(sizeof(t_redirect), 1);
 	if (final == NULL)
 		return (NULL);
 	final->file_name = mft_strdup(file_name);

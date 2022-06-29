@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mohamed.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:48:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 23:13:42 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:37:21 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_pokets
 	int				outfile_fd;
 	int				infile_fd;
 	char			**av;
-	char			**env;
+	char			***env;
 	char			*path;
 	t_redirections	*redirects;
 	struct s_pokets	*next;
@@ -79,9 +79,9 @@ typedef struct s_data
 }	t_data;
 # endif
 
-void	execute_pipline(t_pokets *pokets);
+void		execute_pipline(t_pokets *pokets);
 
-void		global_initializer(void);
+char		***global_initializer(char **envp);
 
 char		*mft_strdup(char *str);
 t_redirect	*ft_newredi(char *file_name, char type, int code);
@@ -108,9 +108,9 @@ void		ft_poketadd_front(t_pokets	**lst, t_pokets	*new);
 void		ft_poketsclear(t_pokets **lst, void (*del)(void *));
 void		ft_delpoket(t_pokets *lst, void (*del)(void *));
 t_pokets	*ft_lastpoket(t_pokets *lst);
-t_pokets	*ft_new_poket(char **env);
+t_pokets	*ft_new_poket(char ***env);
 int			ft_poketsize(t_pokets *lst);
-void		fill_redirections(t_pokets	**pokets, char **envp, t_data *data);
+void		fill_redirections(t_pokets	**pokets, char ***envp, t_data *data);
 int			manage_errors(t_data *data);
 void		set_exit_code(int status);
 int			get_exit_code(void);

@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/11 13:12:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/29 17:47:30 by ted-dafi         ###   ########.fr       */
+/*   Created: 2022/06/29 12:43:28 by ted-dafi          #+#    #+#             */
+/*   Updated: 2022/06/29 17:13:48 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "global_utils.h"
+#include "../ted_dafi.h"
 
-void	*ft_calloc(int count, int size)
+int	main(int ac, char **av)
 {
-	void	*b;
-	int		i;
-
-	i = count * size;
-	b = malloc(i);
-	if (!b)
-		exit(write(2, "Memory allocation failure\n", 26));
-	while (i)
-		((char *)b)[--i] = 0;
-	return (b);
+	
 }

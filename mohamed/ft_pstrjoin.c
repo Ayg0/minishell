@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pstrjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 13:36:51 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/28 02:02:49 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/29 17:41:49 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ char	*ft_alloc(int size)
 
 	if (size == 1)
 	{
-		re = (char *)malloc(sizeof(char));
-		re[0] = '\0';
+		re = (char *)ft_calloc(sizeof(char), 1);
 		return (re);
 	}
-	re = (char *)malloc(sizeof(char) * size);
+	re = (char *)ft_calloc(sizeof(char) * size, 1);
 	if (re == NULL)
 		return (0);
 	return (re);

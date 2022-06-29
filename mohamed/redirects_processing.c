@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirects_processing.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:54:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/28 19:02:06 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/29 17:56:12 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@ void	read_redirect(t_tokens *itire, t_pokets *poket)
 		tmp = ft_newredi(itire->next->token, 'h', O_RDONLY);
 	else if (ft_strlen(itire->token) == 1)
 		tmp = ft_newredi(itire->next->token, 'f', O_RDONLY);
-	if (tmp == NULL)
-	{
-		printf("malloc faild\n");
-		set_global_error(2);
-	}
 	ft_rediadd_back(&(poket->redirects->read), tmp);
 }
 
@@ -38,11 +33,6 @@ void	write_redirect(t_tokens *itire, t_pokets *poket)
 		tp = ft_newredi(itire->next->token, 'a', O_CREAT | O_WRONLY | O_APPEND);
 	else if (ft_strlen(itire->token) == 1)
 		tp = ft_newredi(itire->next->token, 'f', O_CREAT | O_WRONLY | O_TRUNC);
-	if (tp == NULL)
-	{
-		printf("malloc faild\n");
-		set_global_error(2);
-	}
 	ft_rediadd_back(&(poket->redirects->write), tp);
 }
 

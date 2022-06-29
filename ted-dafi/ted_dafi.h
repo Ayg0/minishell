@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:33:24 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/29 10:11:49 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:36:29 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_pokets
 	int				outfile_fd;
 	int				infile_fd;
 	char			**av;
-	char			**env;
+	char			***env;
 	char			*path;
 	t_redirections	*redirects;
 	struct s_pokets	*next;

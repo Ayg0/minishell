@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:20:40 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/29 10:17:13 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:33:39 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char	*get_exp(char *var, char c, char **envp)
 	int		j;
 	char	*ret_value;
 
+	ret_value = NULL;
 	if (!envp)
 		return (NULL);
 	i = 0;
@@ -49,8 +50,7 @@ char	*get_exp(char *var, char c, char **envp)
 		i++;
 	}
 	if (!get_variable())
-		set_variable(var);
-	else
-		free(var);
-	return (NULL);
+		set_variable(ft_strdup(var));
+	free(var);
+	return (ret_value);
 }
