@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:33:24 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/29 18:36:29 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/29 20:09:33 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ char		*ft_strjoin(char *s1, char *s2);
 t_tokens	*ft_split_list(char *s, char *s2, char delimiter);
 int			expand_all(t_data *data, char **envp);
 char		*re_join(char *s1, char *s2);
+char 		**re_envp(char **envp, char *new);
+void		free_triple_pp(char ***envpd);
 char		*get_meta(char *s);
 void		set_variable(char *value);
 char		*get_variable(void);

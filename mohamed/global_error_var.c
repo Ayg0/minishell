@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 16:34:42 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/29 19:00:54 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/29 20:13:00 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,33 +35,33 @@ void	set_global_error(int error)
 	*p = error;
 }
 
-int	ft_count(char **s)
+int	ft_count(char **s, char *new)
 {
 	int	i;
 
 	i = 0;
 	while (s && s[i])
 		i++;
+	if (new)
+		i++;
 	return (i);
 }
 
-char **re_envp(char **envp, int flag)
+char **re_envp(char **envp, char *new)
 {
 	int		i;
 	char	**final;
 
-	i = ft_count(envp);
+	i = ft_count(envp, new);
 	final = ft_calloc(i + 1, sizeof(char *));
 	i = 0;
 	while (envp && envp[i])
 	{
 		final[i] = ft_strdup(envp[i]);
-		if (flag)
-			free(envp[i]);
 		i++;
 	}
-	if (flag)
-		free(envp);
+	if (new)
+		final[i] = new;
 	return(final);
 }
 
@@ -70,7 +70,7 @@ char	***global_initializer(char **envp)
 	char	***final;
 
 	final = ft_calloc(sizeof(char **), 1);
-	*final = re_envp(envp, 0);
+	*final = re_envp(envp, NULL);
 	set_variable(NULL);
 	set_global_error(0);
 	set_exit_code(0);
