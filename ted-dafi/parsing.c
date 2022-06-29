@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/29 05:22:57 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/29 10:29:14 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	prompt_display(t_data *data, char **envp)
 	t_pokets	*pokets;
 	int			i;
 
-	write(1, "\e[H\e[2J", 8);
+	//write(1, "\e[H\e[2J", 8);
 	pokets = NULL;
 	i = 0;
 	while (1)
