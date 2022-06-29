@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/29 19:16:26 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/29 20:13:46 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int	prompt_display(t_data *data, char **envp)
 		fill_redirections(&pokets, envpd, data);
 		if (get_global_error() != 0)
 			continue ;
-		system("leaks minishell");	
+	//	system("leaks minishell");	
 		// execute_pipline(pokets);
 		// int i;
 		// t_pokets	*tmp;
