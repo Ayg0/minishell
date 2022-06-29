@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/29 20:13:46 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/29 22:14:05 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ void	free_triple_pp(char ***envpd)
 void	clear_data(t_data *data, t_pokets *pokets, char	***envpd)
 {
 	void	*tmp;
-	char	*wow;
+	char	*var;
 
 	free(data->cmd);
 	free(data->meta_str);
-	wow = get_variable();
-	if (wow)
-		free(wow);
+	var = get_variable();
+	if (var)
+		free(var);
 	free_triple_pp(envpd);
 	while (data->list)
 	{
@@ -98,6 +98,36 @@ void	clear_data(t_data *data, t_pokets *pokets, char	***envpd)
 	clean_big_one(pokets);
 }
 
+int	ft_count(char **s, char *new)
+{
+	int	i;
+
+	i = 0;
+	while (s && s[i])
+		i++;
+	if (new)
+		i++;
+	return (i);
+}
+
+char **re_envp(char **envp, char *new)
+{
+	int		i;
+	char	**final;
+
+	i = ft_count(envp, new);
+	final = ft_calloc(i + 1, sizeof(char *));
+	i = 0;
+	while (envp && envp[i])
+	{
+		final[i] = ft_strdup(envp[i]);
+		i++;
+	}
+	if (new)
+		final[i] = new;
+	return(final);
+}
+
 int	prompt_display(t_data *data, char **envp)
 {
 	t_pokets	*pokets;
@@ -105,13 +135,19 @@ int	prompt_display(t_data *data, char **envp)
 	char		***envpd;
 
 	pokets = NULL;
-	envpd = NULL;
+	envpd = ft_calloc(sizeof(char **), 1);
+	*envpd = re_envp(envp, NULL);
 	i = 0;
 	while (1)
 	{
-		clear_data(data, pokets, envpd);
-		envpd = global_initializer(envp);
+		clear_data(data, pokets, NULL);
+		global_initializer();
 		data->cmd = readline("\033[0;34mhalf-bash-3.2$\033[0;37m ");
+		if (data->cmd == NULL)
+		{
+			clear_data(data, pokets, envpd);
+			exit(0);
+		}
 		add_history(data->cmd);
 		proccess_data(data);
 		if (manage_errors(data) == 0)

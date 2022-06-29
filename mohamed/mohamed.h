@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:48:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/29 18:37:21 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/29 22:10:11 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct s_data
 
 void		execute_pipline(t_pokets *pokets);
 
-char		***global_initializer(char **envp);
+void		global_initializer(void);
 
 char		*mft_strdup(char *str);
 t_redirect	*ft_newredi(char *file_name, char type, int code);
