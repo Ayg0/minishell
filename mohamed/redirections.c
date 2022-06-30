@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:42:56 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/29 18:39:29 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/30 00:05:05 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void	finish_redirections(t_data *data, t_pokets **pokets)
 		if (*(itire->meta_data) == 'r' || *(itire->meta_data) == 'w')
 		{
 			process_redirect(&itire, poket);
-			if (get_global_error() != 0)
+			if (get_exit_code() != 0)
 				return ;
 			continue ;
 		}

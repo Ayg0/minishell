@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ted_dafi.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:33:24 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/29 20:09:33 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/29 23:52:46 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ typedef struct s_data
 }	t_data;
 # endif
 
-char		**ft_split(char *s, char c);
 int			ft_strlen(char *s);
 int			ft_strcmp(char *s1, char *s2);
 int			prompt_display(t_data *data, char **envp);

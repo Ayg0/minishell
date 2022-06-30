@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mohamed.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:48:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/29 22:10:11 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/30 04:19:45 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_data
 # endif
 
 void		execute_pipline(t_pokets *pokets);
+void		handle_sigint(int signum);
 
 void		global_initializer(void);
 
@@ -101,8 +102,8 @@ char		*remove_limiter_q(char *limiter);
 int			check_max_here_doc(t_tokens *itire);
 
 void		clean_big_one(t_pokets *pokets);
-int			get_global_error(void);
-void		set_global_error(int error);
+int			get_global_here_doc(void);
+void		set_global_here_doc(int error);
 void		ft_poketadd_back(t_pokets **lst, t_pokets	*new);
 void		ft_poketadd_front(t_pokets	**lst, t_pokets	*new);
 void		ft_poketsclear(t_pokets **lst, void (*del)(void *));
