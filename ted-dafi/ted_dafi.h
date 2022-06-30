@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ted_dafi.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:33:24 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/29 20:09:33 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/30 09:29:08 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,20 @@ typedef struct s_data
 }	t_data;
 # endif
 
-char		**ft_split(char *s, char c);
+void		proccess_data(t_data *data);
+char		**re_envp(char **envp, char *new);
 int			ft_strlen(char *s);
 int			ft_strcmp(char *s1, char *s2);
 int			prompt_display(t_data *data, char **envp);
 void		remove_quotes(t_data *data);
 void		ft_lstadd_back(t_tokens **lst, t_tokens *new);
-t_tokens	*ft_lstnew(t_tokens *previous, void *meta, char *token);
+t_tokens	*ft_lstnew(t_tokens *previous, char *meta, char *token);
 t_tokens	*ft_lstlast(t_tokens *lst);
 char		*ft_strjoin(char *s1, char *s2);
 t_tokens	*ft_split_list(char *s, char *s2, char delimiter);
 int			expand_all(t_data *data, char **envp);
 char		*re_join(char *s1, char *s2);
-char 		**re_envp(char **envp, char *new);
+char		**re_envp(char **envp, char *new);
 void		free_triple_pp(char ***envpd);
 char		*get_meta(char *s);
 void		set_variable(char *value);

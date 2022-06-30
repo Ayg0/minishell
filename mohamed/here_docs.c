@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 15:24:44 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/28 02:06:46 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 12:41:14 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,34 +93,28 @@ void	change_here_doc(t_tokens *itire, char *path)
 
 void	launch_here_docs(t_data *data, char **envp)
 {
-	t_tokens	*itire;
-	char		*path;
-	int			fd;
-	int			i;
+	int	pid;
+	int	info;
 
-	i = 0;
-	path = ft_strdup("/tmp/here_doc..");
-	itire = data->list;
-	if (check_max_here_doc(itire))
+	pid = fork();
+	if (pid == 0)
+		launch_helper(data, envp);
+	else
 	{
-		printf("error max here_doc is exeeded\n");
-		exit(2);
-	}
-	while (itire)
-	{
-		if (ft_strchr("r", *(itire->meta_data)) && \
-			ft_strlen(itire->meta_data) == 2)
+		signal(SIGINT, SIG_IGN);
+		pid = waitpid(pid, &info, 0);
+		if (pid < 0)
+			fork_print_error("minishell : waitpid faild");
+		if (WIFEXITED(info))
 		{
-			path[13] = (i / 10) + '0';
-			path[14] = (i % 10) + '0';
-			fd = open(path, O_CREAT | O_WRONLY | O_TRUNC, 0666);
-			if (fd == -1)
-				printf("here_doc tmp file creation faild\n");
-			here_doc (fd, itire->next->token, envp);
-			change_here_doc(itire, path);
-			i++;
+			set_global_error(WEXITSTATUS(info));
+			if (get_global_error() != 0)
+				set_exit_code(get_global_error());
 		}
-		itire = itire->next;
+		if (WIFSIGNALED(info))
+			fork_print_error("");
+		signal(SIGINT, handle_sigint);
 	}
-	free(path);
+	if (get_global_error() == 0)
+		change_in_parrent(data);
 }

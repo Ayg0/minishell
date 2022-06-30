@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/29 22:14:05 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/30 09:13:57 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,29 +60,17 @@ void	proccess_data(t_data *data)
 	data->list = ft_split_list(data->meta_str, data->cmd, 'b');
 }
 
-void	free_triple_pp(char ***envpd)
-{
-	char	**tmp;
-
-	if (!envpd)
-		return ;
-	tmp = *envpd;
-	while (*envpd && **envpd)
-	{
-		free(**envpd);
-		(*envpd)++;
-	}
-	free (tmp);
-	free(envpd);
-}
-
-void	clear_data(t_data *data, t_pokets *pokets, char	***envpd)
+void	clear_data(t_data *data, t_pokets **pokets, char	***envpd)
 {
 	void	*tmp;
 	char	*var;
 
-	free(data->cmd);
-	free(data->meta_str);
+	if (data->cmd)
+		free(data->cmd);
+	data->cmd = NULL;
+	if (data->meta_str)
+		free(data->meta_str);
+	data->meta_str = NULL;
 	var = get_variable();
 	if (var)
 		free(var);
@@ -95,100 +83,34 @@ void	clear_data(t_data *data, t_pokets *pokets, char	***envpd)
 		data->list = data->list->next;
 		free(tmp);
 	}
-	clean_big_one(pokets);
-}
-
-int	ft_count(char **s, char *new)
-{
-	int	i;
-
-	i = 0;
-	while (s && s[i])
-		i++;
-	if (new)
-		i++;
-	return (i);
-}
-
-char **re_envp(char **envp, char *new)
-{
-	int		i;
-	char	**final;
-
-	i = ft_count(envp, new);
-	final = ft_calloc(i + 1, sizeof(char *));
-	i = 0;
-	while (envp && envp[i])
-	{
-		final[i] = ft_strdup(envp[i]);
-		i++;
-	}
-	if (new)
-		final[i] = new;
-	return(final);
+	clean_big_one(*pokets);
+	*pokets = NULL;
 }
 
 int	prompt_display(t_data *data, char **envp)
 {
-	t_pokets	*pokets;
-	int			i;
 	char		***envpd;
+	t_pokets	*pokets;
 
-	pokets = NULL;
-	envpd = ft_calloc(sizeof(char **), 1);
-	*envpd = re_envp(envp, NULL);
-	i = 0;
+	zero_it(&envpd, envp, &pokets);
 	while (1)
 	{
-		clear_data(data, pokets, NULL);
+		clear_data(data, &pokets, NULL);
 		global_initializer();
 		data->cmd = readline("\033[0;34mhalf-bash-3.2$\033[0;37m ");
 		if (data->cmd == NULL)
 		{
-			clear_data(data, pokets, envpd);
+			ft_putendl_fd("exit", 1);
 			exit(0);
 		}
-		add_history(data->cmd);
-		proccess_data(data);
-		if (manage_errors(data) == 0)
+		if (*(data->cmd) == '\0')
 			continue ;
-		launch_here_docs(data, envp);
-		expand_all(data, envp);
-		fill_redirections(&pokets, envpd, data);
+		add_history(data->cmd);
+		if (parse_it(data, &pokets, envpd) != 0)
+			continue ;
+		execute_pipline(pokets);
 		if (get_global_error() != 0)
 			continue ;
-	//	system("leaks minishell");	
-		// execute_pipline(pokets);
-		// int i;
-		// t_pokets	*tmp;
-		// t_redirect	*tmp2;
-		// tmp = pokets;
-		// while (tmp)
-		// {
-		// 	printf("**************pip redirections***********\n");
-		// 	printf("--------------read redirections-------------------\n");
-		// 	tmp2 = tmp->redirects->read;
-		// 	while (tmp2)
-		// 	{
-		// 		printf("%s----%c\n", tmp2->file_name, tmp2->type);
-		// 		tmp2 = tmp2->next;
-		// 	}
-		// 	printf("---------------write redirections-----------------\n");
-		// 	tmp2 = tmp->redirects->write;
-		// 	while (tmp2)
-		// 	{
-		// 		printf("%s----%c\n", tmp2->file_name, tmp2->type);
-		// 		tmp2 = tmp2->next;
-		// 	}
-		// 	printf("---------------argv-----------------\n");
-		// 	i = 0;
-		// 	while (tmp->av && tmp->av[i])
-		// 	{
-		// 		printf("%s\n", tmp->av[i]);
-		// 		i++;
-		// 	}
-		// 	tmp = tmp->next;
-		// }
 	}
 	return (0);
 }

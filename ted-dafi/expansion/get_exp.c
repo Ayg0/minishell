@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_exp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:20:40 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/29 18:33:39 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/30 09:31:05 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ted_dafi.h"
 
-int		check_if_blank(char *s)
+int	check_if_blank(char *s)
 {
 	int	i;
 

@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   global_error_var.c                                 :+:      :+:    :+:   */
+/*   error_managment_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/30 06:48:49 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 06:48:54 by msouiyeh         ###   ########.fr       */
+/*   Created: 2022/06/30 07:55:04 by msouiyeh          #+#    #+#             */
+/*   Updated: 2022/06/30 09:18:53 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mohamed.h"
 
-int	*global_error(void)
+void	error_print(char *error_str, int len)
 {
-	static int	code;
-
-	return (&code);
-}
-
-int	get_global_error(void)
-{
-	int	i;
-
-	i = *(global_error());
-	return (i);
-}
-
-void	set_global_error(int error)
-{
-	int	*p;
-
-	p = global_error();
-	*p = error;
+	ft_putstr_fd("minishell: syntax error near unexpected token `", 2);
+	write (2, error_str, len);
+	write (2, "'\n", 2);
+	set_exit_code(258);
 }

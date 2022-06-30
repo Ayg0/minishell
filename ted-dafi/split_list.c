@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 11:47:51 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 11:54:32 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/30 09:21:54 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ t_tokens	*ft_split_list(char *s, char *s2, char delimiter)
 			ft_lstadd_back(&tokens, ft_lstnew(previous,
 					ft_substr(s, i, k - i), ft_substr(s2, i, k - i)));
 			previous = ft_lstlast(tokens);
-			previous->max = (ft_strchr("wr", previous->meta_data[0]) != 0) + 1;
 		}
 		i = k;
 	}

@@ -1,36 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   global_error_var.c                                 :+:      :+:    :+:   */
+/*   parsing_re_env.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/30 06:48:49 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 06:48:54 by msouiyeh         ###   ########.fr       */
+/*   Created: 2022/06/30 09:09:19 by msouiyeh          #+#    #+#             */
+/*   Updated: 2022/06/30 09:14:55 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mohamed.h"
+#include "ted_dafi.h"
 
-int	*global_error(void)
-{
-	static int	code;
-
-	return (&code);
-}
-
-int	get_global_error(void)
+int	ft_count(char **s, char *new)
 {
 	int	i;
 
-	i = *(global_error());
+	i = 0;
+	while (s && s[i])
+		i++;
+	if (new)
+		i++;
 	return (i);
 }
 
-void	set_global_error(int error)
+char	**re_envp(char **envp, char *new)
 {
-	int	*p;
+	int		i;
+	char	**final;
 
-	p = global_error();
-	*p = error;
+	i = ft_count(envp, new);
+	final = ft_calloc(i + 1, sizeof(char *));
+	i = 0;
+	while (envp && envp[i])
+	{
+		final[i] = ft_strdup(envp[i]);
+		i++;
+	}
+	if (new)
+		final[i] = new;
+	return (final);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mohamed.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:48:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/29 22:10:11 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/30 12:19:18 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,50 @@ typedef struct s_data
 	t_tokens	*list;
 }	t_data;
 # endif
+void		get_redirects_done(t_tokens **itire, t_pokets *poket);
+
+void		handle_sigint(int signum);
+void		set_signal_handlers(void);
+void		zero_it(char	****envpd, char **envp, t_pokets **pokets);
+int			parse_it(t_data *data, t_pokets **pokets, char	***envpd);
+void		free_triple_pp(char ***envpd);
+
+void		redirection_error(char *errorstr, int flag);
+char		*red_join(char *s1, char *s2);
+
+void		resplit_tokens(t_data	*data);
+void		reattach(t_tokens **itire, t_tokens *new);
+
+void		change_in_parrent(t_data *data);
+int			launch_helper(t_data *data, char **envp);
+void		helper_loop(t_tokens *itire, char *path, char **envp);
+void		change_here_doc(t_tokens *itire, char *path);
+void		here_doc(int fd, char *limiter, char **envp);
+
+void		go_child(t_pokets *poket);
+void		fork_it_helper(t_pokets *itire);
+void		fork_print_error(char *error_str);
+void		fork_it(t_pokets *pokets);
+
+void		open_redirects(t_pokets *pokets);
+int			open_write(t_pokets *pokets);
+int			open_read(t_pokets *pokets);
+void		unlink_helper(int unlnk, t_redirect *tmp);
+void		unlink_here_docs(t_pokets *pokets);
+
+void		ft_perror(char *str);
+void		ft_dup(int fd_one, int fd_two);
+char		*clean_exit(char *path, char *cmd);
+char		*clean_set_up(char *path, char *cmd);
+char		*ready_path(char **env, char *cmd);
+
+void		error_print(char *error_str, int len);
+
+void		set_global_error(int error);
+int			get_global_error(void);
 
 void		execute_pipline(t_pokets *pokets);
+void		handle_sigint(int signum);
 
 void		global_initializer(void);
 
@@ -101,8 +143,8 @@ char		*remove_limiter_q(char *limiter);
 int			check_max_here_doc(t_tokens *itire);
 
 void		clean_big_one(t_pokets *pokets);
-int			get_global_error(void);
-void		set_global_error(int error);
+int			get_global_here_doc(void);
+void		set_global_here_doc(int error);
 void		ft_poketadd_back(t_pokets **lst, t_pokets	*new);
 void		ft_poketadd_front(t_pokets	**lst, t_pokets	*new);
 void		ft_poketsclear(t_pokets **lst, void (*del)(void *));

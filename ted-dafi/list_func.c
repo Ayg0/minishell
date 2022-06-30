@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   list_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 09:23:01 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/29 17:59:26 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/06/30 09:24:59 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ted_dafi.h"
 
-t_tokens	*ft_lstnew(t_tokens *previous, void *meta, char *token)
+t_tokens	*ft_lstnew(t_tokens *previous, char *meta, char *token)
 {
 	t_tokens	*new;
 
 	new = (t_tokens *)ft_calloc(sizeof(t_tokens), 1);
 	(*new).meta_data = meta;
 	(*new).token = token;
+	(*new).max = (ft_strchr("wr", meta[0]) != 0) + 1;
 	(*new).next = NULL;
 	(*new).previous = previous;
 	return (new);

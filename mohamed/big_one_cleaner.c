@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:57:14 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/28 21:55:56 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 00:46:57 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	clean_big_one(t_pokets *pokets)
 	while (pokets)
 	{
 		i = 0;
-		while (pokets->av && pokets->av[i])
-			free(pokets->av[i++]);
+		while (pokets->av && (pokets->av)[i])
+			free((pokets->av)[i++]);
 		if (pokets->av)
 			free(pokets->av);
 		if (pokets->path)

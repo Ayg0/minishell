@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   global_error_var.c                                 :+:      :+:    :+:   */
+/*   redirectl_process_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/30 06:48:49 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 06:48:54 by msouiyeh         ###   ########.fr       */
+/*   Created: 2022/06/30 09:04:38 by msouiyeh          #+#    #+#             */
+/*   Updated: 2022/06/30 09:05:19 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mohamed.h"
 
-int	*global_error(void)
+void	redirection_error(char *errorstr, int flag)
 {
-	static int	code;
-
-	return (&code);
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(errorstr, 2);
+	ft_putendl_fd(": ambiguous redirect", 2);
+	if (flag)
+		free(errorstr);
 }
 
-int	get_global_error(void)
+char	*red_join(char *s1, char *s2)
 {
-	int	i;
+	char	*final;
 
-	i = *(global_error());
-	return (i);
-}
-
-void	set_global_error(int error)
-{
-	int	*p;
-
-	p = global_error();
-	*p = error;
+	if (!s1 || !s2)
+		return (NULL);
+	final = ft_strjoin(s1, s2);
+	return (final);
 }
