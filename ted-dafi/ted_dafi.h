@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:33:24 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/30 09:29:08 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 17:58:47 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_redirections
 typedef struct s_pokets
 {
 	int				index;
+	int				flag;
 	int				last_pid;
 	int				pip[2];
 	int				outfile_fd;
@@ -62,6 +63,7 @@ typedef struct s_tokens
 {
 	char			*meta_data;
 	char			*token;
+	int				flag;
 	int				max;
 	struct s_tokens	*previous;
 	struct s_tokens	*next;
@@ -78,6 +80,14 @@ typedef struct s_data
 	t_tokens	*list;
 }	t_data;
 # endif
+
+void		echo(t_pokets *poket);
+void		cd(t_pokets *poket);
+void		pwd(t_pokets *poket);
+void		export(t_pokets *poket);
+void		unset(t_pokets *poket);
+void		env(t_pokets *poket);
+void		ft_exit(t_pokets *poket);
 
 void		proccess_data(t_data *data);
 char		**re_envp(char **envp, char *new);

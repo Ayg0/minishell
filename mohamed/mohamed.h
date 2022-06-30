@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:48:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/30 12:19:18 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 18:15:46 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_redirections
 typedef struct s_pokets
 {
 	int				index;
+	int				flag;
 	int				last_pid;
 	int				pip[2];
 	int				outfile_fd;
@@ -62,6 +63,7 @@ typedef struct s_tokens
 {
 	char			*meta_data;
 	char			*token;
+	int				flag;
 	int				max;
 	struct s_tokens	*previous;
 	struct s_tokens	*next;
@@ -78,6 +80,15 @@ typedef struct s_data
 	t_tokens	*list;
 }	t_data;
 # endif
+
+int			is_built_in(char **cmd);
+
+void		launch_built_in(int	index, t_pokets *poket);
+
+void		free_redirects(t_redirections *redirects);
+
+void		process_av_help(t_tokens **itire, t_pokets *poket);
+
 void		get_redirects_done(t_tokens **itire, t_pokets *poket);
 
 void		handle_sigint(int signum);

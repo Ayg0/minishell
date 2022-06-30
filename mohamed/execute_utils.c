@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:35:10 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 08:35:38 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:40:00 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*clean_exit(char *path, char *cmd)
 			return (path);
 		else
 		{
-			write (2, "pipex: ", 8);
+			write (2, "minishell: ", 11);
 			write (2, cmd, ft_strlen(cmd));
 			write (2, ": permission denied\n", 20);
 			exit(126);
@@ -40,7 +40,7 @@ char	*clean_exit(char *path, char *cmd)
 	}
 	else
 	{
-		write (2, "pipex: ", 8);
+		write (2, "minishell: ", 11);
 		write (2, cmd, ft_strlen(cmd));
 		write (2, ": command not found\n", 20);
 		exit(127);

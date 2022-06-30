@@ -3,6 +3,8 @@ CC = cc
 NAME = minishell
 
 CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -I /Users/msouiyeh/goinfre/.brew/opt/readline/include
+#-Wall -Werror -Wextra
+#-fsanitize=address
 
 GSRCS = global_utils/decide.c global_utils/env_scout.c global_utils/ft_calloc.c			  	\
 		global_utils/ft_strcmp.c global_utils/ft_strjoin.c global_utils/ft_strlcpy.c	  	\
@@ -31,7 +33,8 @@ MSRCS = mohamed/error_managment.c mohamed/exit_code.c 	mohamed/ft_pstrjoin.c \
 		mohamed/error_managment_utils.c					mohamed/execute_utils.c		\
 		mohamed/execute_redicts.c						mohamed/execute_fork_child.c	\
 		mohamed/here_doc_fork.c							mohamed/re_split.c	\
-		mohamed/redirectl_process_utils.c				mohamed/parsing_utils.c
+		mohamed/redirectl_process_utils.c				mohamed/parsing_utils.c	\
+		mohamed/process_av_utils.c						mohamed/set_built_in.c	\
 		
 		
 

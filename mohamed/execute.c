@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 23:12:34 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 12:56:07 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 18:11:16 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,18 +86,50 @@ int	is_built_in(char **cmd)
 	return (-1);
 }
 
+void	close_null_av(t_pokets **pokets)
+{
+	t_pokets	*tmp;
+
+	tmp = NULL;
+	while ((*pokets))
+	{
+		if ((*pokets)->av == NULL)
+		{
+			if ((*pokets)->infile_fd > 2)
+				close((*pokets)->infile_fd);
+			if ((*pokets)->outfile_fd > 2)
+				close((*pokets)->outfile_fd);
+			free_redirects((*pokets)->redirects);
+			tmp = *pokets;
+			if ((*pokets)->next)
+				(*pokets)->next->prev = tmp->prev;
+			if ((*pokets)->prev)
+				(*pokets)->prev->next = tmp->next;
+			if ((*pokets)->next != NULL)
+				(*pokets) = (*pokets)->next;
+			else
+				(*pokets) = (*pokets)->prev;
+			free(tmp);
+		}
+		if ((*pokets)->next == NULL)
+			break ;
+		(*pokets) = (*pokets)->next;
+	}
+	while ((*pokets) && (*pokets)->prev)
+		(*pokets) = (*pokets)->prev;
+}
+
 void	execute_pipline(t_pokets *pokets)
 {
 	open_redirects(pokets);
 	if (get_global_error() != 0)
 		return ;
-	if (pokets->av == NULL)
-		return ;
-	// if (is_built_in(pokets->av) != -1 && !pokets->next && !pokets->prev)
-	// {
-	// 	launch built in in parrant
-	// 	;
-	// }
+	if (is_built_in(pokets->av) != -1 && !pokets->next && !pokets->prev)
+	{
+		launch_built_in(is_built_in(pokets->av), pokets);
+		if (get_global_error() != 0)
+			return ;
+	}
 	fork_it(pokets);
 	wait_for_the_kids(pokets);
 	unlink_here_docs(pokets);

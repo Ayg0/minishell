@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 15:24:44 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 12:41:14 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 16:48:58 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ int	compare(char *str, char *limiter, int flag)
 		return (1);
 	while (str[i] == limiter[i] || !(limiter[i]))
 	{
-		if (!(limiter[i]) && str[i] == '\n')
+		if (!(limiter[i]) && str[i] == '\0')
 		{
 			if (flag)
 				free(str);
 			return (0);
 		}
+		if (!(limiter[i]))
+			break ; 
 		i++;
 	}
 	if (flag)
@@ -47,10 +49,10 @@ char	*dynamic_read(char *limiter, int flag, char **envp)
 	final = ft_strdup("");
 	while (compare(str, limiter, 1))
 	{
-		write (1, "> ", 2);
-		str = get_next_line(0);
+		// write (1, "> ", 2);
+		str = readline("> ");
 		if (str == NULL)
-			return (final);
+			return (NULL);
 		if (flag != -1 && compare(str, limiter, 0))
 			str = check_and_expand(str, envp);
 		if (compare(str, limiter, 0))
@@ -77,6 +79,8 @@ void	here_doc(int fd, char *limiter, char **envp)
 		i++;
 	}
 	final = dynamic_read(limiter, i, envp);
+	if (final == NULL)
+		return ;
 	write(fd, final, ft_strlen(final));
 	if (close (fd) == -1)
 		printf("error msg in heredoc to be changed\n");

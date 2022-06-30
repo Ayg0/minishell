@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:54:46 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 11:38:53 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 16:21:01 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	is_true_redirect(char *str)
 {
 	int		i;
 	char	c;
-	
+
 	c = 0;
 	i = 0;
 	if (str[0] == 'r' || str[i] == 'w')
@@ -72,6 +72,13 @@ t_tokens	*reseplit_helper(t_tokens *itire, int i)
 	return (tmp);
 }
 
+void	resplit_helper(t_data *data, t_tokens *itire)
+{
+	while (itire && itire->previous)
+		itire = itire->previous;
+	data->list = itire;
+}
+
 void	resplit_tokens(t_data	*data)
 {
 	t_tokens	*itire;
@@ -83,7 +90,6 @@ void	resplit_tokens(t_data	*data)
 	{
 		i = -1;
 		tmp = NULL;
-	// printf("*1*%p***\n", itire);
 		if (itire->previous && is_true_redirect(itire->previous->meta_data))
 		{
 			if (itire->next == NULL)
@@ -93,15 +99,11 @@ void	resplit_tokens(t_data	*data)
 		}
 		else
 			tmp = reseplit_helper(itire, i);
-	// printf("*2*%p***\n", itire);
 		if (tmp)
 			reattach(&itire, tmp);
 		if (itire->next == NULL)
 			break ;
 		itire = itire->next;
 	}
-	while (itire && itire->previous)
-		itire = itire->previous;
-	data->list = itire;
-	// printf("*3*%p***\n", data->list);
+	resplit_helper(data, itire);
 }
