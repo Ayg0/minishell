@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:54:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 00:06:17 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 06:57:51 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ char	*red_join(char *s1, char *s2)
 	final = ft_strjoin(s1, s2);
 	return (final);	
 }
+
 int	check_opperand_errors(t_tokens *itire)
 {
 	int i;
@@ -102,7 +103,8 @@ void	process_redirect(t_tokens **itire, t_pokets *poket)
 {
 	if (check_opperand_errors((*itire)->next) == 0)
 	{
-		set_exit_code(3);
+		set_exit_code(1);
+		set_global_error(1);
 		return ;
 	}
 	if (*((*itire)->meta_data) == 'r')

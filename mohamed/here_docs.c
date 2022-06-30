@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 15:24:44 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 05:42:46 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 06:54:55 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ int	launch_helper(t_data *data, char **envp)
 	t_tokens	*itire;
 	char		*path;
 
-	set_global_here_doc(1);
 	signal(SIGINT, SIG_DFL);
 	path = ft_strdup("/tmp/here_doc..");
 	itire = data->list;
@@ -173,17 +172,23 @@ void	launch_here_docs(t_data *data, char **envp)
 		if (pid < 0)
 		{
 			ft_putendl_fd("minishell : waitpid faild", 2);
+			set_global_error(1);
 			set_exit_code(1);
 		}
 		if (WIFEXITED(info))
-			set_exit_code(WEXITSTATUS(info));
-		else if (WIFSIGNALED(info))
+		{
+			set_global_error(WEXITSTATUS(info));
+			if (get_global_error() != 0)
+				set_exit_code(get_global_error());
+		}
+		if (WIFSIGNALED(info))
 		{
 			write (1, "\n", 1);
+			set_global_error(1);
 			set_exit_code(1);
 		}
 		signal(SIGINT, handle_sigint);
 	}
-	if (get_exit_code() == 0)
+	if (get_global_error() == 0)
 		change_in_parrent(data);
 }

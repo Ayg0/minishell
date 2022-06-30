@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 23:12:34 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 05:32:46 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 07:28:48 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ char	*ready_path(char **env, char *cmd)
 
 void	go_child(t_pokets *poket)
 {
-	// signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	if (poket->next != NULL)
 		close (poket->pip[READ_END]);
@@ -135,6 +134,7 @@ void	fork_it(t_pokets *pokets)
 			{
 				ft_putendl_fd("minishell: piping failed", 2);
 				set_exit_code(1);
+				set_global_error(1);
 				return ;
 			}
 		pid = fork();
@@ -177,7 +177,11 @@ void	wait_for_the_kids(t_pokets *poket)
 		if (WIFEXITED(info) && pid == poket->last_pid)
 			child_errno = WEXITSTATUS(info);
 		else if (WIFSIGNALED(info) && pid == poket->last_pid)
+		{
 			child_errno = 128 + WTERMSIG(info);
+			if (child_errno == 131)
+				write(1, "Quit: 3\n", 8);
+		}
 	}
 	set_exit_code(child_errno);
 	signal(SIGINT, handle_sigint);
@@ -198,6 +202,7 @@ int	open_read(t_pokets *pokets)
 		{
 			ft_putstr_fd("minishell: faild to open ", 2);
 			ft_putendl_fd(tmp->file_name, 2);
+			set_global_error(1);
 			set_exit_code(1);
 			return (1);
 		}
@@ -223,6 +228,7 @@ int	open_write(t_pokets *pokets)
 		{
 			ft_putstr_fd("minishell: faild to open ", 2);
 			ft_putendl_fd(tmp->file_name, 2);
+			set_global_error(1);
 			set_exit_code(1);
 			return (1);
 		}
@@ -265,6 +271,7 @@ void	unlink_here_docs(t_pokets *pokets)
 					{
 						perror("minishell :");
 						set_exit_code(errno);
+						set_global_error(errno);
 					}
 				}
 			}
@@ -307,11 +314,11 @@ int	is_built_in(char **cmd)
 void	execute_pipline(t_pokets *pokets)
 {
 	open_redirects(pokets);
-	if (get_exit_code() != 0)
+	if (get_global_error() != 0)
 		return ;
 	// if (is_built_in(pokets->av) != -1 && !pokets->next && !pokets->prev)
 	// {
-	// 	//launch built in in parrant
+	// 	launch built in in parrant
 	// 	;
 	// }
 	// else

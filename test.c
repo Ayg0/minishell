@@ -4,7 +4,7 @@
 
 int	*exit_code(void)
 {
-	static int	code;
+	static int	code = 0;
 
 	return (&code);
 }
@@ -29,5 +29,6 @@ int	main(int ac, char **av, char **envp)
 {
 	set_exit_code(0);
 	printf("%d\n", get_exit_code());
-	set_exit_code(50)
+	set_exit_code(50);
+	printf("%d\n", get_exit_code());
 }

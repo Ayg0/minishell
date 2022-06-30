@@ -24,9 +24,9 @@ MSRCS = mohamed/error_managment.c mohamed/exit_code.c 	mohamed/ft_pstrjoin.c \
 		mohamed/lst_functions/ft_lstadd_back_bonus.c  	mohamed/lst_functions/ft_lstadd_front_bonus.c \
 		mohamed/lst_functions/ft_lstlast_bonus.c		mohamed/here_doc_expand.c\
 		mohamed/lst_functions/ft_lstnew_bonus.c			mohamed/lst_functions/ft_lstsize_bonus.c	\
-		mohamed/global_here_doc_var.c						mohamed/big_one_cleaner.c \
+		mohamed/global_here_doc_var.c					mohamed/big_one_cleaner.c \
 		mohamed/here_doc_q_remov.c						mohamed/redirects_processing.c \
-		mohamed/execute.c
+		mohamed/execute.c								mohamed/global_error_var.c
 
 SRCS =  main.c $(TSRCS) $(MSRCS) $(GSRCS)
 

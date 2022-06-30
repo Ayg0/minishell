@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/30 05:47:32 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 07:29:50 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,51 +148,40 @@ void	set_signal_handlers()
 	signal(SIGQUIT, SIG_IGN);
 }
 
+void	zero_it(char	****envpd, char **envp, t_pokets **pokets)
+{
+	*pokets = NULL;
+
+	*envpd = ft_calloc(sizeof(char **), 1);
+	**envpd = re_envp(envp, NULL);
+	set_exit_code(0);
+	set_signal_handlers();	
+}
+
+int	parse_it(t_data *data, t_pokets **pokets, char	***envpd)
+{
+	proccess_data(data);
+	if (manage_errors(data) == 0)
+		return (1);
+	launch_here_docs(data, *envpd);
+	if (get_global_error() != 0)
+		return (1);
+	expand_all(data, *envpd);
+	fill_redirections(pokets, envpd, data);
+	if (get_global_error() != 0)
+		return (1);
+	return (0);
+}
+
 int	prompt_display(t_data *data, char **envp)
 {
-	t_pokets	*pokets;
-	int			i;
 	char		***envpd;
+	t_pokets	*pokets;
 
-	pokets = NULL;
-	envpd = ft_calloc(sizeof(char **), 1);
-	*envpd = re_envp(envp, NULL);
-	set_exit_code(0);
-	set_signal_handlers();
-	i = 0;
+	zero_it(&envpd, envp, &pokets);
 	while (1)
 	{
-		//system("leaks minishell");	
-		// int i;
-		// t_pokets	*tmp;
-		// t_redirect	*tmp2;
-		// tmp = pokets;
-		// while (tmp)
-		// {
-		// 	printf("**************pip redirections***********\n");
-		// 	printf("--------------read redirections-------------------\n");
-		// 	tmp2 = tmp->redirects->read;
-		// 	while (tmp2)
-		// 	{
-		// 		printf("%s----%c\n", tmp2->file_name, tmp2->type);
-		// 		tmp2 = tmp2->next;
-		// 	}
-		// 	printf("---------------write redirections-----------------\n");
-		// 	tmp2 = tmp->redirects->write;
-		// 	while (tmp2)
-		// 	{
-		// 		printf("%s----%c\n", tmp2->file_name, tmp2->type);
-		// 		tmp2 = tmp2->next;
-		// 	}
-		// 	printf("---------------argv-----------------\n");
-		// 	i = 0;
-		// 	while (tmp->av && tmp->av[i])
-		// 	{
-		// 		printf("%s\n", tmp->av[i]);
-		// 		i++;
-		// 	}
-		// 	tmp = tmp->next;
-		// }
+		system("leaks minishell");	
 		clear_data(data, &pokets, NULL);
 		global_initializer();
 		data->cmd = readline("\033[0;34mhalf-bash-3.2$\033[0;37m ");
@@ -204,18 +193,10 @@ int	prompt_display(t_data *data, char **envp)
 		if (*(data->cmd) == '\0')
 			continue ;
 		add_history(data->cmd);
-		proccess_data(data);
-		if (manage_errors(data) == 0)
-			continue ;
-		launch_here_docs(data, *envpd);
-		if (get_exit_code() != 0)
-			continue ;
-		expand_all(data, envp);
-		fill_redirections(&pokets, envpd, data);
-		if (get_exit_code() != 0)
-			continue ;
+		if (parse_it(data, &pokets, envpd) != 0)
+			continue;
 		execute_pipline(pokets);
-		if (get_exit_code() != 0)
+		if (get_global_error() != 0)
 			continue ;
 	}
 	return (0);

@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   global_here_doc_var.c                              :+:      :+:    :+:   */
+/*   global_error_var.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 16:34:42 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 06:51:24 by msouiyeh         ###   ########.fr       */
+/*   Created: 2022/06/30 06:48:49 by msouiyeh          #+#    #+#             */
+/*   Updated: 2022/06/30 06:48:54 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mohamed.h"
 
-int	*global_here_doc(void)
+int	*global_error(void)
 {
 	static int	code;
 
 	return (&code);
 }
 
-int	get_global_here_doc(void)
+int	get_global_error(void)
 {
 	int	i;
 
-	i = *(global_here_doc());
+	i = *(global_error());
 	return (i);
 }
 
-void	set_global_here_doc(int error)
+void	set_global_error(int error)
 {
 	int	*p;
 
-	p = global_here_doc();
+	p = global_error();
 	*p = error;
-}
-
-void	global_initializer(void)
-{
-	set_variable(NULL);
-	set_global_error(0);
 }
