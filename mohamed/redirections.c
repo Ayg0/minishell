@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:42:56 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 16:13:02 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 17:59:29 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,6 @@ t_pokets	*allocat_pipelines(char ***envp, t_data *data)
 	while (i-- > 0)
 		ft_poketadd_back(&final, ft_new_poket(envp));
 	return (final);
-}
-
-void	process_av_help(t_tokens **itire, t_pokets *poket)
-{
-	int	i;
-
-	i = 0;
-	while ((*itire) && ft_strchr("prw", *((*itire)->meta_data)) == 0)
-	{
-		(poket->av)[i] = mft_strdup((*itire)->token);
-		if ((*itire)->next == NULL)
-			break ;
-		*itire = (*itire)->next;
-		if ((*itire) && *((*itire)->meta_data) == '\0' && (*itire)->flag == -404)
-		{
-			if ((*itire)->next == NULL)
-				break ;
-			*itire = (*itire)->next;
-		}
-		i++;
-	}
 }
 
 void	process_av(t_tokens **itire, t_pokets *poket)
@@ -123,15 +102,8 @@ void	fill_redirections(t_pokets	**pokets, char ***envp, t_data *data)
 	resplit_tokens(data);
 	// while (data->list)
 	// {
-	// 	printf("%s      %s\n", data->list->token, data->list->meta_data);
+	// 	printf("%s    %s\n", data->list->token, data->list->meta_data);
 	// 	data->list = data->list->next;
-	// 	set_global_error(1);
-	// }
-	// return ;
-	// if (*(data->list->meta_data) == '\0' && data->list->flag == -404)
-	// {
-	// 	set_global_error(1);
-	// 	return ;
 	// }
 	*pokets = allocat_pipelines(envp, data);
 	finish_redirections(data, pokets);

@@ -33,7 +33,8 @@ MSRCS = mohamed/error_managment.c mohamed/exit_code.c 	mohamed/ft_pstrjoin.c \
 		mohamed/error_managment_utils.c					mohamed/execute_utils.c		\
 		mohamed/execute_redicts.c						mohamed/execute_fork_child.c	\
 		mohamed/here_doc_fork.c							mohamed/re_split.c	\
-		mohamed/redirectl_process_utils.c				mohamed/parsing_utils.c
+		mohamed/redirectl_process_utils.c				mohamed/parsing_utils.c	\
+		mohamed/process_av_utils.c						mohamed/set_built_in.c	\
 		
 		
 

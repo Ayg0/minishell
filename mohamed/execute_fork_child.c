@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:42:17 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 16:04:55 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 18:13:14 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,28 @@ void	go_child(t_pokets *poket)
 	}
 	else if (poket->outfile_fd == 2)
 		ft_dup(poket->pip[WRITE_END], 1);
+	if (poket->av == NULL)
+		exit (0);
+	if (is_built_in(poket->av) != -1)
+	{
+		launch_built_in(is_built_in(poket->av), poket);
+		exit (get_global_error());
+	}
 	poket->path = ready_path(*poket->env, poket->av[0]);
 	if (execve(poket->path, poket->av, *poket->env) == -1)
 	{
 		write (2, "minishell: ", 11);
 		write (2, poket->av[0], ft_strlen(poket->av[0]));
 		if (errno == ENOENT)
-		{
-			write (2, " : no such a file or directory\n", 31);
-			exit (1);
-		}
+			write (2, ": no such a file or directory\n", 31);
 		else
-		{
-			write (2, " : command not found\n", 21);
-			exit (127);
-		}
+			write (2, ": command not found\n", 21);
+		exit (127);
 	}
 }
 
 void	fork_it_helper(t_pokets *itire)
 {
-	
 	if (itire->prev)
 		close(itire->prev->pip[READ_END]);
 	else if (itire->infile_fd != 0)
