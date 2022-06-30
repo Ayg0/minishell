@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:54:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 06:57:51 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 11:06:05 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,28 +58,9 @@ void	delet_token(t_tokens **token)
 	}
 }
 
-void	redirection_error(char *errorstr, int flag)
-{
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(errorstr, 2);
-	ft_putendl_fd(": ambiguous redirect", 2);
-	if (flag)
-		free(errorstr);
-}
-
-char	*red_join(char *s1, char *s2)
-{
-	char *final;
-
-	if (!s1 || !s2)
-		return (NULL);
-	final = ft_strjoin(s1, s2);
-	return (final);	
-}
-
 int	check_opperand_errors(t_tokens *itire)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (itire->meta_data[i])
@@ -91,10 +72,10 @@ int	check_opperand_errors(t_tokens *itire)
 		}
 		i++;
 	}
-	if (*(itire->meta_data) == '\0' && *(itire->token) == '\0' && get_variable())
+	if (!(*(itire->meta_data)) && !(*(itire->token)) && get_variable())
 	{
 		redirection_error(red_join("$", get_variable()), 1);
-		return (0);	
+		return (0);
 	}
 	return (1);
 }

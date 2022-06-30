@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/30 07:29:50 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 09:13:57 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,6 @@ void	proccess_data(t_data *data)
 	data->list = ft_split_list(data->meta_str, data->cmd, 'b');
 }
 
-void	free_triple_pp(char ***envpd)
-{
-	char	**tmp;
-
-	if (!envpd)
-		return ;
-	tmp = *envpd;
-	while (*envpd && **envpd)
-	{
-		free(**envpd);
-		(*envpd)++;
-	}
-	free (tmp);
-	free(envpd);
-}
-
 void	clear_data(t_data *data, t_pokets **pokets, char	***envpd)
 {
 	void	*tmp;
@@ -103,76 +87,6 @@ void	clear_data(t_data *data, t_pokets **pokets, char	***envpd)
 	*pokets = NULL;
 }
 
-int	ft_count(char **s, char *new)
-{
-	int	i;
-
-	i = 0;
-	while (s && s[i])
-		i++;
-	if (new)
-		i++;
-	return (i);
-}
-
-char **re_envp(char **envp, char *new)
-{
-	int		i;
-	char	**final;
-
-	i = ft_count(envp, new);
-	final = ft_calloc(i + 1, sizeof(char *));
-	i = 0;
-	while (envp && envp[i])
-	{
-		final[i] = ft_strdup(envp[i]);
-		i++;
-	}
-	if (new)
-		final[i] = new;
-	return(final);
-}
-
-void	handle_sigint(int signum)
-{
-	(void)signum;
-	write (1, "\n", 1);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
-}
-
-void	set_signal_handlers()
-{
-	signal(SIGINT, handle_sigint);
-	signal(SIGQUIT, SIG_IGN);
-}
-
-void	zero_it(char	****envpd, char **envp, t_pokets **pokets)
-{
-	*pokets = NULL;
-
-	*envpd = ft_calloc(sizeof(char **), 1);
-	**envpd = re_envp(envp, NULL);
-	set_exit_code(0);
-	set_signal_handlers();	
-}
-
-int	parse_it(t_data *data, t_pokets **pokets, char	***envpd)
-{
-	proccess_data(data);
-	if (manage_errors(data) == 0)
-		return (1);
-	launch_here_docs(data, *envpd);
-	if (get_global_error() != 0)
-		return (1);
-	expand_all(data, *envpd);
-	fill_redirections(pokets, envpd, data);
-	if (get_global_error() != 0)
-		return (1);
-	return (0);
-}
-
 int	prompt_display(t_data *data, char **envp)
 {
 	char		***envpd;
@@ -181,20 +95,19 @@ int	prompt_display(t_data *data, char **envp)
 	zero_it(&envpd, envp, &pokets);
 	while (1)
 	{
-		system("leaks minishell");	
 		clear_data(data, &pokets, NULL);
 		global_initializer();
 		data->cmd = readline("\033[0;34mhalf-bash-3.2$\033[0;37m ");
 		if (data->cmd == NULL)
 		{
-			ft_putendl_fd("exit", 1);	
+			ft_putendl_fd("exit", 1);
 			exit(0);
 		}
 		if (*(data->cmd) == '\0')
 			continue ;
 		add_history(data->cmd);
 		if (parse_it(data, &pokets, envpd) != 0)
-			continue;
+			continue ;
 		execute_pipline(pokets);
 		if (get_global_error() != 0)
 			continue ;

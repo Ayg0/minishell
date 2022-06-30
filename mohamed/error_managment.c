@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:58:31 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 00:51:50 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 09:17:54 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	find_it(char *token_meta, char *charset)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (charset[i])
@@ -29,38 +29,32 @@ int	find_it(char *token_meta, char *charset)
 int	check_pip(t_tokens *itire)
 {
 	int	len;
-	int max;
+	int	max;
 
 	max = itire->max;
 	len = ft_strlen(itire->meta_data);
 	if (!itire->next || !itire->previous)
 	{
-		printf("pip error \n");
+		ft_putendl_fd("minishell: syntax error near unexpected token `|'", 2);
 		set_exit_code(258);
 		return (0);
 	}
 	else if (len > max)
 	{
 		len = (len - max == 1) + ((len - max > 1) * max);
-		printf("syntax error near unexpected token \n");
-		write (2, &itire->token[max], len);
-		write (2, "\n", 1);
-		set_exit_code(258);
+		error_print(&itire->token[max], len);
 		return (0);
 	}
 	else if (ft_strchr("prw", *(itire->previous->meta_data)) != 0 || \
 			ft_strlen(itire->meta_data) > 1)
 	{
-		printf("pip error an operator before \n");
-		write (2, itire->token, itire->max);
-		write (2, "\n", 1);
+		error_print(itire->token, itire->max);
 		set_exit_code(258);
 		return (0);
 	}
 	return (1);
 }
-//parse error with pipe always say "syntax error near unexpected token `|'" no newline
-//but redirection if it is in the end it meantions new line "syntax error near unexpected token `newline'";
+
 int	check_redirect(t_tokens *itire)
 {
 	int	max;
@@ -68,27 +62,21 @@ int	check_redirect(t_tokens *itire)
 
 	max = itire->max;
 	len = ft_strlen(itire->meta_data);
-	if (!itire->next)
-	{
-		printf("redirection error missing opperand 1\n");
-		set_exit_code(258);
-		return (0);
-	}
-	else if (len > max)
+	if (len > max)
 	{
 		len = (len - max == 1) + ((len - max > 1) * max);
-		printf("redirection error missing opperand near \n");
-		write (2, &itire->token[max], len);
-		write (2, "\n", 1);
+		error_print(&itire->token[max], len);
+		return (0);
+	}
+	else if (!itire->next)
+	{
+		ft_putendl_fd("syntax error near unexpected token `newline'", 2);
 		set_exit_code(258);
 		return (0);
 	}
 	else if (ft_strchr("uqds", *(itire->next->meta_data)) == 0)
 	{
-		printf("redirection error missing opperand 2\n");
-		write (2, itire->next->token, itire->next->max);
-		write (2, "\n", 1);
-		set_exit_code(258);
+		error_print(itire->next->token, itire->next->max);
 		return (0);
 	}
 	return (1);
@@ -96,8 +84,8 @@ int	check_redirect(t_tokens *itire)
 
 int	check_quotes(t_tokens *itire)
 {
-	int i;
-	int quotes;
+	int	i;
+	int	quotes;
 
 	i = -1;
 	quotes = 0;
@@ -124,7 +112,7 @@ int	manage_errors(t_data *data)
 
 	itire = data->list;
 	flag = 1;
-	while(itire && flag)
+	while (itire && flag)
 	{
 		if (*(itire->meta_data) == 'p')
 			flag = check_pip(itire);

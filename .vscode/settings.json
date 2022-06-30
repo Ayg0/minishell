@@ -1,6 +1,0 @@
-{
-	"files.associations": {
-		"minishell.h": "c",
-		"global_utils.h": "c"
-	}
-}
