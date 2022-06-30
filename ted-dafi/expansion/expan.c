@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:52:56 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/30 09:30:04 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:54:26 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	get_and_join(int *i, t_tokens *list, char **str, char **envp)
 
 	(*i)++;
 	j = *i;
+	list->flag = -404;
 	if (list->token[*i] == '?')
 	{
 		*str = re_join(*str, ft_itoa(get_exit_code()));

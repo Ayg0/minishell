@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/30 09:13:57 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:29:57 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	prompt_display(t_data *data, char **envp)
 	{
 		clear_data(data, &pokets, NULL);
 		global_initializer();
-		data->cmd = readline("\033[0;34mhalf-bash-3.2$\033[0;37m ");
+		data->cmd = readline("\033[0;34mminishell$\033[0;37m ");
 		if (data->cmd == NULL)
 		{
 			ft_putendl_fd("exit", 1);

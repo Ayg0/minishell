@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 09:23:01 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/30 09:24:59 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:51:50 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_tokens	*ft_lstnew(t_tokens *previous, char *meta, char *token)
 	(*new).meta_data = meta;
 	(*new).token = token;
 	(*new).max = (ft_strchr("wr", meta[0]) != 0) + 1;
+	(*new).flag = 0;
 	(*new).next = NULL;
 	(*new).previous = previous;
 	return (new);

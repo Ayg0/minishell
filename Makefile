@@ -3,6 +3,8 @@ CC = cc
 NAME = minishell
 
 CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -I /Users/msouiyeh/goinfre/.brew/opt/readline/include
+#-Wall -Werror -Wextra
+#-fsanitize=address
 
 GSRCS = global_utils/decide.c global_utils/env_scout.c global_utils/ft_calloc.c			  	\
 		global_utils/ft_strcmp.c global_utils/ft_strjoin.c global_utils/ft_strlcpy.c	  	\

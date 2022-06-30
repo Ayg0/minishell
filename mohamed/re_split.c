@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:54:46 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 11:38:53 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 14:08:47 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void	resplit_tokens(t_data	*data)
 	{
 		i = -1;
 		tmp = NULL;
-	// printf("*1*%p***\n", itire);
 		if (itire->previous && is_true_redirect(itire->previous->meta_data))
 		{
 			if (itire->next == NULL)
@@ -93,7 +92,6 @@ void	resplit_tokens(t_data	*data)
 		}
 		else
 			tmp = reseplit_helper(itire, i);
-	// printf("*2*%p***\n", itire);
 		if (tmp)
 			reattach(&itire, tmp);
 		if (itire->next == NULL)
@@ -103,5 +101,4 @@ void	resplit_tokens(t_data	*data)
 	while (itire && itire->previous)
 		itire = itire->previous;
 	data->list = itire;
-	// printf("*3*%p***\n", data->list);
 }

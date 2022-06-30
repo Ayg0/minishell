@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:40:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 08:19:34 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:10:48 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,5 @@ char	*ft_strchr(char *s, int c)
 			return ((char *)s);
 		s++;
 	}
-	if (*s == c)
-		return ((char *)s);
 	return (NULL);
 }
