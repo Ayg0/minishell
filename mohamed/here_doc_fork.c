@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_fork.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:46:27 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 12:43:29 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/01 17:22:40 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	helper_loop(t_tokens *itire, char *path, char **envp)
 			path[14] = (i % 10) + '0';
 			fd = open(path, O_CREAT | O_WRONLY | O_TRUNC, 0666);
 			if (fd == -1)
-				printf("here_doc tmp file creation faild\n");
+			{
+				ft_putendl_fd("minishell: here_doc tmp file creation faild", 2);
+				exit (1);
+			}
 			here_doc (fd, itire->next->token, envp);
 			change_here_doc(itire, path);
 			i++;
@@ -46,8 +49,8 @@ int	launch_helper(t_data *data, char **envp)
 	itire = data->list;
 	if (check_max_here_doc(itire))
 	{
-		ft_putstr_fd("error max here_doc is exeeded\n", 2);
-		exit(1);
+		ft_putstr_fd("minishell: maximum here-document count exceeded", 2);
+		exit(128);
 	}
 	helper_loop(itire, path, envp);
 	free(path);
