@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 23:12:34 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 19:03:01 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/01 17:24:37 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,39 +84,6 @@ int	is_built_in(char **cmd)
 		i++;
 	}
 	return (-1);
-}
-
-void	close_null_av(t_pokets **pokets)
-{
-	t_pokets	*tmp;
-
-	tmp = NULL;
-	while ((*pokets))
-	{
-		if ((*pokets)->av == NULL)
-		{
-			if ((*pokets)->infile_fd > 2)
-				close((*pokets)->infile_fd);
-			if ((*pokets)->outfile_fd > 2)
-				close((*pokets)->outfile_fd);
-			free_redirects((*pokets)->redirects);
-			tmp = *pokets;
-			if ((*pokets)->next)
-				(*pokets)->next->prev = tmp->prev;
-			if ((*pokets)->prev)
-				(*pokets)->prev->next = tmp->next;
-			if ((*pokets)->next != NULL)
-				(*pokets) = (*pokets)->next;
-			else
-				(*pokets) = (*pokets)->prev;
-			free(tmp);
-		}
-		if ((*pokets)->next == NULL)
-			break ;
-		(*pokets) = (*pokets)->next;
-	}
-	while ((*pokets) && (*pokets)->prev)
-		(*pokets) = (*pokets)->prev;
 }
 
 void	execute_pipline(t_pokets *pokets)

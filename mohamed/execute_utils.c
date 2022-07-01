@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:35:10 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/01 16:39:55 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/01 17:38:15 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ char	*clean_exit(char *path, char *cmd)
 	}
 	return (NULL);
 }
+
 char 	*exec_join(char *s1, char *s2)
 {
 	char	*final;
@@ -85,7 +86,7 @@ char	*ready_path(char **env, char *cmd)
 		return (clean_exit(cmd, cmd));
 	else if (ft_strchr(cmd, '/'))
 		return (cmd);
-	else if (ft_strchr(cmd, '/') == 0 && check_if_in("PATH=", env) == 0)
+	else if (ft_strchr(cmd, '/') == 0 && check_if_in("PATH", env) == 0)
 		return (clean_set_up(NULL, cmd));
 	while (*env)
 	{
