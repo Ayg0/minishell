@@ -6,16 +6,17 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:34:13 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 11:47:01 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/01 01:04:21 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ted_dafi.h"
 
-int	main(void)
+void	pwd(t_pokets *poket)
 {
 	char	*s;
 
+	(void) poket;
 	s = getcwd(NULL, 0);
 	printf("%s\n", s);
 	free(s);

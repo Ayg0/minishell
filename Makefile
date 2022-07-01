@@ -2,7 +2,7 @@ CC = cc
 
 NAME = minishell
 
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -I /Users/msouiyeh/goinfre/.brew/opt/readline/include
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -I /Users/$(USER)/.brew/opt/readline/include
 #-Wall -Werror -Wextra
 #-fsanitize=address
 
@@ -18,7 +18,15 @@ GSRCS = global_utils/decide.c global_utils/env_scout.c global_utils/ft_calloc.c	
 TEXP  = ted-dafi/expansion/expan.c ted-dafi/expansion/re_join.c ted-dafi/expansion/get_exp.c \
 		ted-dafi/expansion/quote_rm.c ted-dafi/expansion/empty_value.c
 
-TSRCS = $(TEXP) ted-dafi/split_list.c ted-dafi/parsing.c ted-dafi/list_func.c ted-dafi/parsing_re_env.c \
+TBUILTINS = ted-dafi/builtins/cd.c ted-dafi/builtins/echo.c ted-dafi/builtins/env.c		\
+			ted-dafi/builtins/exit.c ted-dafi/builtins/export.c ted-dafi/builtins/pwd.c	\
+			ted-dafi/builtins/unset.c ted-dafi/builtins/unset_valid.c 					\
+			ted-dafi/builtins/util_export.c
+
+TGSRC = ted-dafi/split_list.c ted-dafi/parsing.c ted-dafi/list_func.c ted-dafi/parsing_re_env.c
+
+
+TSRCS = $(TEXP) $(TBUILTINS) $(TGSRC)
 
 
 MSRCS = mohamed/error_managment.c mohamed/exit_code.c 	mohamed/ft_pstrjoin.c \
@@ -48,8 +56,8 @@ all: $(NAME)
 
 $(NAME):	$(OBJS)
 			stty -echoctl
-			$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
-#			$(CC) $(CFLAGS) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib $(OBJS) -o $(NAME)
+#			$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
+			$(CC) $(CFLAGS) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib $(OBJS) -o $(NAME)
 
 clean:
 		$(RM) $(OBJS) $(B_OBJS)

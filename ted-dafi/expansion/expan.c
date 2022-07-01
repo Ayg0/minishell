@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expan.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:52:56 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/30 15:54:26 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/01 01:02:08 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ char	*check_if_empty(char *s)
 	return (NULL);
 }
 
-int	check_validation(char c, int flag)
+int	check_validation(char c, int ex_flag, int num_flag)
 {
 	return (((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
-			|| c == '_' || c == '?' || ((c >= '0' && c <= '9') * flag)));
+			|| c == '_' || ((c == '?') * ex_flag)
+			|| ((c >= '0' && c <= '9') * num_flag)));
 }
 
 int	get_and_join(int *i, t_tokens *list, char **str, char **envp)
@@ -40,7 +41,7 @@ int	get_and_join(int *i, t_tokens *list, char **str, char **envp)
 	}
 	else
 	{
-		while (list->token[*i] && check_validation(list->token[*i], 1))
+		while (list->token[*i] && check_validation(list->token[*i], 1, 1))
 			(*i)++;
 		if (*i > j)
 			*str = re_join(*str,
@@ -67,7 +68,7 @@ char	*expand(t_tokens *list, char **envp)
 		else if (list->meta_data[i] == 's' && !flag[0])
 			flag[1] = !flag[1];
 		if (list->token[i] == '$' && !flag[1]
-			&& check_validation(list->token[i + 1], 0))
+			&& check_validation(list->token[i + 1], 1, 0))
 			get_and_join(&i, list, &str, envp);
 		else if (list->token[i] == '$' && list->token[i] == 'u')
 			i++;

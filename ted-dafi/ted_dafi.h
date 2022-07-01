@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ted_dafi.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:33:24 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/30 17:58:47 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/01 05:37:41 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void		env(t_pokets *poket);
 void		ft_exit(t_pokets *poket);
 
 void		proccess_data(t_data *data);
-char		**re_envp(char **envp, char *new);
+char		**re_envp(char **envp, int flag, char *new);
 int			ft_strlen(char *s);
 int			ft_strcmp(char *s1, char *s2);
 int			prompt_display(t_data *data, char **envp);
@@ -102,10 +102,13 @@ char		*ft_strjoin(char *s1, char *s2);
 t_tokens	*ft_split_list(char *s, char *s2, char delimiter);
 int			expand_all(t_data *data, char **envp);
 char		*re_join(char *s1, char *s2);
-char		**re_envp(char **envp, char *new);
 void		free_triple_pp(char ***envpd);
 char		*get_meta(char *s);
 void		set_variable(char *value);
 char		*get_variable(void);
 char		*get_exp(char *var, char c, char **envp);
+int			check_validation(char c, int ex_flag, int num_flag);
+int			all_valid(char	**av, int flag, char *built_err);
+int			ft_count(char **s, char *new, int *place);
+int			ft_strchr_null(char	*s, char c, char c2);
 #endif

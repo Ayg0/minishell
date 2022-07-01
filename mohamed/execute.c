@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 23:12:34 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 18:11:16 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:03:01 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,7 @@ void	execute_pipline(t_pokets *pokets)
 	if (is_built_in(pokets->av) != -1 && !pokets->next && !pokets->prev)
 	{
 		launch_built_in(is_built_in(pokets->av), pokets);
-		if (get_global_error() != 0)
-			return ;
+		return ;
 	}
 	fork_it(pokets);
 	wait_for_the_kids(pokets);

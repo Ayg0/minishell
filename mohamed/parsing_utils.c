@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 09:10:58 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 09:14:07 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/01 05:12:10 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	zero_it(char	****envpd, char **envp, t_pokets **pokets)
 {
 	*pokets = NULL;
 	*envpd = ft_calloc(sizeof(char **), 1);
-	**envpd = re_envp(envp, NULL);
+	**envpd = re_envp(envp, 0, NULL);
 	set_exit_code(0);
 	set_signal_handlers();
 }
@@ -64,5 +64,4 @@ void	free_triple_pp(char ***envpd)
 		(*envpd)++;
 	}
 	free (tmp);
-	free(envpd);
 }
