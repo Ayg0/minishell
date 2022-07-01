@@ -2,7 +2,7 @@ CC = cc
 
 NAME = minishell
 
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -I /Users/$(USER)/.brew/opt/readline/include
+CFLAGS = -Wall -Werror -Wextra -g -I /Users/$(USER)/.brew/opt/readline/include
 #-Wall -Werror -Wextra
 #-fsanitize=address
 

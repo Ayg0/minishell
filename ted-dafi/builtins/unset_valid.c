@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 00:59:35 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/01 06:42:01 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/01 15:24:43 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ int	all_valid(char	**av, int flag, char *built_err)
 	int	i;
 	int	j;
 	int	num_flag;
+	int	b;
 
 	i = 0;
+	b = 0;
 	while (av[i])
 	{
 		j = 0;
@@ -52,8 +54,10 @@ int	all_valid(char	**av, int flag, char *built_err)
 			num_flag = 1;
 			if (j == 0)
 				num_flag = 0;
-			if (!check_validation(av[i][j], 0, num_flag)
-				&& lower_cond(av[i][j], av[i][j + 1], flag))
+			if (av[i][j] == '=')
+				b = 1 * flag;
+			if ((!check_validation(av[i][j], 0, num_flag)
+				&& lower_cond(av[i][j], av[i][j + 1], flag)) && !b)
 				return (give_unvalid_error(av[i], built_err));
 			j++;
 		}
