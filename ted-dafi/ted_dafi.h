@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:33:24 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/01 05:37:41 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/01 15:48:54 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ typedef struct s_data
 	t_tokens	*list;
 }	t_data;
 # endif
+
+int			check_if_equal(char	*srch_for, char	**srch_in);
 
 void		echo(t_pokets *poket);
 void		cd(t_pokets *poket);

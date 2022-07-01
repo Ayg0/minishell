@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:35:10 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 15:40:00 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/01 16:39:55 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,24 @@ char	*clean_exit(char *path, char *cmd)
 	}
 	else
 	{
+		//remove the one
 		write (2, "minishell: ", 11);
 		write (2, cmd, ft_strlen(cmd));
 		write (2, ": command not found\n", 20);
 		exit(127);
 	}
 	return (NULL);
+}
+char 	*exec_join(char *s1, char *s2)
+{
+	char	*final;
+
+	if (s1 == NULL)
+		return (NULL);
+	if (s2 == NULL)
+		return (NULL);
+	final = ft_strjoin(s1, s2);
+	return (final);
 }
 
 char	*clean_set_up(char *path, char *cmd)
@@ -54,8 +66,12 @@ char	*clean_set_up(char *path, char *cmd)
 	char	*final;
 
 	final = NULL;
-	tmp = ft_strjoin("/", cmd);
-	final = ft_strjoin(path, tmp);
+	tmp = NULL;
+	if (path)
+		tmp = exec_join("/", cmd);
+	else if (path == NULL)
+		return (exec_join("./", cmd));
+	final = exec_join(path, tmp);
 	free(path);
 	free(tmp);
 	return (final);
@@ -69,6 +85,8 @@ char	*ready_path(char **env, char *cmd)
 		return (clean_exit(cmd, cmd));
 	else if (ft_strchr(cmd, '/'))
 		return (cmd);
+	else if (ft_strchr(cmd, '/') == 0 && check_if_in("PATH=", env) == 0)
+		return (clean_set_up(NULL, cmd));
 	while (*env)
 	{
 		if (ft_strncmp(*env, "PATH=", 5) == 0)
