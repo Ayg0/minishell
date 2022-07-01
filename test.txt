@@ -1,0 +1,10 @@
+minishell$ a|a
+minishell: a: no such a file or directory
+minishell: a: no such a file or directory
+
+minishell$ echo -nnnnnnnnnnnnnn -nnnnnnnnnnn -nnnnnn
+-nnnnnnnnnnnnnn -nnnnnnnnnnn -nnnnnn
+
+cat
+minishell: cat: no such a file or directory
+
