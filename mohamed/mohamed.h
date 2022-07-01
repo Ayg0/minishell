@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mohamed.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:48:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/30 18:15:46 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 21:35:49 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_data
 # endif
 
 int			is_built_in(char **cmd);
+int			is_true_pip(char *str);
 
 void		launch_built_in(int	index, t_pokets *poket);
 

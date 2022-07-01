@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:42:56 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 17:59:29 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/06/30 21:46:13 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,51 @@ t_pokets	*allocat_pipelines(char ***envp, t_data *data)
 	return (final);
 }
 
+int	ft_wc(char *s, char c)
+{
+	int	counter;
+	int	flag;
+
+	flag = 1;
+	counter = 0;
+	while (*s)
+	{
+		while (*s == c)
+		{
+			s++;
+			flag = 1;
+		}
+		if ((*s != c && flag == 1) && *s)
+		{
+			counter++;
+			flag = 0;
+		}
+		if (*s)
+			s++;
+	}
+	return (counter + 1);
+}
+
+int	is_true_pip(char *str)
+{
+	int		i;
+	char	c;
+
+	c = 0;
+	i = 0;
+	if (str[0] == 'p')
+		c = str[0];
+	else
+		return (0);
+	while (str[i])
+	{
+		if (str[i] != c)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	process_av(t_tokens **itire, t_pokets *poket)
 {
 	t_tokens	*tmp;
@@ -39,14 +84,14 @@ void	process_av(t_tokens **itire, t_pokets *poket)
 
 	i = 0;
 	tmp = *itire;
-	while (tmp && ft_strchr("prw", *(tmp->meta_data)) == 0)
+	while (tmp && is_true_pip(tmp->meta_data) == 0)
 	{
-		i++;
+		i += ft_wc(tmp->meta_data, 'b');
 		tmp = tmp->next;
 	}
 	poket->av = (char **)ft_calloc(i + 1, sizeof(char *));
 	process_av_help(itire, poket);
-	if (*itire && ft_strchr("prw", *((*itire)->meta_data)))
+	if (*itire && is_true_pip((*itire)->meta_data))
 		*itire = (*itire)->previous;
 }
 
@@ -57,7 +102,7 @@ void	redirection_helper(t_data	*data, t_pokets	*poket)
 	itire = data->list;
 	while (itire)
 	{
-		if (*(itire->meta_data) == 'p')
+		if (is_true_pip(itire->meta_data))
 			poket = poket->next;
 		else if (*(itire->meta_data) == '\0' && itire->flag == -404)
 		{
@@ -99,7 +144,7 @@ void	finish_redirections(t_data *data, t_pokets **pokets)
 
 void	fill_redirections(t_pokets	**pokets, char ***envp, t_data *data)
 {
-	resplit_tokens(data);
+	//resplit_tokens(data);
 	// while (data->list)
 	// {
 	// 	printf("%s    %s\n", data->list->token, data->list->meta_data);

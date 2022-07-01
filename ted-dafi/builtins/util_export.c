@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   util_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 11:36:40 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/30 18:22:38 by ted-dafi         ###   ########.fr       */
+/*   Created: 2022/07/01 05:35:30 by ted-dafi          #+#    #+#             */
+/*   Updated: 2022/07/01 06:17:19 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ted_dafi.h"
 
-void	echo(t_pokets *poket)
+int	ft_strchr_null(char	*s, char c, char c2)
 {
-	int	new_line;
 	int	i;
 
-	new_line = 1;
-	i = 1;
-	while (poket->av[i])
+	i = 0;
+	while (s[i])
 	{
-		if (i > 1 + !new_line)
-			write(1, " ", 1);
-		if (i == 1 && ft_strcmp(poket->av[i], "-n") == 0)
-			new_line = 0;
-		else
-			write(1, poket->av[i], ft_strlen(poket->av[i]));
+		if (s[i] == c || s[i] == c2)
+			break ;
 		i++;
 	}
-	new_line && write(1, "\n", 1);
+	return (i);
 }
