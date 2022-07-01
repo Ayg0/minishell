@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_docs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 15:24:44 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 16:48:58 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/01 17:20:11 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ char	*dynamic_read(char *limiter, int flag, char **envp)
 	final = ft_strdup("");
 	while (compare(str, limiter, 1))
 	{
-		// write (1, "> ", 2);
 		str = readline("> ");
 		if (str == NULL)
 			return (NULL);
@@ -113,7 +112,11 @@ void	launch_here_docs(t_data *data, char **envp)
 		{
 			set_global_error(WEXITSTATUS(info));
 			if (get_global_error() != 0)
+			{
+				if (get_global_error() == 128)
+					exit (2);
 				set_exit_code(get_global_error());
+			}
 		}
 		if (WIFSIGNALED(info))
 			fork_print_error("");

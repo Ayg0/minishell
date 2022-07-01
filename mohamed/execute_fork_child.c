@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:42:17 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/01 16:22:16 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/01 17:37:24 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_if_in(char *srch_for, char **srch_in)
 	{
 		while (srch_in[i])
 		{
-			if (env_scout(srch_for, srch_in[i]) != -1)
+			if (env_scout(srch_in[i], srch_for) != -1)
 				return (1);
 			i++;
 		}
@@ -56,9 +56,9 @@ void	go_child(t_pokets *poket)
 	{
 		write (2, "minishell: ", 11);
 		write (2, poket->av[0], ft_strlen(poket->av[0]));
-		if (errno == ENOENT || check_if_in("PATH=", *(poket->env)) == 0)
+		if (errno == ENOENT || check_if_in("PATH", *(poket->env)) == 0)
 			write (2, ": no such a file or directory\n", 31);
-		else if (check_if_in("PATH=", *(poket->env)))
+		else if (check_if_in("PATH", *(poket->env)))
 			write (2, ": command not found\n", 21);
 		exit (127);
 	}
