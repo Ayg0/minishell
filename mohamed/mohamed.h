@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mohamed.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:48:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/01 16:04:21 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:11:58 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,10 @@ typedef struct s_data
 	t_tokens	*list;
 }	t_data;
 # endif
+
+char		 *ult_strjoin(char *s1, char *s2, int flag);
+void		fork_print_error(char *error_str);
+void		dup_for_built_in(t_pokets	*pokets, int *in, int *out);
 
 int			check_if_in(char *srch_for, char **srch_in);
 

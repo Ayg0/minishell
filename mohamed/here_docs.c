@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_docs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 15:24:44 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/01 17:20:11 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/02 15:30:50 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	compare(char *str, char *limiter, int flag)
 		return (1);
 	while (str[i] == limiter[i] || !(limiter[i]))
 	{
-		if (!(limiter[i]) && str[i] == '\0')
+		if (!(limiter[i]) && str[i] == '\n')
 		{
 			if (flag)
 				free(str);
@@ -50,6 +50,7 @@ char	*dynamic_read(char *limiter, int flag, char **envp)
 	while (compare(str, limiter, 1))
 	{
 		str = readline("> ");
+		str = here_doc_join(str, "\n", 0);
 		if (str == NULL)
 			return (NULL);
 		if (flag != -1 && compare(str, limiter, 0))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_fork_child.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:42:17 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/01 17:37:24 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/02 16:34:04 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_if_in(char *srch_for, char **srch_in)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (srch_in)
@@ -29,9 +29,8 @@ int	check_if_in(char *srch_for, char **srch_in)
 	return (0);
 }
 
-void	go_child(t_pokets *poket)
+void	prepare_in_out(t_pokets *poket)
 {
-	signal(SIGQUIT, SIG_DFL);
 	close (poket->pip[READ_END]);
 	if (poket->infile_fd > 2)
 		ft_dup(poket->infile_fd, 0);
@@ -44,6 +43,12 @@ void	go_child(t_pokets *poket)
 	}
 	else if (poket->outfile_fd == 2)
 		ft_dup(poket->pip[WRITE_END], 1);
+}
+
+void	go_child(t_pokets *poket)
+{
+	signal(SIGQUIT, SIG_DFL);
+	prepare_in_out(poket);
 	if (poket->av == NULL)
 		exit (0);
 	if (is_built_in(poket->av) != -1)
@@ -54,12 +59,12 @@ void	go_child(t_pokets *poket)
 	poket->path = ready_path(*(poket->env), poket->av[0]);
 	if (execve(poket->path, poket->av, *(poket->env)) == -1)
 	{
-		write (2, "minishell: ", 11);
-		write (2, poket->av[0], ft_strlen(poket->av[0]));
 		if (errno == ENOENT || check_if_in("PATH", *(poket->env)) == 0)
-			write (2, ": no such a file or directory\n", 31);
+			ft_putstr_fd (ult_strjoin(ult_strjoin("minishell: ",\
+				 poket->av[0], 0), ": no such a file or directory\n", 1) ,2);
 		else if (check_if_in("PATH", *(poket->env)))
-			write (2, ": command not found\n", 21);
+			ft_putstr_fd (ult_strjoin(ult_strjoin("minishell: ",\
+				 poket->av[0], 0), ": command not found\n", 1) ,2);
 		exit (127);
 	}
 }
@@ -74,13 +79,6 @@ void	fork_it_helper(t_pokets *itire)
 		close (itire->pip[WRITE_END]);
 	else if (itire->outfile_fd != 1)
 		close (itire->outfile_fd);
-}
-
-void	fork_print_error(char *error_str)
-{
-	ft_putendl_fd(error_str, 2);
-	set_exit_code(1);
-	set_global_error(1);
 }
 
 void	fork_it(t_pokets *pokets)

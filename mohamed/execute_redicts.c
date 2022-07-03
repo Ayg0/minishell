@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:37:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 11:56:05 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/02 16:42:40 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	open_read(t_pokets *pokets)
 		pokets->infile_fd = open(tmp->file_name, tmp->code, 0666);
 		if (pokets->infile_fd == -1)
 		{
-			ft_putstr_fd("minishell: faild to open ", 2);
-			ft_putendl_fd(tmp->file_name, 2);
+			ft_putstr_fd(ult_strjoin("minishell: faild to open ",\
+			ult_strjoin(tmp->file_name, "\n", 0), 2), 2);
 			set_global_error(1);
 			set_exit_code(1);
 			return (1);
@@ -51,8 +51,8 @@ int	open_write(t_pokets *pokets)
 		pokets->outfile_fd = open(tmp->file_name, tmp->code, 0666);
 		if (pokets->outfile_fd == -1)
 		{
-			ft_putstr_fd("minishell: faild to open ", 2);
-			ft_putendl_fd(tmp->file_name, 2);
+			ft_putstr_fd(ult_strjoin("minishell: faild to open ",\
+			ult_strjoin(tmp->file_name, "\n", 0), 2), 2);
 			set_global_error(1);
 			set_exit_code(1);
 			return (1);

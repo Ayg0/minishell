@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:54:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 11:06:05 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:07:57 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ void	process_redirect(t_tokens **itire, t_pokets *poket)
 	if (check_opperand_errors((*itire)->next) == 0)
 	{
 		set_exit_code(1);
-		set_global_error(1);
+		delet_token(itire);
+		delet_token(itire);
 		return ;
 	}
 	if (*((*itire)->meta_data) == 'r')
