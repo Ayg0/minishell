@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:42:56 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 21:46:13 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:08:17 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,12 +144,6 @@ void	finish_redirections(t_data *data, t_pokets **pokets)
 
 void	fill_redirections(t_pokets	**pokets, char ***envp, t_data *data)
 {
-	//resplit_tokens(data);
-	// while (data->list)
-	// {
-	// 	printf("%s    %s\n", data->list->token, data->list->meta_data);
-	// 	data->list = data->list->next;
-	// }
 	*pokets = allocat_pipelines(envp, data);
 	finish_redirections(data, pokets);
 	redirection_helper(data, *pokets);
