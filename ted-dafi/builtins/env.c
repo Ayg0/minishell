@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:12:35 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/30 18:36:53 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/15 11:06:33 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,6 @@ void	env(t_pokets *poket)
 		}
 		i++;
 	}
+	set_exit_code(0);
+	set_global_error(0);
 }
