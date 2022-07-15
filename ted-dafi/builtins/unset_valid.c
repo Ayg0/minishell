@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 00:59:35 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/01 15:24:43 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/15 11:09:17 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	give_unvalid_error(char *av, char *built_err)
 	ft_putstr_fd(": `", 2);
 	ft_putstr_fd(av, 2);
 	ft_putstr_fd("': not a valid identifier\n", 2);
-	set_global_error(1);
-	set_exit_code(1);
+	set_global_error(2);
+	set_exit_code(2);
 	return (1);
 }
 
