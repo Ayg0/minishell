@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:35:10 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/02 16:37:07 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/18 11:13:00 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ char	*clean_exit(char *path, char *cmd)
 			return (path);
 		else
 		{
-			ft_putstr_fd(ult_strjoin(ult_strjoin("minishell: ", cmd, 0),\
+			ft_putstr_fd2(ult_strjoin(ult_strjoin("minishell: ", cmd, 0),\
 			 ": permission denied\n", 0), 2);
 			exit(126);
 		}
 	}
 	else
 	{
-		ft_putstr_fd(ult_strjoin(ult_strjoin("minishell: ", cmd, 0),\
+		ft_putstr_fd2(ult_strjoin(ult_strjoin("minishell: ", cmd, 0),\
 			 ": command not found\n", 0), 2);
 		exit(127);
 	}

@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 15:24:44 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/02 15:30:50 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/18 10:47:38 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ char	*dynamic_read(char *limiter, int flag, char **envp)
 	while (compare(str, limiter, 1))
 	{
 		str = readline("> ");
-		str = here_doc_join(str, "\n", 0);
 		if (str == NULL)
-			return (NULL);
+			return (final);
+		str = here_doc_join(str, "\n", 0);
 		if (flag != -1 && compare(str, limiter, 0))
 			str = check_and_expand(str, envp);
 		if (compare(str, limiter, 0))
-			final = ft_strjoin_all(&final, str);
+			final = ult_strjoin(final, str, 1);
 	}
 	if (flag == -1)
 		free(limiter);
