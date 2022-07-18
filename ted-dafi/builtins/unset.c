@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:28:23 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/01 15:48:34 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/17 11:10:50 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,17 @@ void	cpy_what_not(char **envpd, char **last_env, char **av)
 void	unset(t_pokets *poket)
 {
 	int		i;
+	int		res;
 	char	**envpd;
 
 	if (!poket->av[1])
 		return ;
-	all_valid(poket->av + 1, 0, "unset");
+	res = all_valid(poket->av + 1, 0, "unset");
 	i = search_for_them(*(poket->env), poket->av + 1);
 	envpd = ft_calloc(i + 1, sizeof(char **));
 	cpy_what_not(envpd, *(poket->env), poket->av);
 	free_triple_pp(poket->env);
 	*poket->env = envpd;
+	set_exit_code(0 + res);
+	set_global_error(0 + res);
 }
