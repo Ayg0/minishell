@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 11:36:11 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/18 11:23:00 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/18 11:52:05 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_exit(t_pokets *poket)
 		exit(0);
 	else if (poket->av[2])
 	{
-		set_exit_code(ft_putstr_fd("\033[0;34mminishell\033[0;37m: exit: too many arguments\n", 2));
+		set_exit_code(ft_putstr_fd("minishell : exit: too many arguments\n", 2));
 		return (set_global_error(1));
 	}
 	flag = 0;

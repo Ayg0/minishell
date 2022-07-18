@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_valid.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 00:59:35 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/18 11:23:04 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/18 12:09:38 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int	all_valid(char	**av, int flag, char *built_err)
 			j++;
 		}
 		i++;
-		if (flag)
-			break ;
+		if (!flag)
+			break;
 	}
 	return (1);
 }
