@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   global_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 12:37:21 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/29 23:53:18 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/18 09:49:44 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int		ft_strncmp(const	char	*s1, const	char	*s2, size_t	n);
 char	**ft_split(char *s, char c);
 void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
+int		ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		env_scout(char *str, char *var);
