@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:34:13 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/15 12:31:47 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/17 11:06:09 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,6 @@ void	pwd(t_pokets *poket)
 		printf("%s\n", s);
 	if (s)
 		free(s);
+	set_exit_code(0);
+	set_global_error(0);
 }
