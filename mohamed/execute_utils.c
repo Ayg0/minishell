@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:35:10 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/18 11:13:00 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/18 14:34:36 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ char	*clean_set_up(char *path, char *cmd)
 
 	final = NULL;
 	tmp = NULL;
+	if (!*cmd)
+		clean_exit(NULL, cmd);
 	if (path)
 		tmp = exec_join("/", cmd);
 	else if (path == NULL)
