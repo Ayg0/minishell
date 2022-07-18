@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:37:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/02 16:42:40 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/18 11:14:06 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	open_read(t_pokets *pokets)
 		pokets->infile_fd = open(tmp->file_name, tmp->code, 0666);
 		if (pokets->infile_fd == -1)
 		{
-			ft_putstr_fd(ult_strjoin("minishell: faild to open ",\
+			ft_putstr_fd2(ult_strjoin("minishell: faild to open ",\
 			ult_strjoin(tmp->file_name, "\n", 0), 2), 2);
 			set_global_error(1);
 			set_exit_code(1);
@@ -51,7 +51,7 @@ int	open_write(t_pokets *pokets)
 		pokets->outfile_fd = open(tmp->file_name, tmp->code, 0666);
 		if (pokets->outfile_fd == -1)
 		{
-			ft_putstr_fd(ult_strjoin("minishell: faild to open ",\
+			ft_putstr_fd2(ult_strjoin("minishell: faild to open ",\
 			ult_strjoin(tmp->file_name, "\n", 0), 2), 2);
 			set_global_error(1);
 			set_exit_code(1);
@@ -106,4 +106,14 @@ void	unlink_here_docs(t_pokets *pokets)
 		}
 		pokets = pokets->next;
 	}
+}
+
+int	ft_putstr_fd2(char *s, int fd)
+{
+	if (s != NULL)
+	{
+		write(fd, s, ft_strlen(s));
+		free(s);
+	}
+	return (1);
 }

@@ -2,7 +2,7 @@ CC = cc
 
 NAME = minishell
 
-CFLAGS = -Wall -Werror -Wextra -g -I /Users/$(USER)/.brew/opt/readline/include
+CFLAGS = -Wall -Werror -Wextra -g -I /Users/msouiyeh/goinfre/.brew/opt/readline/include
 #-Wall -Werror -Wextra
 #-fsanitize=address
 
@@ -30,7 +30,6 @@ TSRCS = $(TEXP) $(TBUILTINS) $(TGSRC)
 
 
 MSRCS = mohamed/error_managment.c mohamed/exit_code.c 	mohamed/ft_pstrjoin.c \
-		mohamed/get_next_line/get_next_line.c 			mohamed/get_next_line/get_next_line_utils.c \
 		mohamed/here_docs.c mohamed/redirections.c 		mohamed/redirections_lst_utils.c\
 		mohamed/lst_functions/ft_lstadd_back_bonus.c  	mohamed/lst_functions/ft_lstadd_front_bonus.c \
 		mohamed/lst_functions/ft_lstlast_bonus.c		mohamed/here_doc_expand.c\
@@ -57,8 +56,8 @@ all: $(NAME)
 
 $(NAME):	$(OBJS)
 			@stty -echoctl
-#			@$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
-			$(CC) $(CFLAGS) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib $(OBJS) -o $(NAME)
+			@$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
+#			@$(CC) $(CFLAGS) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib $(OBJS) -o $(NAME)
 
 clean:
 		@$(RM) $(OBJS) $(B_OBJS)

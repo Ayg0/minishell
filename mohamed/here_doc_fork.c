@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:46:27 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/02 16:46:00 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/18 11:13:00 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	helper_loop(t_tokens *itire, char *path, char **envp)
 			fd = open(path, O_CREAT | O_WRONLY | O_TRUNC, 0666);
 			if (fd == -1)
 			{
-				ft_putstr_fd("minishell: here_doc tmp file creation faild\n", \
+				ft_putstr_fd2("minishell: here_doc tmp file creation faild\n", \
 				2);
 				exit (1);
 			}
@@ -50,7 +50,7 @@ int	launch_helper(t_data *data, char **envp)
 	itire = data->list;
 	if (check_max_here_doc(itire))
 	{
-		ft_putstr_fd("minishell: maximum here-document count exceeded\n", 2);
+		ft_putstr_fd2("minishell: maximum here-document count exceeded\n", 2);
 		exit(128);
 	}
 	helper_loop(itire, path, envp);

@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:09:39 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/02 17:14:10 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/18 11:13:00 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	fork_print_error(char *error_str)
 {
-	ft_putstr_fd(ult_strjoin(error_str, "\n", 0), 2);
+	ft_putstr_fd2(ult_strjoin(error_str, "\n", 0), 2);
 	set_exit_code(1);
 	set_global_error(1);
 }
