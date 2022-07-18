@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:29:02 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/15 11:08:35 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/18 10:33:36 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,29 @@ void	display_export(t_pokets *poket)
 	free_triple_pp(&export);
 }
 
+int	set_zero()
+{
+	set_exit_code(0);
+	set_global_error(0);
+	return (1);
+}
+
 void	export(t_pokets *poket)
 {
 	int		i;
+	int		flag[2];
 	char	***tmp;
 
 	i = 1;
+	flag[1] = 0;
 	if (!poket->av[1])
 		return (display_export(poket));
 	while (poket->av[i])
 	{
-		if (!all_valid(poket->av + i, 1, "export"))
+		flag[0] = ft_strncmp("_=", poket->av[i], 2);
+		if (!all_valid(poket->av + i, 1, "export") || !flag[0])
 		{
+			flag[1] = !flag[0];
 			i++;
 			continue ;
 		}
@@ -81,4 +92,5 @@ void	export(t_pokets *poket)
 		*(poket->env) = re_envp(*(poket->env), 1, poket->av[i]);
 		i++;
 	}
+	flag[1] && set_zero();
 }
