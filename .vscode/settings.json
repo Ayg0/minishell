@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"global_utils.h": "c"
+		"global_utils.h": "c",
+		"ted_dafi.h": "c"
 	}
 }

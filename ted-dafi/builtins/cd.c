@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:43:28 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/18 13:29:39 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/19 12:17:41 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,19 @@ char	*get_str(char *s1)
 	return (str);
 }
 
+int	cd_error(t_pokets *poket)
+{
+	char	*tmp;
+
+	tmp = re_join(ft_strdup("minishell: cd: "), ft_strdup(poket->av[1]));
+	tmp = re_join(tmp, ft_strdup(": "));
+	perror(tmp);
+	free(tmp);
+	set_exit_code(1);
+	set_global_error(1);
+	return (1);
+}
+
 void	cd(t_pokets *poket)
 {
 	int		i;
@@ -38,14 +51,7 @@ void	cd(t_pokets *poket)
 	i = chdir(poket->av[1]);
 	s1 = get_str("PWD=");
 	if (i == -1)
-	{
-		ft_putstr_fd("minishell: cd: ", 2);
-		ft_putstr_fd(poket->av[1], 2);
-		ft_putstr_fd(": ", 2);
-		perror(NULL);
-		set_exit_code(1);
-		set_global_error(1);
-	}
+		cd_error(poket);
 	else
 	{
 		*(poket->env) = re_envp(*(poket->env), 1, s1);

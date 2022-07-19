@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:34:13 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/17 11:06:09 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/19 12:57:28 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*get_pwd(char **envp)
 		}
 		i++;
 	}
-	return (NULL);
+	return ("Can't retreve current working directory\n");
 }
 
 void	pwd(t_pokets *poket)
@@ -40,11 +40,9 @@ void	pwd(t_pokets *poket)
 	(void) poket;
 	s = getcwd(NULL, 0);
 	if (!s)
-		printf("%s\n", get_pwd(*(poket->env)));
+		ft_putstr_fd2(ft_strjoin(get_pwd(*(poket->env)), "\n"), 1);
 	else
-		printf("%s\n", s);
-	if (s)
-		free(s);
+		ft_putstr_fd2(re_join(s, ft_strdup("\n")), 1);
 	set_exit_code(0);
 	set_global_error(0);
 }
