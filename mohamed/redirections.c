@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:42:56 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/02 17:08:17 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/19 21:54:38 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,51 +30,6 @@ t_pokets	*allocat_pipelines(char ***envp, t_data *data)
 	while (i-- > 0)
 		ft_poketadd_back(&final, ft_new_poket(envp));
 	return (final);
-}
-
-int	ft_wc(char *s, char c)
-{
-	int	counter;
-	int	flag;
-
-	flag = 1;
-	counter = 0;
-	while (*s)
-	{
-		while (*s == c)
-		{
-			s++;
-			flag = 1;
-		}
-		if ((*s != c && flag == 1) && *s)
-		{
-			counter++;
-			flag = 0;
-		}
-		if (*s)
-			s++;
-	}
-	return (counter + 1);
-}
-
-int	is_true_pip(char *str)
-{
-	int		i;
-	char	c;
-
-	c = 0;
-	i = 0;
-	if (str[0] == 'p')
-		c = str[0];
-	else
-		return (0);
-	while (str[i])
-	{
-		if (str[i] != c)
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 void	process_av(t_tokens **itire, t_pokets *poket)

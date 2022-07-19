@@ -6,13 +6,13 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:56:32 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 18:14:06 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:38:53 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mohamed.h"
 
-void	set_built_in(void	(*built_ins[8])(t_pokets *))
+void	set_built_in(void (*built_ins[8])(t_pokets *))
 {
 	built_ins[0] = echo;
 	built_ins[1] = cd;
@@ -24,7 +24,7 @@ void	set_built_in(void	(*built_ins[8])(t_pokets *))
 	built_ins[7] = NULL;
 }
 
-void	launch_built_in(int	index, t_pokets *poket)
+void	launch_built_in(int index, t_pokets *poket)
 {
 	void	(*built_ins[8])(t_pokets *);
 

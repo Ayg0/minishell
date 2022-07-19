@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:48:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/18 11:15:39 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/19 21:55:07 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,11 @@ typedef struct s_data
 }	t_data;
 # endif
 
-int			ft_putstr_fd2(char *s, int fd);
+int			ft_wc(char *s, char c);
+int			is_true_pip(char *str);
+char		*ready_path(char **env, char *cmd);
+
+void		here_doc_parent_wait(int pid);
 
 char		*ult_strjoin(char *s1, char *s2, int flag);
 void		fork_print_error(char *error_str);
@@ -92,7 +96,7 @@ int			check_if_in(char *srch_for, char **srch_in);
 int			is_built_in(char **cmd);
 int			is_true_pip(char *str);
 
-void		launch_built_in(int	index, t_pokets *poket);
+void		launch_built_in(int index, t_pokets *poket);
 
 void		free_redirects(t_redirections *redirects);
 

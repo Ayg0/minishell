@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:35:10 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/18 14:34:36 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/19 21:29:57 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,21 @@ char	*clean_exit(char *path, char *cmd)
 			return (path);
 		else
 		{
-			ft_putstr_fd2(ult_strjoin(ult_strjoin("minishell: ", cmd, 0),\
-			 ": permission denied\n", 0), 2);
+			ft_putstr_fd(ult_strjoin(ult_strjoin("minishell: ", cmd, 0) \
+			, ": permission denied\n", 0), 2);
 			exit(126);
 		}
 	}
 	else
 	{
-		ft_putstr_fd2(ult_strjoin(ult_strjoin("minishell: ", cmd, 0),\
-			 ": command not found\n", 0), 2);
+		ft_putstr_fd(ult_strjoin(ult_strjoin("minishell: ", cmd, 0) \
+		, ": command not found\n", 0), 2);
 		exit(127);
 	}
 	return (NULL);
 }
 
-char 	*exec_join(char *s1, char *s2)
+char	*exec_join(char *s1, char *s2)
 {
 	char	*final;
 
@@ -75,34 +75,4 @@ char	*clean_set_up(char *path, char *cmd)
 	free(path);
 	free(tmp);
 	return (final);
-}
-
-char	*ready_path(char **env, char *cmd)
-{
-	char	**path;
-
-	if (ft_strchr(cmd, '/') && access(cmd, F_OK) == 0)
-		return (clean_exit(cmd, cmd));
-	else if (ft_strchr(cmd, '/'))
-		return (cmd);
-	else if (ft_strchr(cmd, '/') == 0 && check_if_in("PATH", env) == 0)
-		return (clean_set_up(NULL, cmd));
-	while (*env)
-	{
-		if (ft_strncmp(*env, "PATH=", 5) == 0)
-			break ;
-		env++;
-	}
-	if (*env == NULL)
-		return (clean_exit(NULL, cmd));
-	*env += 5;
-	path = ft_split(*env, ':');
-	while (*path)
-	{
-		*path = clean_set_up(*path, cmd);
-		if (access(*path, F_OK) == 0)
-			break ;
-		path++;
-	}
-	return (clean_exit(*path, cmd));
 }
