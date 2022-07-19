@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 00:59:35 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/18 12:09:38 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/19 12:16:26 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 int	give_unvalid_error(char *av, char *built_err)
 {
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(built_err, 2);
-	ft_putstr_fd(": `", 2);
-	ft_putstr_fd(av, 2);
-	ft_putstr_fd("': not a valid identifier\n", 2);
+	char	*tmp;
+
+	tmp = re_join(ft_strdup("minishell: "), ft_strdup(built_err));
+	tmp = re_join(tmp, ft_strdup(": `"));
+	tmp = re_join(tmp, ft_strdup(av));
+	tmp = re_join(tmp, ft_strdup("': not a valid identifier\n"));
+	ft_putstr_fd2(tmp, 2);
 	set_global_error(2);
 	set_exit_code(2);
 	return (1);

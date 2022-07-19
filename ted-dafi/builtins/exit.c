@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 11:36:11 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/18 11:52:05 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/19 12:12:59 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	ft_exit(t_pokets *poket)
 {
 	int				flag;
 	unsigned char	num;
+	char			*tmp;
 
-	write(1, "exit\n", 5);
+	!(poket->prev) && write(1, "exit\n", 5);
 	if (!poket->av[1])
 		exit(0);
 	else if (poket->av[2])
@@ -29,8 +30,9 @@ void	ft_exit(t_pokets *poket)
 	num = (unsigned char) ft_atoi(poket->av[1], &flag);
 	if (!flag)
 		exit(num);
-	ft_putstr_fd("minishell: exit: ", 2);
-	ft_putstr_fd(poket->av[1], 2);
-	ft_putstr_fd(": numeric argument required\n", 2);
+	tmp = re_join(ft_strdup("minishell: exit: "), ft_strdup(poket->av[1]));
+	tmp = re_join(tmp, ft_strdup(": numeric argument required\n"));
+	ft_putstr_fd(tmp, 2);
+	free(tmp);
 	exit(255);
 }
