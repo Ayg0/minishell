@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 09:10:58 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/18 11:21:30 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/18 20:20:34 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	handle_sigint(int signum)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
+	set_exit_code(1);
 }
 
 void	set_signal_handlers(void)

@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:58:31 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 09:17:54 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/19 19:50:30 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	check_quotes(t_tokens *itire)
 	}
 	if (quotes)
 	{
-		printf("parse error unclosed quote!!\n");
+		ft_putendl_fd("syntax error unclosed quote", 2);
 		set_exit_code(258);
 		return (0);
 	}
