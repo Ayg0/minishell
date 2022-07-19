@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 14:34:13 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/19 12:57:28 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/19 19:03:40 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*get_pwd(char **envp)
 		}
 		i++;
 	}
-	return ("Can't retreve current working directory\n");
+	return ("Can't retreve current working directory");
 }
 
 void	pwd(t_pokets *poket)

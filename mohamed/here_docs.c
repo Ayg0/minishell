@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 15:24:44 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/18 10:47:38 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/19 19:50:43 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,7 @@ void	here_doc(int fd, char *limiter, char **envp)
 	if (final == NULL)
 		return ;
 	write(fd, final, ft_strlen(final));
-	if (close (fd) == -1)
-		printf("error msg in heredoc to be changed\n");
+	close (fd);
 	free(final);
 }
 
