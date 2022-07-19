@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:42:17 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/18 11:13:00 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/19 20:17:50 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ void	go_child(t_pokets *poket)
 	if (execve(poket->path, poket->av, *(poket->env)) == -1)
 	{
 		if (errno == ENOENT || check_if_in("PATH", *(poket->env)) == 0)
-			ft_putstr_fd2 (ult_strjoin(ult_strjoin("minishell: ",\
-				 poket->av[0], 0), ": no such a file or directory\n", 1) ,2);
+			ft_putstr_fd (ult_strjoin(ult_strjoin("minishell: "\
+			, poket->av[0], 0), ": no such a file or directory\n", 1), 2);
 		else if (check_if_in("PATH", *(poket->env)))
-			ft_putstr_fd2 (ult_strjoin(ult_strjoin("minishell: ",\
-				 poket->av[0], 0), ": command not found\n", 1) ,2);
+			ft_putstr_fd (ult_strjoin(ult_strjoin("minishell: "\
+			, poket->av[0], 0), ": command not found\n", 1), 2);
 		exit (127);
 	}
 }

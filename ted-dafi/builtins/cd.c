@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:43:28 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/19 12:17:41 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:40:08 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ted_dafi.h"
-
 
 char	*get_str(char *s1)
 {
@@ -43,7 +42,7 @@ void	cd(t_pokets *poket)
 {
 	int		i;
 	char	*s1;
-	char 	*s2;
+	char	*s2;
 
 	s2 = get_str("OLDPWD=");
 	if (!poket->av[1])

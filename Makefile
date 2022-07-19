@@ -42,7 +42,7 @@ MSRCS = mohamed/error_managment.c mohamed/exit_code.c 	mohamed/ft_pstrjoin.c \
 		mohamed/here_doc_fork.c							mohamed/re_split.c	\
 		mohamed/redirectl_process_utils.c				mohamed/parsing_utils.c	\
 		mohamed/process_av_utils.c						mohamed/set_built_in.c	\
-		mohamed/fork_print_error.c
+		mohamed/fork_print_error.c						mohamed/ready_path.c	\
 		
 		
 

@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/03 02:14:24 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:46:26 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,7 @@ int	prompt_display(t_data *data, char **envp)
 		data->cmd = readline("\033[0;34mminishell$\033[0;37m ");
 		if (data->cmd == NULL)
 		{
-			rl_replace_line("exit", 0);
-			rl_redisplay();
+			write (1, "exit\n", 5);
 			exit(0);
 		}
 		if (*(data->cmd) == '\0')

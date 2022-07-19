@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 15:24:44 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/19 19:50:43 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/19 21:44:59 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	compare(char *str, char *limiter, int flag)
 			return (0);
 		}
 		if (!(limiter[i]))
-			break ; 
+			break ;
 		i++;
 	}
 	if (flag)
@@ -97,31 +97,12 @@ void	change_here_doc(t_tokens *itire, char *path)
 void	launch_here_docs(t_data *data, char **envp)
 {
 	int	pid;
-	int	info;
 
 	pid = fork();
 	if (pid == 0)
 		launch_helper(data, envp);
 	else
-	{
-		signal(SIGINT, SIG_IGN);
-		pid = waitpid(pid, &info, 0);
-		if (pid < 0)
-			fork_print_error("minishell : waitpid faild");
-		if (WIFEXITED(info))
-		{
-			set_global_error(WEXITSTATUS(info));
-			if (get_global_error() != 0)
-			{
-				if (get_global_error() == 128)
-					exit (2);
-				set_exit_code(get_global_error());
-			}
-		}
-		if (WIFSIGNALED(info))
-			fork_print_error("");
-		signal(SIGINT, handle_sigint);
-	}
+		here_doc_parent_wait(pid);
 	if (get_global_error() == 0)
 		change_in_parrent(data);
 }
