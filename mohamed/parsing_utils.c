@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 09:10:58 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/18 11:21:30 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/19 21:46:24 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	handle_sigint(int signum)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
+	set_exit_code(1);
 }
 
 void	set_signal_handlers(void)
@@ -42,7 +43,6 @@ int	parse_it(t_data *data, t_pokets **pokets, char	***envpd)
 	if (manage_errors(data) == 0)
 		return (1);
 	launch_here_docs(data, *envpd);
-	// system ("leaks minishell");
 	if (get_global_error() != 0)
 		return (1);
 	expand_all(data, *envpd);

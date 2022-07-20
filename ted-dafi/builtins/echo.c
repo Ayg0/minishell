@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 11:36:40 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/15 11:05:43 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:40:49 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ted_dafi.h"
 
-int		arg_new_line(char	*av)
+int	arg_new_line(char	*av)
 {
 	int	i;
 
@@ -44,7 +44,7 @@ void	echo(t_pokets *poket)
 			if (!first)
 				first = 1;
 			else
-				write(1, " ", 1);			
+				write(1, " ", 1);
 			write(1, poket->av[i], ft_strlen(poket->av[i]));
 		}
 		i++;

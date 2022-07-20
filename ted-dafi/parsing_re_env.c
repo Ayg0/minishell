@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_re_env.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 09:09:19 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/18 13:19:48 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:39:42 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ char	*str_without_pls(char *new)
 char	*add_it(char *old, char *new)
 {
 	if (ft_strchr(new, '+') && old)
-		return (ft_strjoin(old, ft_strchr(new, '=')
-			+ (ft_strchr(old, '=') != NULL)));
+		return (ft_strjoin(old, ft_strchr(new, '=') \
+				+ (ft_strchr(old, '=') != NULL)));
 	else if (ft_strchr(new, '+'))
 		return (str_without_pls(new));
 	return (ft_strdup(new));

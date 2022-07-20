@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:29:02 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/19 12:46:30 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:42:31 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,15 @@ void	display_export(t_pokets *poket)
 		if (i == 0)
 			tmp = re_join(ft_strdup("declare -x "), ft_strdup(export[i]));
 		else
-			tmp = re_join(tmp, re_join(ft_strdup("declare -x "),
-				re_join(ft_strdup(export[i]), ft_strdup("\n"))));
+			tmp = re_join(tmp, re_join(ft_strdup("declare -x "), \
+					re_join(ft_strdup(export[i]), ft_strdup("\n"))));
 		i++;
 	}
-	ft_putstr_fd2(tmp, 2);
+	ft_putstr_fd(tmp, 2);
 	free_triple_pp(&export);
 }
 
-int	set_zero()
+int	set_zero(void)
 {
 	set_exit_code(0);
 	set_global_error(0);

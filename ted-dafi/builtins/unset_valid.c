@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_valid.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 00:59:35 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/19 12:16:26 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:42:48 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	give_unvalid_error(char *av, char *built_err)
 	tmp = re_join(tmp, ft_strdup(": `"));
 	tmp = re_join(tmp, ft_strdup(av));
 	tmp = re_join(tmp, ft_strdup("': not a valid identifier\n"));
-	ft_putstr_fd2(tmp, 2);
+	ft_putstr_fd(tmp, 2);
 	set_global_error(2);
 	set_exit_code(2);
 	return (1);
@@ -65,7 +65,7 @@ int	all_valid(char	**av, int flag, char *built_err)
 		}
 		i++;
 		if (!flag)
-			break;
+			break ;
 	}
 	return (1);
 }

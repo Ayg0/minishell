@@ -2,7 +2,7 @@ CC = cc
 
 NAME = minishell
 
-CFLAGS = -Wall -Werror -Wextra -g -I /Users/$(USER)/.brew/opt/readline/include
+CFLAGS = -Wall -Werror -Wextra -g -I /Users/msouiyeh/goinfre/.brew/opt/readline/include
 #-Wall -Werror -Wextra
 #-fsanitize=address
 
@@ -42,7 +42,7 @@ MSRCS = mohamed/error_managment.c mohamed/exit_code.c 	mohamed/ft_pstrjoin.c \
 		mohamed/here_doc_fork.c							mohamed/re_split.c	\
 		mohamed/redirectl_process_utils.c				mohamed/parsing_utils.c	\
 		mohamed/process_av_utils.c						mohamed/set_built_in.c	\
-		mohamed/fork_print_error.c
+		mohamed/fork_print_error.c						mohamed/ready_path.c	\
 		
 		
 
@@ -56,8 +56,8 @@ all: $(NAME)
 
 $(NAME):	$(OBJS)
 			@stty -echoctl
-#			@$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
-			@$(CC) $(CFLAGS) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib $(OBJS) -o $(NAME)
+			@$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
+#			@$(CC) $(CFLAGS) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib $(OBJS) -o $(NAME)
 
 clean:
 		@$(RM) $(OBJS) $(B_OBJS)

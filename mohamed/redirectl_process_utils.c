@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 09:04:38 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/18 11:13:00 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/19 20:17:50 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	redirection_error(char *errorstr, int flag)
 {
-	ft_putstr_fd2(ult_strjoin(ult_strjoin("minishell: ", errorstr, 0), \
+	ft_putstr_fd(ult_strjoin(ult_strjoin("minishell: ", errorstr, 0), \
 	": ambiguous redirect\n", 1), 2);
 	if (flag)
 		free(errorstr);

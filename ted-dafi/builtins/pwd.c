@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 14:34:13 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/20 08:56:45 by ted-dafi         ###   ########.fr       */
+/*   Created: 2022/07/20 08:58:28 by ted-dafi          #+#    #+#             */
+/*   Updated: 2022/07/20 08:58:33 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*get_pwd(char **envp)
 		}
 		i++;
 	}
-	return ("Can't retreve current working directory\n");
+	return ("Can't retreve current working directory");
 }
 
 void	pwd(t_pokets *poket)
@@ -40,9 +40,9 @@ void	pwd(t_pokets *poket)
 	(void) poket;
 	s = getcwd(NULL, 0);
 	if (!s)
-		ft_putstr_fd2(ft_strjoin(get_pwd(*(poket->env)), "\n"), 1);
+		ft_putstr_fd(ft_strjoin(get_pwd(*(poket->env)), "\n"), 1);
 	else
-		ft_putstr_fd2(re_join(s, ft_strdup("\n")), 1);
+		ft_putstr_fd(re_join(s, ft_strdup("\n")), 1);
 	set_exit_code(0);
 	set_global_error(0);
 }
