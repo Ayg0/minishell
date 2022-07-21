@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_built_in.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:56:32 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/21 13:50:35 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:45:04 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ void	launch_built_in(int index, t_pokets *poket)
 	void	(*built_ins[8])(t_pokets *);
 
 	set_built_in(built_ins);
-	if (!poket->flag)
-		built_ins[index](poket);
+	built_ins[index](poket);
 }

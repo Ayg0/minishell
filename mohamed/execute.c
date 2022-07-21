@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 23:12:34 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/21 14:05:10 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:28:15 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	wait_for_the_kids(t_pokets *poket)
 	int	child_errno;
 	int	pid;
 
-	child_errno = get_global_error();
+	child_errno = EXIT_SUCCESS;
 	pid = 1;
 	signal(SIGINT, SIG_IGN);
 	while (pid > 0)

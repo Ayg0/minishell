@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_fork_child.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:42:17 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/21 14:08:31 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:29:16 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,19 +91,13 @@ void	fork_it(t_pokets *pokets)
 	{
 		if (pipe(itire->pip) == -1)
 			return (fork_print_error("minishell: piping failed"));
-		if (!itire->flag)
-		{
-			pid = fork();
-			if (pid < 0)
-				return (fork_print_error("minishell: fork failed"));
-			else if (pid == 0)
-				go_child(itire);
-			if (itire->next == NULL)
-				pokets->last_pid = pid;
-			set_global_error(0);
-		}
+		pid = fork();
+		if (pid < 0)
+			return (fork_print_error("minishell: fork failed"));
+		else if (pid == 0)
+			go_child(itire);
 		fork_it_helper(itire);
-		set_global_error(1);
 		itire = itire->next;
 	}
+	pokets->last_pid = pid;
 }

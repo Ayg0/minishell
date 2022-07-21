@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_redicts.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:37:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/21 13:46:07 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:37:07 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	open_write(t_pokets *pokets)
 
 void	open_redirects(t_pokets *pokets)
 {
-	while (pokets && !pokets->flag)
+	while (pokets)
 	{
 		if (open_read(pokets) == 1)
 			return ;
