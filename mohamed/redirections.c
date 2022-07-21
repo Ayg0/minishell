@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:42:56 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/21 16:36:04 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/21 20:14:18 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,10 @@ void	finish_redirections(t_data *data, t_pokets *poket)
 		if (*(itire->meta_data) == 'r' || *(itire->meta_data) == 'w')
 		{
 			process_redirect(&itire, poket);
+			if (get_global_error() == 3)
+				return ;
 			if (get_global_error() != 0)
-				while (itire->next && *(itire->meta_data) != 'p')
+				while (itire && itire->next && *(itire->meta_data) != 'p')
 					itire = itire->next;
 			continue ;
 		}
@@ -100,5 +102,7 @@ void	fill_redirections(t_pokets	**pokets, char ***envp, t_data *data)
 {
 	*pokets = allocat_pipelines(envp, data);
 	finish_redirections(data, *pokets);
+	if (get_global_error() != 0)
+		return ;
 	redirection_helper(data, *pokets);
 }

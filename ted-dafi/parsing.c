@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/21 10:52:23 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/21 20:56:21 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	proccess_data(t_data *data)
 void	clear_data(t_data *data, t_pokets **pokets, char	***envpd)
 {
 	void	*tmp;
-	char	*var;
 
 	if (data->cmd)
 		free(data->cmd);
@@ -71,14 +70,15 @@ void	clear_data(t_data *data, t_pokets **pokets, char	***envpd)
 	if (data->meta_str)
 		free(data->meta_str);
 	data->meta_str = NULL;
-	var = get_variable();
-	if (var)
-		free(var);
 	free_triple_pp(envpd);
 	while (data->list)
 	{
-		free(data->list->meta_data);
-		free(data->list->token);
+		if (data->list->meta_data)
+			free(data->list->meta_data);
+		if (data->list->token)
+			free(data->list->token);
+		if (data->list->old_token)
+			free(data->list->old_token);
 		tmp = data->list;
 		data->list = data->list->next;
 		free(tmp);
@@ -96,7 +96,7 @@ int	prompt_display(t_data *data, char **envp)
 	while (-1)
 	{
 		clear_data(data, &pokets, NULL);
-		global_initializer();
+		set_global_error(0);
 		data->cmd = readline("\x1B[0;34mminishell$\033[0;37m ");
 		if (data->cmd == NULL)
 		{

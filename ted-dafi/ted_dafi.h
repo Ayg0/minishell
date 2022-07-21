@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ted_dafi.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:33:24 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/01 15:48:54 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/21 17:48:54 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_tokens
 {
 	char			*meta_data;
 	char			*token;
+	char			*old_token;
 	int				flag;
 	int				max;
 	struct s_tokens	*previous;
@@ -90,6 +91,7 @@ void		export(t_pokets *poket);
 void		unset(t_pokets *poket);
 void		env(t_pokets *poket);
 void		ft_exit(t_pokets *poket);
+char		*ft_strtrim(char *s1, char *set);
 
 void		proccess_data(t_data *data);
 char		**re_envp(char **envp, int flag, char *new);
@@ -106,8 +108,6 @@ int			expand_all(t_data *data, char **envp);
 char		*re_join(char *s1, char *s2);
 void		free_triple_pp(char ***envpd);
 char		*get_meta(char *s);
-void		set_variable(char *value);
-char		*get_variable(void);
 char		*get_exp(char *var, char c, char **envp);
 int			check_validation(char c, int ex_flag, int num_flag);
 int			all_valid(char	**av, int flag, char *built_err);

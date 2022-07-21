@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:29:02 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/21 10:33:51 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/21 22:21:59 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ void	display_export(t_pokets *poket)
 	{
 		ft_putstr_fd(ft_strdup("declare -x "), 1);
 		if (ft_strchr(export[i], '='))
-		ft_putstr_fd(re_join(ft_substr(export[i], 0,
-					ft_strchr(export[i], '=') - export[i] + 1),
-				re_join(ft_strdup("\""), re_join(ft_substr(export[i],
-							ft_strchr(export[i], '=') - export[i] + 1,
-							ft_strlen(export[i])), ft_strdup("\"\n")))), 1);
+			ft_putstr_fd(re_join(ft_substr(export[i], 0,
+						ft_strchr(export[i], '=') - export[i] + 1),
+					re_join(ft_strdup("\""), re_join(ft_substr(export[i],
+								ft_strchr(export[i], '=') - export[i] + 1,
+								ft_strlen(export[i])), ft_strdup("\"\n")))), 1);
 		else
 			ft_putstr_fd(re_join(ft_strdup(export[i]), ft_strdup("\n")), 1);
 		i++;

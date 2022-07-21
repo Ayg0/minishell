@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   big_one_cleaner.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:57:14 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 21:46:41 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/21 18:45:24 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mohamed.h"
+
+char	*my_strtrim(char *s1, char *set)
+{
+	char	*tmp;
+
+	tmp = ft_strtrim(s1, set);
+	free(s1);
+	return (tmp);
+}
 
 void	free_redirects(t_redirections *redirects)
 {
