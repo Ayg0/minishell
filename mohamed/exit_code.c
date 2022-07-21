@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit_code.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 19:27:41 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/28 16:52:42 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/21 11:34:12 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	*exit_code(void)
+static int	*exit_code(void)
 {
 	static int	code;
 

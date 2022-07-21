@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:43:28 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/19 22:40:08 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/21 08:48:59 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	cd_error(t_pokets *poket)
 	char	*tmp;
 
 	tmp = re_join(ft_strdup("minishell: cd: "), ft_strdup(poket->av[1]));
-	tmp = re_join(tmp, ft_strdup(": "));
 	perror(tmp);
 	free(tmp);
 	set_exit_code(1);

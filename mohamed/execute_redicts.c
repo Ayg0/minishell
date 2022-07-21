@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_redicts.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:37:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/19 20:18:03 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/21 13:46:07 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	open_read(t_pokets *pokets)
 		pokets->infile_fd = open(tmp->file_name, tmp->code, 0666);
 		if (pokets->infile_fd == -1)
 		{
-			ft_putstr_fd(ult_strjoin("minishell: faild to open "\
-			, ult_strjoin(tmp->file_name, "\n", 0), 2), 2);
+			ft_putstr_fd(ult_strjoin("minishell: " ,\
+			ult_strjoin(tmp->file_name, ": No such file or directory\n", 0), 2), 2);
 			set_global_error(1);
 			set_exit_code(1);
 			return (1);
@@ -66,7 +66,7 @@ int	open_write(t_pokets *pokets)
 
 void	open_redirects(t_pokets *pokets)
 {
-	while (pokets)
+	while (pokets && !pokets->flag)
 	{
 		if (open_read(pokets) == 1)
 			return ;

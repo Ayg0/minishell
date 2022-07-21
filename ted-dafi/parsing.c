@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/19 22:46:26 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/21 10:52:23 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*get_meta(char *s)
 	s_quoted = 0;
 	while (s[i[0]])
 	{
-		i[1] = get_meta_quotes(s[i[0]], &quoted, &s_quoted);
+		i[1] = get_meta_quotes(s[i[0]], &s_quoted, &quoted);
 		if (i[1])
 			s_se[i[0]] = i[1];
 		else if (quoted || s_quoted)
@@ -93,11 +93,11 @@ int	prompt_display(t_data *data, char **envp)
 	t_pokets	*pokets;
 
 	zero_it(&envpd, envp, &pokets);
-	while (1)
+	while (-1)
 	{
 		clear_data(data, &pokets, NULL);
 		global_initializer();
-		data->cmd = readline("\033[0;34mminishell$\033[0;37m ");
+		data->cmd = readline("\x1B[0;34mminishell$\033[0;37m ");
 		if (data->cmd == NULL)
 		{
 			write (1, "exit\n", 5);

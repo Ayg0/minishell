@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_valid.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 00:59:35 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/19 22:42:48 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/20 09:05:02 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ int	upper_cond(char c, char *av, char *built_err)
 		&& give_unvalid_error(av, built_err));
 }
 
+int	switch_values(int j, int *b, char c, int flag)
+{
+	if (c == '=')
+		*b = flag;
+	return (!(j == 0));
+}
+
 int	all_valid(char	**av, int flag, char *built_err)
 {
 	int	i;
@@ -53,11 +60,7 @@ int	all_valid(char	**av, int flag, char *built_err)
 			return (0);
 		while (av[i][j])
 		{
-			num_flag = 1;
-			if (j == 0)
-				num_flag = 0;
-			if (av[i][j] == '=')
-				b = 1 * flag;
+			num_flag = switch_values(j, &b, av[i][j], flag);
 			if ((!check_validation(av[i][j], 0, num_flag)
 				&& lower_cond(av[i][j], av[i][j + 1], flag)) && !b)
 				return (give_unvalid_error(av[i], built_err));

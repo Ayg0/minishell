@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirects_processing.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:54:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/02 17:07:57 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/21 13:43:11 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	check_opperand_errors(t_tokens *itire)
 	if (!(*(itire->meta_data)) && !(*(itire->token)) && get_variable())
 	{
 		redirection_error(red_join("$", get_variable()), 1);
+		set_variable(NULL);
 		return (0);
 	}
 	return (1);
@@ -84,7 +85,8 @@ void	process_redirect(t_tokens **itire, t_pokets *poket)
 {
 	if (check_opperand_errors((*itire)->next) == 0)
 	{
-		set_exit_code(1);
+		set_global_error(1);
+		poket->flag = 1;
 		delet_token(itire);
 		delet_token(itire);
 		return ;

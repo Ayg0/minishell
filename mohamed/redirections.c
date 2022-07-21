@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:42:56 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/19 21:54:38 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/21 14:06:32 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,10 @@ void	redirection_helper(t_data	*data, t_pokets	*poket)
 	}
 }
 
-void	finish_redirections(t_data *data, t_pokets **pokets)
+void	finish_redirections(t_data *data, t_pokets *poket)
 {
 	t_tokens	*itire;
-	t_pokets	*poket;
 
-	poket = *pokets;
 	itire = data->list;
 	while (itire)
 	{
@@ -83,7 +81,9 @@ void	finish_redirections(t_data *data, t_pokets **pokets)
 		{
 			process_redirect(&itire, poket);
 			if (get_global_error() != 0)
-				return ;
+				while (itire->next && *(itire->meta_data) != 'p')
+					itire = itire->next;
+			set_global_error(0);
 			continue ;
 		}
 		else if (*(itire->meta_data) == 'p')
@@ -100,6 +100,6 @@ void	finish_redirections(t_data *data, t_pokets **pokets)
 void	fill_redirections(t_pokets	**pokets, char ***envp, t_data *data)
 {
 	*pokets = allocat_pipelines(envp, data);
-	finish_redirections(data, pokets);
+	finish_redirections(data, *pokets);
 	redirection_helper(data, *pokets);
 }

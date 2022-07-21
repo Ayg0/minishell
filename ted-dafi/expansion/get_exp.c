@@ -3,27 +3,68 @@
 /*                                                        :::      ::::::::   */
 /*   get_exp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:20:40 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/30 09:31:05 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/21 12:54:09 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ted_dafi.h"
 
-int	check_if_blank(char *s)
+
+static void	put_it(char *dst, char *src, size_t len)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (s[i])
+	while (i < len)
 	{
-		if (s[i] && s[i] != ' ' && s[i] != '\t')
-			return (0);
+		dst[i] = src[i];
 		i++;
 	}
-	return (1);
+}
+
+char	*ft_strtrim(char *s1, char *set)
+{
+	size_t		i;
+	size_t		up;
+	size_t		end;
+	char		*p;
+
+	i = 0;
+	if (!s1)
+		return (NULL);
+	end = ft_strlen(s1);
+	while (s1[i] && ft_strchr(set, s1[i]))
+		i++;
+	if (s1[i] == 0)
+		return ((char *)ft_calloc(1, 1));
+	up = i;
+	while (end >= up && ft_strchr(set, s1[end - 1]))
+		end--;
+	p = (char *)ft_calloc((end - up) + 1, sizeof(char));
+	if (p == 0)
+		return (0);
+	put_it(p, (char *)(s1 + up), end - up);
+	return (p);
+}
+
+int	check_if_blank(char *s)
+{
+	int		i;
+	char	*tmp;
+
+	i = 0;
+	tmp = ft_strtrim(s, " \t\n");
+	while (tmp[i] || i == 0)
+	{
+		if (!tmp[i] || tmp[i] == ' ' || tmp[i] == '\t' || tmp[i] == '\n')
+			return (1);
+		i++;
+	}
+	free (tmp);
+	return (0);
 }
 
 char	*get_exp(char *var, char c, char **envp)

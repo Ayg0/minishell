@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   global_error_var.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:48:49 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 06:48:54 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/21 11:34:20 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mohamed.h"
 
-int	*global_error(void)
+static int	*global_error(void)
 {
 	static int	code;
 

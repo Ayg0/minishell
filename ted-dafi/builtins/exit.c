@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 11:36:11 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/19 22:41:22 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/21 08:38:38 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ void	ft_exit(t_pokets *poket)
 	!(poket->prev) && write(1, "exit\n", 5);
 	if (!poket->av[1])
 		exit(0);
-	else if (poket->av[2])
-	{
-		set_exit_code(ft_putstr_fd(\
-		ft_strdup("minishell : exit: too many arguments\n"), 2));
-		return (set_global_error(1));
-	}
 	flag = 0;
 	num = (unsigned char) ft_atoi(poket->av[1], &flag);
-	if (!flag)
+	if (!flag && !poket->av[2])
 		exit(num);
-	tmp = re_join(ft_strdup("minishell: exit: "), ft_strdup(poket->av[1]));
-	tmp = re_join(tmp, ft_strdup(": numeric argument required\n"));
-	ft_putstr_fd(tmp, 2);
-	exit(255);
+	else if (flag)
+	{
+		tmp = re_join(ft_strdup("minishell: exit: "), ft_strdup(poket->av[1]));
+		tmp = re_join(tmp, ft_strdup(": numeric argument required\n"));
+		ft_putstr_fd(tmp, 2);
+		exit(255);
+	}
+	set_exit_code(ft_putstr_fd(\
+	ft_strdup("minishell : exit: too many arguments\n"), 2));
+	return (set_global_error(1));
 }
