@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:54:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/21 21:09:55 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/21 22:21:16 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	read_redirect(t_tokens *itire, t_pokets *poket)
 	tmp = NULL;
 	if (access(itire->next->token, F_OK) == -1)
 	{
-		ft_putstr_fd(ult_strjoin("minishell: " ,\
+		ft_putstr_fd(ult_strjoin("minishell: ", \
 			ult_strjoin(itire->next->token, \
 			": No such file or directory\n", 0), 2), 2);
 		set_global_error(3);
@@ -84,7 +84,8 @@ int	check_opperand_errors(t_tokens *itire)
 	int	i;
 
 	i = 0;
-	if (itire->meta_data[0] == 'b' || itire->meta_data[ft_strlen(itire->meta_data)- 1] == 'b')
+	if (itire->meta_data[0] == 'b'\
+			|| itire->meta_data[ft_strlen(itire->meta_data) - 1] == 'b')
 	{
 		itire->meta_data = my_strtrim(itire->meta_data, "b");
 		itire->token = my_strtrim(itire->token, " \t\n");
@@ -98,12 +99,11 @@ int	check_opperand_errors(t_tokens *itire)
 	}
 	while (itire->meta_data[i])
 	{
-		if (itire->meta_data[i] == 'b')
+		if (itire->meta_data[i++] == 'b')
 		{
 			redirection_error(itire->old_token, 0);
 			return (0);
 		}
-		i++;
 	}
 	return (1);
 }

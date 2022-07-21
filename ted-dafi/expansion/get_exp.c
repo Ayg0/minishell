@@ -6,12 +6,11 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:20:40 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/21 18:36:04 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/21 22:22:25 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ted_dafi.h"
-
 
 static void	put_it(char *dst, char *src, size_t len)
 {
