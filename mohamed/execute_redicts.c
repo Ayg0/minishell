@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:37:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/21 16:37:07 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/21 20:01:56 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void	open_redirects(t_pokets *pokets)
 {
 	while (pokets)
 	{
-		if (open_read(pokets) == 1)
-			return ;
 		if (open_write(pokets) == 1)
+			return ;
+		if (open_read(pokets) == 1)
 			return ;
 		pokets = pokets->next;
 	}

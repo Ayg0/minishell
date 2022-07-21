@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:54:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/21 16:38:01 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:09:55 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,15 @@ void	read_redirect(t_tokens *itire, t_pokets *poket)
 	t_redirect	*tmp;
 
 	tmp = NULL;
+	if (access(itire->next->token, F_OK) == -1)
+	{
+		ft_putstr_fd(ult_strjoin("minishell: " ,\
+			ult_strjoin(itire->next->token, \
+			": No such file or directory\n", 0), 2), 2);
+		set_global_error(3);
+		set_exit_code(1);
+		return ;
+	}
 	if (ft_strlen(itire->token) == 2)
 		tmp = ft_newredi(itire->next->token, 'h', O_RDONLY);
 	else if (ft_strlen(itire->token) == 1)
@@ -27,12 +36,23 @@ void	read_redirect(t_tokens *itire, t_pokets *poket)
 void	write_redirect(t_tokens *itire, t_pokets *poket)
 {
 	t_redirect	*tp;
+	int			tmp;
 
 	tp = NULL;
 	if (ft_strlen(itire->token) == 2)
 		tp = ft_newredi(itire->next->token, 'a', O_CREAT | O_WRONLY | O_APPEND);
 	else if (ft_strlen(itire->token) == 1)
 		tp = ft_newredi(itire->next->token, 'f', O_CREAT | O_WRONLY | O_TRUNC);
+	tmp = open(tp->file_name, tp->code, 0666);
+	if (tmp == -1)
+	{
+		ft_putstr_fd(ult_strjoin("minishell: faild to open "\
+		, ult_strjoin(tp->file_name, "\n", 0), 2), 2);
+		set_global_error(3);
+		set_exit_code(1);
+		return ;
+	}
+	close(tmp);
 	ft_rediadd_back(&(poket->redirects->write), tp);
 }
 
@@ -44,7 +64,9 @@ void	delet_token(t_tokens **token)
 	if (*token)
 	{
 		free((*token)->token);
+		(*token)->token = NULL;
 		free((*token)->meta_data);
+		(*token)->meta_data = NULL;
 		tmp = *token;
 		if ((*token)->next)
 			(*token)->next->previous = (*token)->previous;
@@ -54,7 +76,6 @@ void	delet_token(t_tokens **token)
 			(*token) = (*token)->next;
 		else
 			(*token) = (*token)->previous;
-		free(tmp);
 	}
 }
 
@@ -63,20 +84,26 @@ int	check_opperand_errors(t_tokens *itire)
 	int	i;
 
 	i = 0;
+	if (itire->meta_data[0] == 'b' || itire->meta_data[ft_strlen(itire->meta_data)- 1] == 'b')
+	{
+		itire->meta_data = my_strtrim(itire->meta_data, "b");
+		itire->token = my_strtrim(itire->token, " \t\n");
+		if (itire->token[0] == '\0')
+			itire->flag = -505;
+	}
+	if (itire->meta_data[0] == '\0' && itire->flag == -505)
+	{
+		redirection_error(itire->old_token, 0);
+		return (0);
+	}
 	while (itire->meta_data[i])
 	{
 		if (itire->meta_data[i] == 'b')
 		{
-			redirection_error(itire->token, 0);
+			redirection_error(itire->old_token, 0);
 			return (0);
 		}
 		i++;
-	}
-	if (!(*(itire->meta_data)) && !(*(itire->token)) && get_variable())
-	{
-		redirection_error(red_join("$", get_variable()), 1);
-		set_variable(NULL);
-		return (0);
 	}
 	return (1);
 }
@@ -91,10 +118,14 @@ void	process_redirect(t_tokens **itire, t_pokets *poket)
 		delet_token(itire);
 		return ;
 	}
+	if (get_global_error() == 1)
+		set_global_error(0);
 	if (*((*itire)->meta_data) == 'r')
 		read_redirect(*itire, poket);
 	else if (*((*itire)->meta_data) == 'w')
 		write_redirect(*itire, poket);
+	if (get_global_error() == 3)
+		return ;
 	delet_token(itire);
 	delet_token(itire);
 }

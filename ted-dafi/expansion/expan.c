@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expan.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:52:56 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/21 12:54:22 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/21 19:28:06 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	get_and_join(int *i, t_tokens *list, char **str, char **envp)
 
 	(*i)++;
 	j = *i;
-	list->flag = -404;
+	list->flag = 0;
 	if (list->token[*i] == '?')
 	{
 		*str = re_join(*str, ft_itoa(get_exit_code()));
@@ -47,6 +47,8 @@ int	get_and_join(int *i, t_tokens *list, char **str, char **envp)
 			*str = re_join(*str,
 					get_exp(ft_substr(list->token, j,
 							(*i) - j), list->meta_data[j], envp));
+		if ((*str)[0] == '\0')
+			list->flag = -404;
 	}
 	return (0);
 }
@@ -88,10 +90,8 @@ int	expand_all(t_data *data, char **envp)
 	{
 		if (data->list->token)
 		{
-			tmp = data->list->token;
+			data->list->old_token = data->list->token;
 			data->list->token = expand(data->list, envp);
-			if (tmp)
-				free(tmp);
 			tmp = data->list->meta_data;
 			data->list->meta_data = get_meta(data->list->token);
 			if (tmp)

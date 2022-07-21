@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 16:34:42 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/06/30 06:51:24 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:57:20 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ void	set_global_here_doc(int error)
 
 void	global_initializer(void)
 {
-	set_variable(NULL);
 	set_global_error(0);
 }

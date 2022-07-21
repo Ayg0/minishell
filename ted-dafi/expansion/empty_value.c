@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   empty_value.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 17:27:30 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/21 11:35:11 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/21 17:00:55 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	**variable(void)
 {
 	static char	*variable;
 
-	return (&variable);
+	return (&);
 }
 
 char	*get_variable(void)

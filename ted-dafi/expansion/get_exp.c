@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_exp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:20:40 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/21 12:54:09 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/21 18:36:04 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,6 @@ char	*get_exp(char *var, char c, char **envp)
 		}
 		i++;
 	}
-	if (!get_variable())
-		set_variable(ft_strdup(var));
 	free(var);
 	return (ret_value);
 }

@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:48:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/19 21:55:07 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/21 18:47:34 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_tokens
 {
 	char			*meta_data;
 	char			*token;
+	char			*old_token;
 	int				flag;
 	int				max;
 	struct s_tokens	*previous;
@@ -92,6 +93,7 @@ void		fork_print_error(char *error_str);
 void		dup_for_built_in(t_pokets	*pokets, int *in, int *out);
 
 int			check_if_in(char *srch_for, char **srch_in);
+char		*my_strtrim(char *s1, char *set);
 
 int			is_built_in(char **cmd);
 int			is_true_pip(char *str);
@@ -146,8 +148,6 @@ int			get_global_error(void);
 
 void		execute_pipline(t_pokets *pokets);
 void		handle_sigint(int signum);
-
-void		global_initializer(void);
 
 char		*mft_strdup(char *str);
 t_redirect	*ft_newredi(char *file_name, char type, int code);
