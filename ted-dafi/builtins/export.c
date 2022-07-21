@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:29:02 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/19 22:42:31 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/21 10:33:51 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	sort_double_p(char **export, int len)
 void	display_export(t_pokets *poket)
 {
 	char	**export;
-	char	*tmp;
 	int		i;
 
 	i = 0;
@@ -57,14 +56,17 @@ void	display_export(t_pokets *poket)
 	sort_double_p(export, ft_count(*(poket->env), NULL, NULL));
 	while (export[i])
 	{
-		if (i == 0)
-			tmp = re_join(ft_strdup("declare -x "), ft_strdup(export[i]));
+		ft_putstr_fd(ft_strdup("declare -x "), 1);
+		if (ft_strchr(export[i], '='))
+		ft_putstr_fd(re_join(ft_substr(export[i], 0,
+					ft_strchr(export[i], '=') - export[i] + 1),
+				re_join(ft_strdup("\""), re_join(ft_substr(export[i],
+							ft_strchr(export[i], '=') - export[i] + 1,
+							ft_strlen(export[i])), ft_strdup("\"\n")))), 1);
 		else
-			tmp = re_join(tmp, re_join(ft_strdup("declare -x "), \
-					re_join(ft_strdup(export[i]), ft_strdup("\n"))));
+			ft_putstr_fd(re_join(ft_strdup(export[i]), ft_strdup("\n")), 1);
 		i++;
 	}
-	ft_putstr_fd(tmp, 2);
 	free_triple_pp(&export);
 }
 
