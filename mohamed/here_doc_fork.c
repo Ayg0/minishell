@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_fork.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:46:27 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/21 12:05:26 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:04:54 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,13 @@ void	change_in_parrent(t_data *data)
 {
 	char		*path;
 	t_tokens	*itire;
+	int			index;
 	int			i;
 
 	path = ft_strdup("/tmp/here_doc..");
 	itire = data->list;
 	i = 0;
+	index = 0;
 	while (itire)
 	{
 		if (ft_strchr("r", *(itire->meta_data)) && \
@@ -77,6 +79,10 @@ void	change_in_parrent(t_data *data)
 			change_here_doc(itire, path);
 			i++;
 		}
+		if (*(itire->meta_data) == 'p')
+			index++;
+		else
+			itire->index = index;
 		itire = itire->next;
 	}
 	free(path);

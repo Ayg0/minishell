@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:33:24 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/21 17:48:54 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:02:22 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_tokens
 	char			*meta_data;
 	char			*token;
 	char			*old_token;
+	int				index;
 	int				flag;
 	int				max;
 	struct s_tokens	*previous;
