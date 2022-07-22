@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:42:17 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/21 16:29:16 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/22 00:49:21 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	go_child(t_pokets *poket)
 	prepare_in_out(poket);
 	if (poket->av == NULL)
 		exit (0);
+	set_exit_code(0);
 	if (is_built_in(poket->av) != -1)
 	{
 		launch_built_in(is_built_in(poket->av), poket);
