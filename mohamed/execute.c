@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 23:12:34 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/21 16:28:15 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:02:25 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,13 @@ void	set_built_ins(char **built_ins)
 	built_ins[4] = "unset";
 	built_ins[5] = "env";
 	built_ins[6] = "exit";
-	built_ins[7] = NULL;
+	built_ins[7] = "history";
+	built_ins[8] = NULL;
 }
 
 int	is_built_in(char **cmd)
 {
-	char	*built_ins[8];
+	char	*built_ins[9];
 	int		i;
 
 	i = 0;

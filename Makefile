@@ -3,8 +3,6 @@ CC = cc
 NAME = minishell
 
 CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -I /Users/$(USER)/.brew/opt/readline/include
-#-Wall -Werror -Wextra
-#-fsanitize=address
 
 GSRCS = global_utils/decide.c global_utils/env_scout.c global_utils/ft_calloc.c			  	\
 		global_utils/ft_strcmp.c global_utils/ft_strjoin.c global_utils/ft_strlcpy.c	  	\
@@ -17,16 +15,19 @@ GSRCS = global_utils/decide.c global_utils/env_scout.c global_utils/ft_calloc.c	
 
 TEXP  = ted-dafi/expansion/expan.c ted-dafi/expansion/re_join.c ted-dafi/expansion/get_exp.c \
 		ted-dafi/expansion/quote_rm.c
+HISRC = ted-dafi/history/get_next_line.c ted-dafi/history/get_next_line_utils.c				\
+		ted-dafi/history/history.c
 
 TBUILTINS = ted-dafi/builtins/cd.c ted-dafi/builtins/echo.c ted-dafi/builtins/env.c		\
 			ted-dafi/builtins/exit.c ted-dafi/builtins/export.c ted-dafi/builtins/pwd.c	\
 			ted-dafi/builtins/unset.c ted-dafi/builtins/unset_valid.c 					\
-			ted-dafi/builtins/util_export.c ted-dafi/builtins/more_to_handle.c
+			ted-dafi/builtins/util_export.c ted-dafi/builtins/more_to_handle.c			\
+			ted-dafi/builtins/history.c
 
 TGSRC = ted-dafi/split_list.c ted-dafi/parsing.c ted-dafi/list_func.c ted-dafi/parsing_re_env.c
 
 
-TSRCS = $(TEXP) $(TBUILTINS) $(TGSRC)
+TSRCS = $(TEXP) $(TBUILTINS) $(TGSRC) $(HISRC)
 
 
 MSRCS = mohamed/error_managment.c mohamed/exit_code.c 	mohamed/ft_pstrjoin.c \

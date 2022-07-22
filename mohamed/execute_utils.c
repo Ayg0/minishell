@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:35:10 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/19 21:29:57 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:21:21 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_perror(char *str)
 {
 	perror(str);
-	exit(errno);
+	(errno);
 }
 
 void	ft_dup(int fd_one, int fd_two)
