@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:33:24 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/22 08:45:37 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:47:49 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void		export(t_pokets *poket);
 void		unset(t_pokets *poket);
 void		env(t_pokets *poket);
 void		ft_exit(t_pokets *poket);
+void		history(t_pokets *poket);
+int			my_exit(unsigned char num, t_pokets *poket);
 char		*ft_strtrim(char *s1, char *set);
 
 void		proccess_data(t_data *data);
@@ -120,4 +122,9 @@ int			lower_cond(char c, char c2, int flag);
 int			upper_cond(char c, char *av, char *built_err);
 int			switch_values(int j, int *b, char c, int flag);
 int			iterate_check(char *av, int flag, char *built_err);
+
+int			load_history(void);
+int			put_history(void);
+char		*make_history(char *cmd);
+char		*get_next_line(int fd);
 #endif

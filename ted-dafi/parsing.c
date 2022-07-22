@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/21 20:56:21 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:48:30 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int	prompt_display(t_data *data, char **envp)
 	t_pokets	*pokets;
 
 	zero_it(&envpd, envp, &pokets);
+	load_history();
 	while (-1)
 	{
 		clear_data(data, &pokets, NULL);
@@ -100,12 +101,12 @@ int	prompt_display(t_data *data, char **envp)
 		data->cmd = readline("\x1B[0;34mminishell$\033[0;37m ");
 		if (data->cmd == NULL)
 		{
-			write (1, "exit\n", 5);
-			exit(0);
+			put_history();
+			(write(1, "exit\n", 5) && my_exit(0, NULL));
 		}
 		if (*(data->cmd) == '\0')
 			continue ;
-		add_history(data->cmd);
+		make_history(data->cmd);
 		if (parse_it(data, &pokets, envpd) != 0)
 			continue ;
 		execute_pipline(pokets);

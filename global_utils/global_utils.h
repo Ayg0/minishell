@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   global_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 12:37:21 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/18 11:16:15 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:33:52 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,5 @@ int		ft_isascii(int c);
 int		ft_isalpha(int c);
 int		ft_atoi(char *str, int *flag);
 char	*ft_itoa(int n);
+int		put_history(void);
 #endif

@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/11 13:12:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/22 15:19:45 by ted-dafi         ###   ########.fr       */
+/*   Created: 2022/07/22 15:03:22 by ted-dafi          #+#    #+#             */
+/*   Updated: 2022/07/22 15:46:12 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "global_utils.h"
+#include "../ted_dafi.h"
 
-void	*ft_calloc(int count, int size)
+void	history(t_pokets *poket)
 {
-	void	*b;
-	int		i;
+	char	*history;
 
-	i = count * size;
-	b = malloc(i);
-	if (!b)
-	{
-		put_history();
-		exit(write(2, "Memory allocation failure\n", 26));
-	}
-	while (i)
-		((char *)b)[--i] = 0;
-	return (b);
+	(void) poket;
+	history = make_history(NULL);
+	write(1, history, ft_strlen(history));
+	set_exit_code(0);
+	set_global_error(0);
 }

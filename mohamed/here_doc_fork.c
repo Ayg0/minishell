@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_fork.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:46:27 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/22 01:04:54 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:52:16 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,8 @@ void	change_in_parrent(t_data *data)
 			ft_strlen(itire->meta_data) == 2)
 		{
 			path[13] = (i / 10) + '0';
-			path[14] = (i % 10) + '0';
+			path[14] = (i++ % 10) + '0';
 			change_here_doc(itire, path);
-			i++;
 		}
 		if (*(itire->meta_data) == 'p')
 			index++;
