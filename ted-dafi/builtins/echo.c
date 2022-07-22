@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 11:36:40 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/19 22:40:49 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/22 08:10:19 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	arg_new_line(char	*av)
 	int	i;
 
 	i = 0;
-	while (av[i])
+	while (av[i] || i == 0)
 	{
 		if ((i == 0 && av[i] != '-') || (i > 0 && av[i] != 'n'))
 			return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:29:02 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/21 22:21:59 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/22 08:37:50 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	export(t_pokets *poket)
 	while (poket->av[i])
 	{
 		flag[0] = ft_strncmp("_=", poket->av[i], 2);
-		if (!all_valid(poket->av + i, 1, "export") || !flag[0])
+		if (!iterate_check(*(poket->av + i), 1, "export") || !flag[0])
 		{
 			flag[1] = !flag[0];
 			i++;

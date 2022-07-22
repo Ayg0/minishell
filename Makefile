@@ -2,7 +2,7 @@ CC = cc
 
 NAME = minishell
 
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -I /Users/msouiyeh/goinfre/.brew/opt/readline/include
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -I /Users/$(USER)/.brew/opt/readline/include
 #-Wall -Werror -Wextra
 #-fsanitize=address
 
@@ -21,7 +21,7 @@ TEXP  = ted-dafi/expansion/expan.c ted-dafi/expansion/re_join.c ted-dafi/expansi
 TBUILTINS = ted-dafi/builtins/cd.c ted-dafi/builtins/echo.c ted-dafi/builtins/env.c		\
 			ted-dafi/builtins/exit.c ted-dafi/builtins/export.c ted-dafi/builtins/pwd.c	\
 			ted-dafi/builtins/unset.c ted-dafi/builtins/unset_valid.c 					\
-			ted-dafi/builtins/util_export.c
+			ted-dafi/builtins/util_export.c ted-dafi/builtins/more_to_handle.c
 
 TGSRC = ted-dafi/split_list.c ted-dafi/parsing.c ted-dafi/list_func.c ted-dafi/parsing_re_env.c
 
@@ -56,8 +56,8 @@ all: $(NAME)
 
 $(NAME):	$(OBJS)
 			@stty -echoctl
-			@$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
-#			@$(CC) $(CFLAGS) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib $(OBJS) -o $(NAME)
+#			@$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
+			@$(CC) $(CFLAGS) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib $(OBJS) -o $(NAME)
 
 clean:
 		@$(RM) $(OBJS) $(B_OBJS)
