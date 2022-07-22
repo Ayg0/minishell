@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ted_dafi.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:33:24 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/22 01:02:22 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/22 08:45:37 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,10 @@ int			check_validation(char c, int ex_flag, int num_flag);
 int			all_valid(char	**av, int flag, char *built_err);
 int			ft_count(char **s, char *new, int *place);
 int			ft_strchr_null(char	*s, char c, char c2);
+
+int			give_unvalid_error(char *av, char *built_err);
+int			lower_cond(char c, char c2, int flag);
+int			upper_cond(char c, char *av, char *built_err);
+int			switch_values(int j, int *b, char c, int flag);
+int			iterate_check(char *av, int flag, char *built_err);
 #endif

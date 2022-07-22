@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_valid.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 00:59:35 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/21 21:37:13 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/22 08:45:15 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	give_unvalid_error(char *av, char *built_err)
 	tmp = re_join(tmp, ft_strdup(av));
 	tmp = re_join(tmp, ft_strdup("': not a valid identifier\n"));
 	ft_putstr_fd(tmp, 2);
-	set_global_error(2);
-	set_exit_code(2);
+	set_global_error(1);
+	set_exit_code(1);
 	return (1);
 }
 
@@ -47,28 +47,14 @@ int	switch_values(int j, int *b, char c, int flag)
 int	all_valid(char	**av, int flag, char *built_err)
 {
 	int	i;
-	int	j;
-	int	num_flag;
-	int	b;
+	int	res;
 
 	i = 0;
-	b = 0;
+	res = 0;
 	while (av[i])
 	{
-		j = 0;
-		if (upper_cond(av[i][j], av[i], built_err))
-			return (0);
-		while (av[i][j])
-		{
-			num_flag = switch_values(j, &b, av[i][j], flag);
-			if ((!check_validation(av[i][j], 0, num_flag)
-				&& lower_cond(av[i][j], av[i][j + 1], flag)) && !b)
-				return (give_unvalid_error(av[i], built_err));
-			j++;
-		}
+		res += iterate_check(av[i], flag, built_err);
 		i++;
-		if (!flag)
-			break ;
 	}
-	return (1);
+	return ((res > 0));
 }
