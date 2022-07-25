@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:54:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/22 17:38:48 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/25 15:08:00 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	write_redirect(t_tokens *itire, t_pokets *poket)
 		tp = ft_newredi(itire->next->token, 'a', O_CREAT | O_WRONLY | O_APPEND);
 	else if (ft_strlen(itire->token) == 1)
 		tp = ft_newredi(itire->next->token, 'f', O_CREAT | O_WRONLY | O_TRUNC);
+	ft_rediadd_back(&(poket->redirects->write), tp);
 	tmp = open(tp->file_name, tp->code, 0666);
 	if (tmp == -1)
 	{
@@ -53,7 +54,6 @@ void	write_redirect(t_tokens *itire, t_pokets *poket)
 		return ;
 	}
 	close(tmp);
-	ft_rediadd_back(&(poket->redirects->write), tp);
 }
 
 int	check_opperand_errors(t_tokens *itire)
