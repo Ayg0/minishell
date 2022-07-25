@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 09:09:19 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/25 15:14:32 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/25 17:35:30 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,21 @@ char	*str_without_pls(char *new)
 {
 	int		i;
 	int		j;
+	int		k;
 	char	*result;
 
 	i = ft_strlen(new);
 	result = ft_calloc(i, sizeof(char));
 	i = 0;
 	j = 0;
+	k = 0;
 	while (new[i])
 	{
-		if (new[i] == '+')
+		if (new[i] == '+' && !k)
+		{
+			k = 1;
 			i++;
+		}
 		else
 			result[j++] = new[i++];
 	}
@@ -70,10 +75,15 @@ char	*str_without_pls(char *new)
 
 char	*add_it(char *old, char *new)
 {
-	if (ft_strchr(new, '+') - ft_strchr(new, '=') <= 0 && old)
-		return (ft_strjoin(old, ft_strchr(new, '=') \
+	char	*s1;
+	char	*s2;
+	
+	s1 = ft_strchr(new, '+');
+	s2 = ft_strchr(new, '=');
+	if (s1 && s2 && s1 - s2 <= 0 && old)
+		return (ft_strjoin(old, ft_strchr(new, '=')
 				+ (ft_strchr(old, '=') != NULL)));
-	else if (ft_strchr(new, '+') - ft_strchr(new, '=') <= 0)
+	else if (s1 && s2 && s1 - s2 <= 0)
 		return (str_without_pls(new));
 	return (ft_strdup(new));
 }
@@ -91,7 +101,9 @@ char	**re_envp(char **envp, int flag, char *new)
 	while (envp && envp[i])
 	{
 		if (i == place && new)
+		{
 			final[i] = add_it(envp[i], new);
+		}
 		else
 			final[i] = ft_strdup(envp[i]);
 		i++;

@@ -1,4 +1,4 @@
-CC = cc
+CC = cc 
 
 NAME = minishell
 
