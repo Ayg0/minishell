@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:42:56 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/22 17:30:51 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/25 14:45:58 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	finish_redirections(t_data *data, t_pokets *poket)
 void	fill_redirections(t_pokets	**pokets, char ***envp, t_data *data)
 {
 	*pokets = allocat_pipelines(envp, data);
-	finish_redirections(data, *pokets);
+ 	finish_redirections(data, *pokets);
 	if (get_global_error() != 0)
 		return ;
 	redirection_helper(data, *pokets);
