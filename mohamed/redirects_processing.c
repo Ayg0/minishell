@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirects_processing.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:54:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/21 22:21:16 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/22 17:38:48 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,29 +56,6 @@ void	write_redirect(t_tokens *itire, t_pokets *poket)
 	ft_rediadd_back(&(poket->redirects->write), tp);
 }
 
-void	delet_token(t_tokens **token)
-{
-	t_tokens	*tmp;
-
-	tmp = NULL;
-	if (*token)
-	{
-		free((*token)->token);
-		(*token)->token = NULL;
-		free((*token)->meta_data);
-		(*token)->meta_data = NULL;
-		tmp = *token;
-		if ((*token)->next)
-			(*token)->next->previous = (*token)->previous;
-		if ((*token)->previous)
-			(*token)->previous->next = (*token)->next;
-		if ((*token)->next != NULL)
-			(*token) = (*token)->next;
-		else
-			(*token) = (*token)->previous;
-	}
-}
-
 int	check_opperand_errors(t_tokens *itire)
 {
 	int	i;
@@ -92,7 +69,7 @@ int	check_opperand_errors(t_tokens *itire)
 		if (itire->token[0] == '\0')
 			itire->flag = -505;
 	}
-	if (itire->meta_data[0] == '\0' && itire->flag == -505)
+	if (itire->meta_data[0] == '\0' && (itire->flag == -505 || itire->flag == -404))
 	{
 		redirection_error(itire->old_token, 0);
 		return (0);
@@ -106,6 +83,32 @@ int	check_opperand_errors(t_tokens *itire)
 		}
 	}
 	return (1);
+}
+
+void	delet_token(t_tokens **token)
+{
+	t_tokens	*tmp;
+
+	tmp = NULL;
+	if (*token)
+	{
+		free((*token)->token);
+		(*token)->token = NULL;
+		free((*token)->old_token);
+		(*token)->old_token = NULL;
+		free((*token)->meta_data);
+		(*token)->meta_data = NULL;
+		tmp = *token;
+		if ((*token)->next)
+			(*token)->next->previous = (*token)->previous;
+		if ((*token)->previous)
+			(*token)->previous->next = (*token)->next;
+		if ((*token)->next != NULL)
+			(*token) = (*token)->next;
+		else
+			(*token) = (*token)->previous;
+		free (tmp);
+	}
 }
 
 void	process_redirect(t_tokens **itire, t_pokets *poket)

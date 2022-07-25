@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:55:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/22 15:44:40 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/22 16:09:59 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	put_history(void)
 	history = make_history(NULL);
 	if (history)
 		write(fd, history, ft_strlen(history));
+	close(fd);
 	return (1);
 }
 
@@ -55,5 +56,6 @@ int	load_history(void)
 		free(str);
 		str = get_next_line(fd);
 	}
+	close(fd);
 	return (0);
 }

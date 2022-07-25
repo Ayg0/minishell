@@ -2,7 +2,7 @@ CC = cc
 
 NAME = minishell
 
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address -I /Users/$(USER)/.brew/opt/readline/include
+CFLAGS = -Wall -Werror -Wextra -g -I /Users/$(USER)/.brew/opt/readline/include
 
 GSRCS = global_utils/decide.c global_utils/env_scout.c global_utils/ft_calloc.c			  	\
 		global_utils/ft_strcmp.c global_utils/ft_strjoin.c global_utils/ft_strlcpy.c	  	\
@@ -57,7 +57,6 @@ all: $(NAME)
 
 $(NAME):	$(OBJS)
 			@stty -echoctl
-#			@$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib  $(OBJS) -o $(NAME)
 			@$(CC) $(CFLAGS) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib $(OBJS) -o $(NAME)
 
 clean:
