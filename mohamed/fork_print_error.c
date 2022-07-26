@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:09:39 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/19 21:30:15 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:50:03 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,3 @@ char	*ult_strjoin(char *s1, char *s2, int flag)
 	return (final);
 }
 
-void	dup_for_built_in(t_pokets	*pokets, int *in, int *out)
-{
-	if (pokets->infile_fd != 0)
-	{
-		*in = dup(0);
-		ft_dup(pokets->infile_fd, 0);
-	}
-	if (pokets->outfile_fd != 1)
-	{	
-		*out = dup(1);
-		ft_dup(pokets->outfile_fd, 1);
-	}
-}

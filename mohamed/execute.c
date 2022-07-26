@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 23:12:34 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/25 14:39:50 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:39:58 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,13 @@ void	execute_pipline(t_pokets *pokets)
 
 	out = 1;
 	open_redirects(pokets);
-	if (get_global_error() != 0)
-		return ;
 	if (is_built_in(pokets->av) != -1 && !(pokets->next) && !(pokets->prev))
 	{
+		if (pokets->index == -1)
+		{
+			set_exit_code(1);
+			return ;
+		}
 		if (pokets->outfile_fd != 1)
 		{	
 			out = dup(1);

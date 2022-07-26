@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_fork_child.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:42:17 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/22 15:20:24 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:43:30 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ int	check_if_in(char *srch_for, char **srch_in)
 void	prepare_in_out(t_pokets *poket)
 {
 	close (poket->pip[READ_END]);
+	if (poket->index == -1)
+	{
+		close (poket->pip[WRITE_END]);
+		exit (1);
+	}
 	if (poket->infile_fd > 2)
 		ft_dup(poket->infile_fd, 0);
 	else if (poket->infile_fd == 2)
