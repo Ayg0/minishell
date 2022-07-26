@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:43:28 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/21 08:48:59 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/26 22:08:37 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,31 @@ int	cd_error(t_pokets *poket)
 	return (1);
 }
 
+char	*change(char *av)
+{
+	char	*s;
+
+	s = getenv("HOME");
+	if (!s)
+		return (ft_strdup(av));
+	if (*av == '~')
+		return (re_join(ft_strdup(s), ft_strdup(av + 1)));
+	return (ft_strdup(av));
+}
+
 void	cd(t_pokets *poket)
 {
 	int		i;
 	char	*s1;
+	char	*tmp;
 	char	*s2;
 
 	s2 = get_str("OLDPWD=");
 	if (!poket->av[1])
 		return ;
-	i = chdir(poket->av[1]);
+	tmp = change(poket->av[1]);
+	i = chdir(tmp);
+	free (tmp);
 	s1 = get_str("PWD=");
 	if (i == -1)
 		cd_error(poket);
