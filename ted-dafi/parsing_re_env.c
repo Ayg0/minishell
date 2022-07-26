@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 09:09:19 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/25 17:35:30 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:11:42 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*add_it(char *old, char *new)
 {
 	char	*s1;
 	char	*s2;
-	
+
 	s1 = ft_strchr(new, '+');
 	s2 = ft_strchr(new, '=');
 	if (s1 && s2 && s1 - s2 <= 0 && old)
