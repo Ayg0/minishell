@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 09:10:58 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/25 14:44:18 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/26 18:06:22 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ int	parse_it(t_data *data, t_pokets **pokets, char	***envpd)
 		return (1);
 	expand_all(data, *envpd);
 	fill_redirections(pokets, envpd, data);
-	if (get_global_error() != 0)
-		return (1);
 	return (0);
 }
 
