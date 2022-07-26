@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_exp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 11:20:40 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/21 22:22:25 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:10:06 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ int	check_if_blank(char *s)
 	while (tmp[i] || i == 0)
 	{
 		if (!tmp[i] || tmp[i] == ' ' || tmp[i] == '\t' || tmp[i] == '\n')
+		{
+			free(tmp);
 			return (1);
+		}
 		i++;
 	}
 	free (tmp);
