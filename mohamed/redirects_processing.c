@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:54:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/26 17:58:38 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/26 23:59:18 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ int	check_opperand_errors(t_tokens *itire)
 	int	i;
 
 	i = 0;
-	if (itire->meta_data[0] == 'b'\
-			|| itire->meta_data[ft_strlen(itire->meta_data) - 1] == 'b')
+	if (itire->meta_data[0] && (itire->meta_data[0] == 'b'\
+			|| itire->meta_data[ft_strlen(itire->meta_data) - 1] == 'b'))
 	{
 		itire->meta_data = my_strtrim(itire->meta_data, "b");
 		itire->token = my_strtrim(itire->token, " \t\n");

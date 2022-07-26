@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/26 20:40:24 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/27 00:03:02 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,34 +87,6 @@ void	clear_data(t_data *data, t_pokets **pokets, char	***envpd)
 	*pokets = NULL;
 }
 
-void	terminal_error(char *str, char *free_it)
-{
-	ft_putendl_fd(str, 2);
-	free(free_it);
-	set_global_error(1);
-}
-
-void	initialise(char **env)
-{
-	char *term;
-	int error;
-
-	set_global_error(0);
-	error = 0;
-	term = final_expand("TERM=", &error, env);
-	if (term[0] == '\0')
-		return (terminal_error("minishell: Terminal could not be identified", \
-			term));
-	error = tgetent(NULL, term);
-	if (error == 0)
-		return (terminal_error("minishell: Unrecognised terminal", term));
-	else if (error == -1)
-		return (terminal_error("minishell: Terminfo database could not be found\
-			", term));
-	free(term);
-	
-}
-
 int	prompt_display(t_data *data, char **envp)
 {
 	char		***envpd;
@@ -125,12 +97,13 @@ int	prompt_display(t_data *data, char **envp)
 	while (-1)
 	{
 		clear_data(data, &pokets, NULL);
-		initialise(envpd);
+		initialise();
 		if (get_global_error() != 0)
 			continue ;
-		data->cmd = readline("\x1B[0;34mminishell$\033[0;37m ");
+		data->cmd = readline("minishell$ ");
 		if (data->cmd == NULL)
-			put_history() && (write(1, "exit\n", 5) && my_exit(0, NULL));
+			put_history() && resettermios_attr() && \
+			(write(1, "exit\n", 5) && my_exit(0, NULL));
 		if (*(data->cmd) == '\0')
 			continue ;
 		make_history(data->cmd);
