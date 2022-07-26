@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:48:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/22 01:02:12 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/27 00:02:07 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,11 @@ typedef struct s_data
 	t_tokens	*list;
 }	t_data;
 # endif
+
+void		terminal_error(char *str, char *free_it);
+void		initialise();
+int			set_termios_attr(void);
+int			resettermios_attr(void);
 
 int			ft_wc(char *s, char c);
 int			is_true_pip(char *str);

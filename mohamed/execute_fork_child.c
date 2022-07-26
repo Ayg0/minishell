@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:42:17 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/26 17:43:30 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/26 22:47:33 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,10 @@ void	fork_it(t_pokets *pokets)
 		if (pid < 0)
 			return (fork_print_error("minishell: fork failed"));
 		else if (pid == 0)
+		{
+			resettermios_attr();
 			go_child(itire);
+		}
 		fork_it_helper(itire);
 		itire = itire->next;
 	}
