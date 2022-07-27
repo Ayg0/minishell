@@ -1,3 +1,0 @@
-parsing errors tests:
-
-here_doc
