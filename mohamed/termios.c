@@ -1,36 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   global_here_doc_var.c                              :+:      :+:    :+:   */
+/*   termios.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 16:34:42 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/26 19:49:29 by msouiyeh         ###   ########.fr       */
+/*   Created: 2022/07/26 22:45:24 by msouiyeh          #+#    #+#             */
+/*   Updated: 2022/07/27 00:01:38 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mohamed.h"
 
-int	*global_here_doc(void)
+void	terminal_error(char *str, char *free_it)
 {
-	static int	code;
-
-	return (&code);
+	ft_putendl_fd(str, 2);
+	free(free_it);
+	set_global_error(1);
 }
 
-int	get_global_here_doc(void)
+int	set_termios_attr(void)
 {
-	int	i;
+	struct termios tty;
 
-	i = *(global_here_doc());
-	return (i);
+	tcgetattr(0, &tty);
+	tty.c_lflag &= ~ECHOCTL;
+	tcsetattr(0, 0, &tty);
+	return (1);
 }
 
-void	set_global_here_doc(int error)
+int	resettermios_attr(void)
 {
-	int	*p;
+	struct termios tty;
 
-	p = global_here_doc();
-	*p = error;
+	tcgetattr(0, &tty);
+	tty.c_lflag |= ECHOCTL;
+	tcsetattr(0, 0, &tty);
+	return (1);
+}
+
+void	initialise(void)
+{
+	set_global_error(0);
+	set_termios_attr();	
 }

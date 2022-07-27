@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_fork_child.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:42:17 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/22 15:20:24 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/26 22:47:33 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ int	check_if_in(char *srch_for, char **srch_in)
 void	prepare_in_out(t_pokets *poket)
 {
 	close (poket->pip[READ_END]);
+	if (poket->index == -1)
+	{
+		close (poket->pip[WRITE_END]);
+		exit (1);
+	}
 	if (poket->infile_fd > 2)
 		ft_dup(poket->infile_fd, 0);
 	else if (poket->infile_fd == 2)
@@ -96,7 +101,10 @@ void	fork_it(t_pokets *pokets)
 		if (pid < 0)
 			return (fork_print_error("minishell: fork failed"));
 		else if (pid == 0)
+		{
+			resettermios_attr();
 			go_child(itire);
+		}
 		fork_it_helper(itire);
 		itire = itire->next;
 	}

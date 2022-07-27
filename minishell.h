@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:15:08 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/18 09:56:46 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/26 22:57:08 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include <sys/stat.h>
+# include <termios.h>
 # include "global_utils/global_utils.h"
 # include <readline/readline.h>
 # include <readline/history.h>

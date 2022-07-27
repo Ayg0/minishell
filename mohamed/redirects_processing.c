@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirects_processing.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:54:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/25 15:08:00 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/26 23:59:18 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,18 @@ void	read_redirect(t_tokens *itire, t_pokets *poket)
 	t_redirect	*tmp;
 
 	tmp = NULL;
-	if (access(itire->next->token, F_OK) == -1)
+	if (access(itire->next->token, W_OK) == -1)
 	{
-		ft_putstr_fd(ult_strjoin("minishell: ", \
-			ult_strjoin(itire->next->token, \
-			": No such file or directory\n", 0), 2), 2);
-		set_global_error(3);
+		if (access(itire->next->token, F_OK) == -1)
+			ft_putstr_fd(ult_strjoin("minishell: ", \
+				ult_strjoin(itire->next->token, \
+				": No such file or directory\n", 0), 2), 2);
+		else
+			ft_putstr_fd(ult_strjoin("minishell: ", \
+				ult_strjoin(itire->next->token, \
+				": Permission denied\n", 0), 2), 2);
+		poket->index = -1;
+		set_global_error(1);
 		set_exit_code(1);
 		return ;
 	}
@@ -49,7 +55,8 @@ void	write_redirect(t_tokens *itire, t_pokets *poket)
 	{
 		ft_putstr_fd(ult_strjoin("minishell: faild to open "\
 		, ult_strjoin(tp->file_name, "\n", 0), 2), 2);
-		set_global_error(3);
+		poket->index = -1;
+		set_global_error(1);
 		set_exit_code(1);
 		return ;
 	}
@@ -61,8 +68,8 @@ int	check_opperand_errors(t_tokens *itire)
 	int	i;
 
 	i = 0;
-	if (itire->meta_data[0] == 'b'\
-			|| itire->meta_data[ft_strlen(itire->meta_data) - 1] == 'b')
+	if (itire->meta_data[0] && (itire->meta_data[0] == 'b'\
+			|| itire->meta_data[ft_strlen(itire->meta_data) - 1] == 'b'))
 	{
 		itire->meta_data = my_strtrim(itire->meta_data, "b");
 		itire->token = my_strtrim(itire->token, " \t\n");
@@ -115,6 +122,7 @@ void	process_redirect(t_tokens **itire, t_pokets *poket)
 {
 	if (check_opperand_errors((*itire)->next) == 0)
 	{
+		poket->index = -1;
 		set_global_error(1);
 		set_exit_code(1);
 		delet_token(itire);
@@ -127,8 +135,6 @@ void	process_redirect(t_tokens **itire, t_pokets *poket)
 		read_redirect(*itire, poket);
 	else if (*((*itire)->meta_data) == 'w')
 		write_redirect(*itire, poket);
-	if (get_global_error() == 3)
-		return ;
 	delet_token(itire);
 	delet_token(itire);
 }

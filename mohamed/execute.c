@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 23:12:34 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/25 14:39:50 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/26 22:51:12 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	wait_for_the_kids(t_pokets *poket)
 		}
 		child_errno = wait_help(info, pid, poket);
 	}
+	set_termios_attr();
 	signal(SIGINT, handle_sigint);
 }
 
@@ -93,10 +94,14 @@ void	execute_pipline(t_pokets *pokets)
 
 	out = 1;
 	open_redirects(pokets);
-	if (get_global_error() != 0)
-		return ;
 	if (is_built_in(pokets->av) != -1 && !(pokets->next) && !(pokets->prev))
 	{
+		if (pokets->index == -1)
+		{
+			set_exit_code(1);
+			return ;
+		}
+		resettermios_attr();
 		if (pokets->outfile_fd != 1)
 		{	
 			out = dup(1);
@@ -105,6 +110,7 @@ void	execute_pipline(t_pokets *pokets)
 		launch_built_in(is_built_in(pokets->av), pokets);
 		if (pokets->outfile_fd != 1)
 			ft_dup(out, 1);
+		set_termios_attr();
 		return ;
 	}
 	fork_it(pokets);

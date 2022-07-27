@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/22 17:14:01 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/27 00:03:02 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,13 @@ int	prompt_display(t_data *data, char **envp)
 	while (-1)
 	{
 		clear_data(data, &pokets, NULL);
-		set_global_error(0);
-		data->cmd = readline("\x1B[0;34mminishell$\033[0;37m ");
+		initialise();
+		if (get_global_error() != 0)
+			continue ;
+		data->cmd = readline("minishell$ ");
 		if (data->cmd == NULL)
-		{
-			put_history();
+			put_history() && resettermios_attr() && \
 			(write(1, "exit\n", 5) && my_exit(0, NULL));
-		}
 		if (*(data->cmd) == '\0')
 			continue ;
 		make_history(data->cmd);
