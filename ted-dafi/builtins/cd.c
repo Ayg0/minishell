@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:43:28 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/28 08:14:00 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/28 08:40:55 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,23 @@ int	cd_error(t_pokets *poket)
 	return (1);
 }
 
-char	*change(char *av)
+char	*change(t_pokets *poket)
 {
 	char	*s;
 
-	s = getenv("HOME");
-	if (!av && !s)
+	s = NULL;
+	if (poket->av[1])
+		s = ft_strdup(getenv("HOME"));
+	else
+		s = get_exp(ft_strdup("HOME"), 'q', *(poket->env));
+	if (!poket->av[1] && !s)
 		return (NULL);
-	if (!av)
-		return (ft_strdup(s));
-	if (!s)
-		return (ft_strdup(av));
-	if (*av == '~')
-		return (re_join(ft_strdup(s), ft_strdup(av + 1)));
-	return (ft_strdup(av));
+	if (!poket->av[1])
+		return (s);
+	if (*(poket->av[1]) == '~')
+		return (re_join(s, ft_strdup(&poket->av[1][1])));
+	free (s);
+	return (ft_strdup(poket->av[1]));
 }
 
 void	cd(t_pokets *poket)
@@ -67,7 +70,7 @@ void	cd(t_pokets *poket)
 
 	i = -1;
 	s2 = get_str("OLDPWD=");
-	tmp = change(poket->av[1]);
+	tmp = change(poket);
 	if (tmp)
 		i = chdir(tmp);
 	free(tmp);
