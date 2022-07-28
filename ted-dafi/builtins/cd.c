@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:43:28 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/28 08:40:55 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/28 10:01:43 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,12 @@ char	*change(t_pokets *poket)
 	char	*s;
 
 	s = NULL;
-	if (poket->av[1])
+	if (poket->av[1] && *(poket->av[1]) == '~')
+	{
+		if (!getenv("HOME"))
+			return (ft_strdup(poket->av[1]));
 		s = ft_strdup(getenv("HOME"));
+	}
 	else
 		s = get_exp(ft_strdup("HOME"), 'q', *(poket->env));
 	if (!poket->av[1] && !s)
