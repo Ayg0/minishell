@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:43:28 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/26 22:08:37 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/28 08:14:00 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,14 @@ int	cd_error(t_pokets *poket)
 {
 	char	*tmp;
 
-	tmp = re_join(ft_strdup("minishell: cd: "), ft_strdup(poket->av[1]));
-	perror(tmp);
-	free(tmp);
+	if (poket->av[1])
+	{
+		tmp = re_join(ft_strdup("minishell: cd: "), ft_strdup(poket->av[1]));
+		perror(tmp);
+		free(tmp);
+	}
+	else
+		ft_putstr_fd(ft_strdup("minishell: cd: HOME not set\n"), 2);
 	set_exit_code(1);
 	set_global_error(1);
 	return (1);
@@ -42,6 +47,10 @@ char	*change(char *av)
 	char	*s;
 
 	s = getenv("HOME");
+	if (!av && !s)
+		return (NULL);
+	if (!av)
+		return (ft_strdup(s));
 	if (!s)
 		return (ft_strdup(av));
 	if (*av == '~')
@@ -56,12 +65,12 @@ void	cd(t_pokets *poket)
 	char	*tmp;
 	char	*s2;
 
+	i = -1;
 	s2 = get_str("OLDPWD=");
-	if (!poket->av[1])
-		return ;
 	tmp = change(poket->av[1]);
-	i = chdir(tmp);
-	free (tmp);
+	if (tmp)
+		i = chdir(tmp);
+	free(tmp);
 	s1 = get_str("PWD=");
 	if (i == -1)
 		cd_error(poket);
