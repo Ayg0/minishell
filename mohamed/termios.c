@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 22:45:24 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/27 00:01:38 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/29 10:40:24 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	terminal_error(char *str, char *free_it)
 
 int	set_termios_attr(void)
 {
-	struct termios tty;
+	struct termios	tty;
 
 	tcgetattr(0, &tty);
 	tty.c_lflag &= ~ECHOCTL;
@@ -31,7 +31,7 @@ int	set_termios_attr(void)
 
 int	resettermios_attr(void)
 {
-	struct termios tty;
+	struct termios	tty;
 
 	tcgetattr(0, &tty);
 	tty.c_lflag |= ECHOCTL;
@@ -42,5 +42,5 @@ int	resettermios_attr(void)
 void	initialise(void)
 {
 	set_global_error(0);
-	set_termios_attr();	
+	set_termios_attr();
 }

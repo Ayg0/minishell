@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 09:04:38 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/19 20:17:50 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/29 10:37:53 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	redirection_error(char *errorstr, int flag)
 	": ambiguous redirect\n", 1), 2);
 	if (flag)
 		free(errorstr);
+	return (0);
 }
 
 char	*red_join(char *s1, char *s2)

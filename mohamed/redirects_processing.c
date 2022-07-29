@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:54:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/26 23:59:18 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/29 10:39:44 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,13 @@ int	check_opperand_errors(t_tokens *itire)
 		if (itire->token[0] == '\0')
 			itire->flag = -505;
 	}
-	if (itire->meta_data[0] == '\0' && (itire->flag == -505 || itire->flag == -404))
-	{
-		redirection_error(itire->old_token, 0);
-		return (0);
-	}
+	if (itire->meta_data[0] == '\0' && (itire->flag == -505 \
+		|| itire->flag == -404))
+		return (redirection_error(itire->old_token, 0));
 	while (itire->meta_data[i])
 	{
 		if (itire->meta_data[i++] == 'b')
-		{
-			redirection_error(itire->old_token, 0);
-			return (0);
-		}
+			return (redirection_error(itire->old_token, 0));
 	}
 	return (1);
 }

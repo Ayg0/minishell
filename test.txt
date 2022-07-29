@@ -1,0 +1,1 @@
+cat > out < kjdfgkjsdh < $dlfkjkjsd | echo hello > out2 world | wc < $lkdjfkljsd < kdjsfkjsd
