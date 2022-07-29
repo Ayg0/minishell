@@ -6,13 +6,13 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 09:04:38 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/29 10:37:53 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/29 11:20:15 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mohamed.h"
 
-void	redirection_error(char *errorstr, int flag)
+int	redirection_error(char *errorstr, int flag)
 {
 	ft_putstr_fd(ult_strjoin(ult_strjoin("minishell: ", errorstr, 0), \
 	": ambiguous redirect\n", 1), 2);
