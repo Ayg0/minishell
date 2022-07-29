@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:48:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/27 00:02:07 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/29 10:37:38 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_data
 # endif
 
 void		terminal_error(char *str, char *free_it);
-void		initialise();
+void		initialise(void);
 int			set_termios_attr(void);
 int			resettermios_attr(void);
 
@@ -118,7 +118,7 @@ void		zero_it(char	****envpd, char **envp, t_pokets **pokets);
 int			parse_it(t_data *data, t_pokets **pokets, char	***envpd);
 void		free_triple_pp(char ***envpd);
 
-void		redirection_error(char *errorstr, int flag);
+int			redirection_error(char *errorstr, int flag);
 char		*red_join(char *s1, char *s2);
 
 void		resplit_tokens(t_data	*data);
@@ -138,7 +138,7 @@ void		fork_it(t_pokets *pokets);
 void		open_redirects(t_pokets *pokets);
 int			open_write(t_pokets *pokets);
 int			open_read(t_pokets *pokets);
-void		unlink_helper(int unlnk, t_redirect *tmp);
+void		unlink_helper(int unlnk, char *path);
 void		unlink_here_docs(t_pokets *pokets);
 
 void		ft_perror(char *str);

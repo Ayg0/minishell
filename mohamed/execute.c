@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 23:12:34 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/26 22:51:12 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/29 10:15:31 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,7 @@ void	execute_pipline(t_pokets *pokets)
 	if (is_built_in(pokets->av) != -1 && !(pokets->next) && !(pokets->prev))
 	{
 		if (pokets->index == -1)
-		{
-			set_exit_code(1);
-			return ;
-		}
+			return (set_exit_code(1));
 		resettermios_attr();
 		if (pokets->outfile_fd != 1)
 		{	

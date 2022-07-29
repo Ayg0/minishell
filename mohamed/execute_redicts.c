@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:37:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/26 17:41:48 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/28 17:10:18 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,12 @@ void	open_redirects(t_pokets *pokets)
 	}
 }
 
-void	unlink_helper(int unlnk, t_redirect *tmp)
+void	unlink_helper(int unlnk, char *path)
 {
 	unlnk = EBUSY;
 	while (unlnk == EBUSY)
 	{
-		unlnk = unlink(tmp->file_name);
+		unlnk = unlink(path);
 		if (unlnk != EBUSY && unlnk != 0)
 		{
 			perror("minishell :");
@@ -94,17 +94,21 @@ void	unlink_helper(int unlnk, t_redirect *tmp)
 
 void	unlink_here_docs(t_pokets *pokets)
 {
-	t_redirect	*tmp;
+	char	*path;
+	int		i;
 
-	while (pokets)
+	i = 0;
+	path = ft_strdup("/tmp/here_doc..");
+	(void)pokets;
+	while (i < 16)
 	{
-		tmp = pokets->redirects->read;
-		while (tmp)
-		{
-			if (tmp->type == 'h')
-				unlink_helper(0, tmp);
-			tmp = tmp->next;
-		}
-		pokets = pokets->next;
+		path[13] = (i / 10) + '0';
+		path[14] = (i % 10) + '0';
+		if (access(path, F_OK) != -1)
+			unlink_helper(0, path);
+		else
+			break ;
+		i++;
 	}
+	free (path);
 }
