@@ -5,3 +5,19 @@ cat > out < kjdfgkjsdh < $dlfkjkjsd | echo hello > out2 world | wc < $lkdjfkljsd
 << hello'' cat
 << hello cat
 https://docs.google.com/spreadsheets/d/1fniV2dSRB5TaFGyX3O-iK0u61xR5jDdkFKYonKpilIc/edit#gid=0
+export l="hello world" ; export $l ; export
+echo abcd = echo "abcd" = echo ab'cd'
+echo #HO"ME" => ME
+echo -n $ a  == echo -n $     a => $ a
+echo -n "$     a" ==> $     a
+cd $HOME/Documents ; unset HOME ; cd $HOME/Documents ==> no such a file ...
+cat /dev/random | head -n 1 | cat -e
+export "" ; unset ""
+cat Makefile | grep pr | head -n 5 | cd test ; echo $?
+cd ../../../../../.. ; pwd ; cd ~/Desktop/minishell/
+export wa=at ; c$wa Makefile
+sleep 5 | exit
+export "l=p"=r ; export ==> (l="p=r")
+> a echo Hello World! == echo Hello > a World!
+exit 0 | exit 1
+exit 1 | exit 0
