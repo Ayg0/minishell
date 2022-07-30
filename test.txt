@@ -1,4 +1,10 @@
 cat > out < kjdfgkjsdh < $dlfkjkjsd | echo hello > out2 world | wc < $lkdjfkljsd < kdjsfkjsd
+||
+|<>
+< f |<>
+<< hello'' cat
+<< hello cat
+https://docs.google.com/spreadsheets/d/1fniV2dSRB5TaFGyX3O-iK0u61xR5jDdkFKYonKpilIc/edit#gid=0
 export l="hello world" ; export $l ; export
 echo abcd = echo "abcd" = echo ab'cd'
 echo #HO"ME" => ME
