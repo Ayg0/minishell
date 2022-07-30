@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 11:47:51 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/29 09:57:00 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/30 16:37:55 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	meta_checker(char *s, char in_need, int k)
 {
 	if (!s[k] || s[k] == 'b')
 		return (0);
-	else if ((decide("prw", "|<>", s[k]) != 'u') && s[k] != in_need)
+	else if ((decide("prw", "|<>", s[k], 'u') != 'u') && s[k] != in_need)
 		return (0);
 	else if (ft_serch(s[k], in_need, "uqds") == 1)
 		return (0);

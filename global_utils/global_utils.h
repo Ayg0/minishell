@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 12:37:21 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/22 15:33:52 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/30 16:37:22 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	*ft_strjoin(char *s1, char *s2);
 int		ft_strlcpy(char *dest, char *src, int size);
 int		ft_strcmp(char *s1, char *s2);
 void	*ft_calloc(int count, int size);
-char	decide(char *main_str, char *mirror_str, char c);
 char	*ft_substr(char *s, int start, int len);
 char	*ft_strdup(char *s1);
 char	*ft_strchr(char *s, int c);
@@ -39,4 +38,5 @@ int		ft_isalpha(int c);
 int		ft_atoi(char *str, int *flag);
 char	*ft_itoa(int n);
 int		put_history(void);
+char	decide(char *main_str, char *mirror_str, char c, char def);
 #endif
