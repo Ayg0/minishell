@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/29 10:42:22 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/30 16:38:05 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*get_meta(char *s)
 		else if (quoted || s_quoted)
 			s_se[i[0]] = 'q';
 		else
-			s_se[i[0]] = decide(" \t\n|<>", "bbbprw", s[i[0]]);
+			s_se[i[0]] = decide(" \t\n|<>", "bbbprw", s[i[0]], 'u');
 		i[0]++;
 	}
 	return (s_se);

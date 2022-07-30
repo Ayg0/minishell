@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_rm.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 09:48:12 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/28 20:59:21 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/30 17:36:26 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,10 @@ void	remove_quotes(t_data *data)
 		{
 			total_q = count_q(data->list->meta_data);
 			make_new(data->list, total_q);
+			data->list->token = replace_oper(data->list->token,
+					"\222\217\132\196\194", "\"\'|<>");
 		}
-			data->list = data->list->next;
+		data->list = data->list->next;
 	}
 	data->list = tmp;
 }
