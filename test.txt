@@ -21,3 +21,15 @@ export "l=p"=r ; export ==> (l="p=r")
 > a echo Hello World! == echo Hello > a World!
 exit 0 | exit 1
 exit 1 | exit 0
+
+minishell$ export l="<<"
+minishell$ cat $l
+cat: <<: No such file or directory
+minishell$ $l
+minishell: <<: command not found
+minishell$ export l="'<< hello'"
+minishell$ $l
+minishell: '<<'hello': command not found
+minishell$ export l="k k"
+minishell$ $k
+
