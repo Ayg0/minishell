@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:42:17 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/26 22:47:33 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/30 15:19:12 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,14 @@ void	prepare_in_out(t_pokets *poket)
 	}
 	else if (poket->outfile_fd == 2)
 		ft_dup(poket->pip[WRITE_END], 1);
+	if (poket->outfile_fd == 1)
+		close (poket->pip[WRITE_END]);
 }
 
 void	go_child(t_pokets *poket)
 {
 	signal(SIGQUIT, SIG_DFL);
+	resettermios_attr();
 	prepare_in_out(poket);
 	if (poket->av == NULL)
 		exit (0);
@@ -79,11 +82,12 @@ void	fork_it_helper(t_pokets *itire)
 {
 	if (itire->prev)
 		close(itire->prev->pip[READ_END]);
-	else if (itire->infile_fd != 0)
+	else if (itire->infile_fd > 2)
 		close(itire->infile_fd);
-	if (itire->next)
-		close (itire->pip[WRITE_END]);
-	else if (itire->outfile_fd != 1)
+	if (!itire->next)
+		close (itire->pip[READ_END]);
+	close (itire->pip[WRITE_END]);
+	if (itire->outfile_fd > 2)
 		close (itire->outfile_fd);
 }
 
@@ -99,12 +103,15 @@ void	fork_it(t_pokets *pokets)
 			return (fork_print_error("minishell: piping failed"));
 		pid = fork();
 		if (pid < 0)
-			return (fork_print_error("minishell: fork failed"));
-		else if (pid == 0)
 		{
-			resettermios_attr();
-			go_child(itire);
+			close (itire->pip[WRITE_END]);
+			close (itire->pip[READ_END]);
+			close (itire->prev->pip[READ_END]);
+			return (fork_print_error
+				("minishell: fork: Resource temporarily unavailable"));
 		}
+		else if (pid == 0)
+			go_child(itire);
 		fork_it_helper(itire);
 		itire = itire->next;
 	}
