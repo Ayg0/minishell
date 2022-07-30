@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:48:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/29 10:37:38 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/30 15:55:55 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int			set_termios_attr(void);
 int			resettermios_attr(void);
 
 int			ft_wc(char *s, char c);
-int			is_true_pip(char *str);
+int			is_true_cntl(char *str, char cntl);
 char		*ready_path(char **env, char *cmd);
 
 void		here_doc_parent_wait(int pid);
@@ -102,7 +102,6 @@ int			check_if_in(char *srch_for, char **srch_in);
 char		*my_strtrim(char *s1, char *set);
 
 int			is_built_in(char **cmd);
-int			is_true_pip(char *str);
 
 void		launch_built_in(int index, t_pokets *poket);
 

@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:42:56 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/29 10:17:42 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/30 16:01:26 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ void	process_av(t_tokens **itire, t_pokets *poket)
 
 	i = 0;
 	tmp = *itire;
-	while (tmp && is_true_pip(tmp->meta_data) == 0)
+	while (tmp && is_true_cntl(tmp->meta_data, 'p') == 0)
 	{
 		i += ft_wc(tmp->meta_data, 'b');
 		tmp = tmp->next;
 	}
 	poket->av = (char **)ft_calloc(i + 1, sizeof(char *));
 	process_av_help(itire, poket);
-	if (*itire && is_true_pip((*itire)->meta_data))
+	if (*itire && is_true_cntl((*itire)->meta_data, 'p'))
 		*itire = (*itire)->previous;
 }
 
@@ -57,7 +57,7 @@ void	redirection_helper(t_data	*data, t_pokets	*poket)
 	itire = data->list;
 	while (itire)
 	{
-		if (is_true_pip(itire->meta_data))
+		if (is_true_cntl(itire->meta_data, 'p'))
 			poket = poket->next;
 		else if (*(itire->meta_data) == '\0' && itire->flag == -404)
 		{
@@ -77,7 +77,8 @@ void	finish_redirections(t_data *data, t_pokets *poket)
 	itire = data->list;
 	while (itire)
 	{
-		if (*(itire->meta_data) == 'r' || *(itire->meta_data) == 'w')
+		if (is_true_cntl(itire->meta_data, 'r') \
+			|| is_true_cntl(itire->meta_data, 'w'))
 		{
 			process_redirect(&itire, poket);
 			if (get_global_error() != 0)

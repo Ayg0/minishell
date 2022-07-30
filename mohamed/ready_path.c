@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:02:51 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/26 19:52:58 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/30 15:57:36 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ int	ft_wc(char *s, char c)
 	return (counter + 1);
 }
 
-int	is_true_pip(char *str)
+int	is_true_cntl(char *str, char cntl)
 {
 	int		i;
 	char	c;
 
 	c = 0;
 	i = 0;
-	if (str[0] == 'p')
+	if (str[0] == cntl)
 		c = str[0];
 	else
 		return (0);

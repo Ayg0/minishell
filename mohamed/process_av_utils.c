@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:24:08 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/19 21:52:54 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/30 15:56:03 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	process_av_help(t_tokens **itire, t_pokets *poket)
 	int		i;
 
 	i = 0;
-	while ((*itire) && is_true_pip((*itire)->meta_data) == 0)
+	while ((*itire) && is_true_cntl((*itire)->meta_data, 'p') == 0)
 	{
 		if (ft_strchr((*itire)->meta_data, 'b'))
 			help_process_av(itire, poket, &i);
