@@ -6,11 +6,12 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:18:27 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/30 16:41:27 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/31 15:00:09 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "global_utils.h"
+#include <stdio.h>
 
 char	decide(char *main_str, char *mirror_str, char c, char def)
 {

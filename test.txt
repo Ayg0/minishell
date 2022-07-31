@@ -5,9 +5,9 @@ cat > out < kjdfgkjsdh < $dlfkjkjsd | echo hello > out2 world | wc < $lkdjfkljsd
 << hello'' cat
 << hello cat
 https://docs.google.com/spreadsheets/d/1fniV2dSRB5TaFGyX3O-iK0u61xR5jDdkFKYonKpilIc/edit#gid=0
-export l="hello world" ; export $l ; export
+export l="hello world" ; export $l ; export; export $l=k;
 echo abcd = echo "abcd" = echo ab'cd'
-echo #HO"ME" => ME
+echo $HO"ME" => ME
 echo -n $ a  == echo -n $     a => $ a
 echo -n "$     a" ==> $     a
 cd $HOME/Documents ; unset HOME ; cd $HOME/Documents ==> no such a file ...
@@ -29,7 +29,7 @@ minishell$ $l
 minishell: <<: command not found
 minishell$ export l="'<< hello'"
 minishell$ $l
-minishell: '<<'hello': command not found
+minishell: '<<: command not found
 minishell$ export l="k k"
 minishell$ $k
 
