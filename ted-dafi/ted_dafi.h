@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:33:24 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/31 14:57:21 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/31 15:32:31 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,6 @@ int			put_history(void);
 char		*make_history(char *cmd);
 char		*get_next_line(int fd);
 
-char		*replace_oper(char *s, char *s1, char *s2, int flag);
+char		*replace_oper(char *s, char *s1, char *s2);
 char		*get_spec(void);
 #endif

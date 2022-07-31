@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:52:56 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/31 15:13:14 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/31 15:32:08 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,9 @@ int	get_and_join(int *i, t_tokens *list, char **str, char **envp)
 			*str = re_join(*str,
 					replace_oper(get_exp(ft_substr(list->token, j,
 								(*i) - j), list->meta_data[j], envp),
-						"\"\'|<>", get_spec(), 2));
+						ft_strdup("\"\'|<>"), get_spec()));
 		list->flag = -404 * ((*str)[0] == '\0');
 	}
-	printf("%s\n", *str);
 	return (0);
 }
 
