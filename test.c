@@ -1,5 +1,5 @@
 int	main()
 {
-	char c = 256 - 34;
+	char c = 222;
 	printf("%d\n", c);
 }
