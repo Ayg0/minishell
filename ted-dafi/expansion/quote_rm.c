@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 09:48:12 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/31 13:06:16 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/31 15:00:04 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,36 @@ void	remove_quotes(t_data *data)
 			total_q = count_q(data->list->meta_data);
 			make_new(data->list, total_q);
 			data->list->token = replace_oper(data->list->token,
-					"\222\217\132\196\194", "\"\'|<>");
+					get_spec(), "\"\'|<>", 1);
 		}
 		data->list = data->list->next;
 	}
 	data->list = tmp;
 }
 
-// {-34, -39, -124, -60, -62, 0}
-char	*replace_oper(char *s, char *s1, char *s2)
+char	*get_spec(void)
+{
+	char	*s;
+	int		i;
+
+	s = ft_calloc(7, sizeof(char));
+	i = 0;
+	while (i < 6)
+	{
+		s[i] = (i + 1) * -1;
+		i++;
+	}
+	return (s);
+}
+
+int	free_str(char *s)
+{
+	if (s)
+		free(s);
+	return (0);
+}
+
+char	*replace_oper(char *s, char *s1, char *s2, int	flag)
 {
 	int	i;
 
@@ -88,5 +109,7 @@ char	*replace_oper(char *s, char *s1, char *s2)
 		s[i] = decide(s1, s2, s[i], s[i]);
 		i++;
 	}
+	(flag == 1) && free_str(s1);
+	(flag == 2) && free_str(s2);
 	return (s);
 }
