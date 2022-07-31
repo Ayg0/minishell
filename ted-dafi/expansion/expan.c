@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:52:56 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/30 17:36:36 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/31 13:06:10 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,6 @@ int	check_validation(char c, int ex_flag, int num_flag)
 			|| ((c >= '0' && c <= '9') * num_flag)));
 }
 
-char	*replace_oper(char *s, char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (NULL);
-	while (s[i])
-	{
-		s[i] = decide(s1, s2, s[i], s[i]);
-		i++;
-	}
-	return (s);
-}
-
-// {-34, -39, -124, -60, -62, 0}
 int	get_and_join(int *i, t_tokens *list, char **str, char **envp)
 {
 	int	j;
@@ -64,11 +48,10 @@ int	get_and_join(int *i, t_tokens *list, char **str, char **envp)
 			(*i)++;
 		if (*i > j)
 			*str = re_join(*str,
-				replace_oper(get_exp(ft_substr(list->token, j,
+					replace_oper(get_exp(ft_substr(list->token, j,
 								(*i) - j), list->meta_data[j], envp),
 						"\"\'|<>", "\222\217\132\196\194"));
-		if ((*str)[0] == '\0')
-			list->flag = -404;
+		list->flag = -404 * ((*str)[0] == '\0');
 	}
 	return (0);
 }
