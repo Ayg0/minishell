@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 09:48:12 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/31 16:39:39 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/31 16:50:05 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,11 @@ char	*replace_oper(char *s, char *s1, char *s2)
 	i = 0;
 	if (!s)
 		return (NULL);
-	printf(":: %s\n", s);
 	while (s[i])
 	{
 		s[i] = decide(s1, s2, s[i], s[i]);
 		i++;
 	}
-	printf(":  %s\n", s);
 	free(s1);
 	free(s2);
 	return (s);
