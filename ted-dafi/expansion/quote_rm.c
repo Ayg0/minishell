@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 09:48:12 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/08/01 06:06:17 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/01 06:47:59 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,11 @@ char	*replace_oper(char *s, char *s1, char *s2)
 
 	i = 0;
 	if (!s)
+	{
+		free(s1);
+		free(s2);
 		return (NULL);
+	}
 	while (s[i])
 	{
 		s[i] = decide(s1, s2, s[i], s[i]);
