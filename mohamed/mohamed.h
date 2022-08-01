@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:48:22 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/30 15:55:55 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/01 05:20:13 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ typedef struct s_data
 }	t_data;
 # endif
 
+char		**ft_split_empty(char *s, char c);
+
 void		terminal_error(char *str, char *free_it);
 void		initialise(void);
 int			set_termios_attr(void);
@@ -140,7 +142,6 @@ int			open_read(t_pokets *pokets);
 void		unlink_helper(int unlnk, char *path);
 void		unlink_here_docs(t_pokets *pokets);
 
-void		ft_perror(char *str);
 void		ft_dup(int fd_one, int fd_two);
 char		*clean_exit(char *path, char *cmd);
 char		*clean_set_up(char *path, char *cmd);

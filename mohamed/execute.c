@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 23:12:34 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/31 13:55:00 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/01 00:13:07 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	wait_for_the_kids(t_pokets *poket)
 		{
 			if (errno == ECHILD)
 				break ;
-			perror("minishell: waiting for shiled process failed:");
+			perror("minishell");
 			set_exit_code(errno);
 		}
 		child_errno = wait_help(info, pid, poket);

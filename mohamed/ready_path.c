@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:02:51 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/30 15:57:36 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/01 06:05:23 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ready_path(char **env, char *cmd)
 	}
 	(*env == NULL) && clean_exit(NULL, cmd);
 	*env += 5;
-	path = ft_split(*env, ':');
+	path = ft_split_empty(*env, ':');
 	while (*path)
 	{
 		*path = clean_set_up(*path, cmd);

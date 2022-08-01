@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:54:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/30 16:22:20 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/07/31 22:58:41 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	write_redirect(t_tokens *itire, t_pokets *poket)
 	tmp = open(tp->file_name, tp->code, 0666);
 	if (tmp == -1)
 	{
-		ft_putstr_fd(ult_strjoin("minishell: faild to open "\
-		, ult_strjoin(tp->file_name, "\n", 0), 2), 2);
+		ft_putstr_fd(ult_strjoin("minishell: "\
+		, ult_strjoin(tp->file_name, ": permission denied\n", 0), 2), 2);
 		poket->index = -1;
 		set_global_error(1);
 		set_exit_code(1);

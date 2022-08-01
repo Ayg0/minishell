@@ -45,7 +45,8 @@ MSRCS = mohamed/error_managment.c mohamed/exit_code.c 	mohamed/ft_pstrjoin.c \
 		mohamed/redirectl_process_utils.c				mohamed/parsing_utils.c	\
 		mohamed/process_av_utils.c						mohamed/set_built_in.c	\
 		mohamed/fork_print_error.c						mohamed/ready_path.c	\
-		mohamed/big_one_cleaner.c 						mohamed/termios.c
+		mohamed/big_one_cleaner.c 						mohamed/termios.c		\
+		mohamed/split_reworked.c
 		
 		
 
