@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/31 15:01:37 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/01 00:02:00 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ char	*get_meta(char *s)
 			s_se[i[0]] = decide(" \t\n|<>", "bbbprw", s[i[0]], 'u');
 		i[0]++;
 	}
-	printf("%s\n", s_se);
 	return (s_se);
 }
 

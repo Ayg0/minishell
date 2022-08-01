@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:42:17 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/30 15:19:12 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/01 06:21:22 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	prepare_in_out(t_pokets *poket)
 
 void	go_child(t_pokets *poket)
 {
+	char	*tmp;
+
 	signal(SIGQUIT, SIG_DFL);
 	resettermios_attr();
 	prepare_in_out(poket);
@@ -68,12 +70,9 @@ void	go_child(t_pokets *poket)
 	poket->path = ready_path(*(poket->env), poket->av[0]);
 	if (execve(poket->path, poket->av, *(poket->env)) == -1)
 	{
-		if (errno == ENOENT || check_if_in("PATH", *(poket->env)) == 0)
-			ft_putstr_fd (ult_strjoin(ult_strjoin("minishell: "\
-			, poket->av[0], 0), ": no such a file or directory\n", 1), 2);
-		else if (check_if_in("PATH", *(poket->env)))
-			ft_putstr_fd (ult_strjoin(ult_strjoin("minishell: "\
-			, poket->av[0], 0), ": command not found\n", 1), 2);
+		tmp = ult_strjoin("minishell: ", poket->av[0], 0);
+		perror(tmp);
+		free(tmp);
 		exit (127);
 	}
 }

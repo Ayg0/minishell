@@ -4,7 +4,7 @@ NAME = minishell
 
 # /Users/msouiyeh/goinfre/.brew/opt/readline/include
 # /Users/$(USER)/.brew/opt/readline/include
-CFLAGS = -Wall -Werror -Wextra -g -I /Users/$(USER)/.brew/opt/readline/include
+CFLAGS = -Wall -Werror -Wextra -g  -I /Users/msouiyeh/goinfre/.brew/opt/readline/include #-fsanitize=address
 
 GSRCS = global_utils/decide.c global_utils/env_scout.c global_utils/ft_calloc.c			  	\
 		global_utils/ft_strcmp.c global_utils/ft_strjoin.c global_utils/ft_strlcpy.c	  	\
@@ -45,7 +45,8 @@ MSRCS = mohamed/error_managment.c mohamed/exit_code.c 	mohamed/ft_pstrjoin.c \
 		mohamed/redirectl_process_utils.c				mohamed/parsing_utils.c	\
 		mohamed/process_av_utils.c						mohamed/set_built_in.c	\
 		mohamed/fork_print_error.c						mohamed/ready_path.c	\
-		mohamed/big_one_cleaner.c 						mohamed/termios.c
+		mohamed/big_one_cleaner.c 						mohamed/termios.c		\
+		mohamed/split_reworked.c
 		
 		
 
@@ -58,8 +59,8 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME):	$(OBJS)
-			@$(CC) $(CFLAGS) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib $(OBJS) -o $(NAME)
-#			@$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib $(OBJS) -o $(NAME)
+#			@$(CC) $(CFLAGS) -lreadline -L /Users/$(USER)/.brew/opt/readline/lib $(OBJS) -o $(NAME)
+			@$(CC) $(CFLAGS) -lreadline -L /Users/msouiyeh/goinfre/.brew/opt/readline/lib $(OBJS) -o $(NAME)
 
 clean:
 		@$(RM) $(OBJS) $(B_OBJS)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_fork.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:46:27 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/22 15:52:16 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/07/31 13:49:44 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	helper_loop(t_tokens *itire, char *path, char **envp)
 				exit (1);
 			}
 			here_doc (fd, itire->next->token, envp);
-			change_here_doc(itire, path);
 			i++;
 		}
 		itire = itire->next;

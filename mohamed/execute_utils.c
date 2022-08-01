@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:35:10 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/22 15:21:21 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/01 06:22:54 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mohamed.h"
-
-void	ft_perror(char *str)
-{
-	perror(str);
-	(errno);
-}
 
 void	ft_dup(int fd_one, int fd_two)
 {
@@ -26,16 +20,23 @@ void	ft_dup(int fd_one, int fd_two)
 
 char	*clean_exit(char *path, char *cmd)
 {
+	struct stat	f_stat;
+
+	stat(cmd, &f_stat);
+	if (S_ISDIR(f_stat.st_mode))
+	{
+		ft_putstr_fd(ult_strjoin(ult_strjoin("minishell: ", cmd, 0) \
+		, ": is a directory\n", 0), 2);
+		exit (126);
+	}
 	if (path)
 	{
 		if (access(path, X_OK) == 0)
 			return (path);
 		else
-		{
 			ft_putstr_fd(ult_strjoin(ult_strjoin("minishell: ", cmd, 0) \
 			, ": permission denied\n", 0), 2);
-			exit(126);
-		}
+		exit(126);
 	}
 	else
 	{
@@ -43,7 +44,6 @@ char	*clean_exit(char *path, char *cmd)
 		, ": command not found\n", 0), 2);
 		exit(127);
 	}
-	return (NULL);
 }
 
 char	*exec_join(char *s1, char *s2)
@@ -67,6 +67,8 @@ char	*clean_set_up(char *path, char *cmd)
 	tmp = NULL;
 	if (!*cmd)
 		clean_exit(NULL, cmd);
+	if (path && *path == '\0')
+		return (cmd);
 	if (path)
 		tmp = exec_join("/", cmd);
 	else if (path == NULL)
