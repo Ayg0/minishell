@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 11:36:11 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/22 15:47:28 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/02 11:34:32 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_exit(t_pokets *poket)
 
 	!(poket->prev) && write(1, "exit\n", 5);
 	if (!poket->av[1])
-		my_exit(0, poket);
+		my_exit(get_exit_code(), poket);
 	flag = 0;
 	num = (unsigned char) ft_atoi(poket->av[1], &flag);
 	if (!flag && !poket->av[2])

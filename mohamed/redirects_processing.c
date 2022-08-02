@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirects_processing.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:54:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/31 22:58:41 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/02 11:14:54 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	read_redirect(t_tokens *itire, t_pokets *poket)
 	t_redirect	*tmp;
 
 	tmp = NULL;
-	if (access(itire->next->token, W_OK) == -1)
+	if (access(itire->next->token, R_OK) == -1)
 	{
 		if (access(itire->next->token, F_OK) == -1)
 			ft_putstr_fd(ult_strjoin("minishell: ", \
