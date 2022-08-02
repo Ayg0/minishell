@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_fork.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:46:27 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/31 13:49:44 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/02 11:20:36 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	launch_helper(t_data *data, char **envp)
 	itire = data->list;
 	if (check_max_here_doc(itire))
 	{
-		ft_putstr_fd("minishell: maximum here-document count exceeded\n", 2);
+		ft_putendl_fd("minishell: maximum here-document count exceeded", 2);
 		exit(128);
 	}
 	helper_loop(itire, path, envp);
