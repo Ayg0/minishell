@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 09:09:19 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/28 08:18:16 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/02 12:35:43 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ char	*add_it(char *old, char *new)
 				+ (ft_strchr(old, '=') != NULL)));
 	else if (s1 && s2 && s1 - s2 <= 0)
 		return (str_without_pls(new));
+	if (old && !s2)
+		return (ft_strdup(old));
 	return (ft_strdup(new));
 }
 
