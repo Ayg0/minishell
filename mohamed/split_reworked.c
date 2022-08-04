@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 01:37:19 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/08/01 06:05:10 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/04 15:00:25 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static	char	**fill_it(char *s, char c, char **final, short flag)
 	char	ch[2];
 
 	i = 0;
+	ch[1] = '\0';
 	while (*s)
 	{
 		if (*s == c)
