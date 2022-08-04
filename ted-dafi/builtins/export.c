@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:29:02 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/25 14:05:37 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/02 12:41:24 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ void	display_export(t_pokets *poket)
 	sort_double_p(export, ft_count(*(poket->env), NULL, NULL));
 	while (export[i])
 	{
+		if (!ft_strncmp("_=", export[i], 2))
+		{
+			i++;
+			continue ;
+		}
 		ft_putstr_fd(ft_strdup("declare -x "), 1);
 		if (ft_strchr(export[i], '='))
 			ft_putstr_fd(re_join(ft_substr(export[i], 0,
