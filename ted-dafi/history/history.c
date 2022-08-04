@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:55:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/08/01 00:06:49 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/04 00:14:42 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	put_history(void)
 	int		fd;
 	char	*history;
 
-	fd = open(".minishell_history", O_RDWR | O_APPEND | O_CREAT, 0600);
+	fd = open(".minishell_history", O_RDWR | O_TRUNC | O_CREAT, 0600);
 	if (fd == -1)
 		return (write(2, "minishell: failed to save history.\n", 35));
 	history = make_history(NULL);
@@ -52,7 +52,7 @@ int	load_history(void)
 	str = get_next_line(fd);
 	while (str)
 	{
-		add_history(str);
+		make_history(str);
 		free(str);
 		str = get_next_line(fd);
 	}
