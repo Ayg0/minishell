@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:35:10 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/08/01 06:22:54 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/04 01:28:26 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ char	*clean_exit(char *path, char *cmd)
 {
 	struct stat	f_stat;
 
-	stat(cmd, &f_stat);
-	if (S_ISDIR(f_stat.st_mode))
-	{
-		ft_putstr_fd(ult_strjoin(ult_strjoin("minishell: ", cmd, 0) \
-		, ": is a directory\n", 0), 2);
-		exit (126);
-	}
 	if (path)
 	{
+		stat(cmd, &f_stat);
+		if (S_ISDIR(f_stat.st_mode) && ft_strchr(cmd, '/'))
+		{
+			ft_putstr_fd(ult_strjoin(ult_strjoin("minishell: ", cmd, 0) \
+			, ": is a directory\n", 0), 2);
+			exit (126);
+		}
 		if (access(path, X_OK) == 0)
 			return (path);
 		else
