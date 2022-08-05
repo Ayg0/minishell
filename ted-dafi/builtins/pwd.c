@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 08:58:28 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/20 08:58:33 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/05 12:12:04 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	pwd(t_pokets *poket)
 {
 	char	*s;
 
-	(void) poket;
 	s = getcwd(NULL, 0);
 	if (!s)
 		ft_putstr_fd(ft_strjoin(get_pwd(*(poket->env)), "\n"), 1);
