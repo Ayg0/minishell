@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:33:24 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/31 15:32:31 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/05 13:41:34 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,4 +130,6 @@ char		*get_next_line(int fd);
 
 char		*replace_oper(char *s, char *s1, char *s2);
 char		*get_spec(void);
+
+int			ft_count(char **s, char *new, int *place);
 #endif
