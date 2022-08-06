@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:28:23 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/21 21:37:27 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/06 09:12:00 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_if_equal(char	*srch_for, char	**srch_in)
 	i = 0;
 	while (srch_in[i])
 	{
-		if (!ft_strcmp(srch_in[i], srch_for))
+		if (!ft_strcmp(srch_in[i], srch_for) && ft_strcmp(srch_in[i], "_"))
 		{
 			free(srch_for);
 			return (1);
