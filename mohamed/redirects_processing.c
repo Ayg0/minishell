@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirects_processing.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:54:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/08/02 11:14:54 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/05 13:49:13 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	write_redirect(t_tokens *itire, t_pokets *poket)
 	else if (ft_strlen(itire->token) == 1)
 		tp = ft_newredi(itire->next->token, 'f', O_CREAT | O_WRONLY | O_TRUNC);
 	ft_rediadd_back(&(poket->redirects->write), tp);
-	tmp = open(tp->file_name, tp->code, 0666);
+	tmp = open(tp->file_name, tp->code, 06400);
 	if (tmp == -1)
 	{
 		ft_putstr_fd(ult_strjoin("minishell: "\
