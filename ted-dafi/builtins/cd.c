@@ -6,32 +6,25 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:43:28 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/07/28 10:01:43 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/06 09:01:47 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ted_dafi.h"
 
-char	*get_str(char *s1)
-{
-	char	*str;
-	char	*tmp;
-
-	tmp = getcwd(NULL, 0);
-	if (!tmp)
-		return (NULL);
-	str = ft_strjoin(s1, tmp);
-	free(tmp);
-	return (str);
-}
-
-int	cd_error(t_pokets *poket)
+int	cd_error(t_pokets *poket, int err)
 {
 	char	*tmp;
+	char	*tmp2;
 
-	if (poket->av[1])
+	tmp2 = NULL;
+	if (err == -1)
 	{
-		tmp = re_join(ft_strdup("minishell: cd: "), ft_strdup(poket->av[1]));
+		if (poket->av[1])
+			tmp2 = ft_strdup(poket->av[1]);
+		else
+			tmp2 = get_exp(ft_strdup("HOME"), 'q', *poket->env);
+		tmp = re_join(ft_strdup("minishell: cd: "), tmp2);
 		perror(tmp);
 		free(tmp);
 	}
@@ -42,52 +35,77 @@ int	cd_error(t_pokets *poket)
 	return (1);
 }
 
-char	*change(t_pokets *poket)
+char	*get_oldpwd(t_pokets *poket)
 {
-	char	*s;
+	int	place;
 
-	s = NULL;
-	if (poket->av[1] && *(poket->av[1]) == '~')
+	place = -1;
+	ft_count(*poket->env, "PWD", &place);
+	if (place == -1)
+		return (re_join(ft_strdup("OLDPWD="), getcwd(NULL, 0)));
+	return(re_join(ft_strdup("OLDPWD="), get_exp(ft_strdup("PWD"), 'q', *poket->env)));
+}
+
+int	set_env_path(t_pokets *poket, char *pwd, char *oldpwd)
+{
+	int	index;
+
+	index = -1;
+	ft_count(*poket->env, "PWD", &index);
+	if (index != -1)
+		*(poket->env) = re_envp(*(poket->env), 1, pwd);
+	index = -1;
+	ft_count(*poket->env, "OLDPWD", &index);
+	if (index != -1)
+		*(poket->env) = re_envp(*(poket->env), 1, oldpwd);
+	return (0);
+}
+
+int	change_to_home(t_pokets *poket)
+{
+	int		index;
+	char	*tmp;
+
+	index = -1;
+	ft_count(*poket->env, "HOME", &index);
+	if (index == -1)
+		return (-2);
+	tmp = get_exp(ft_strdup("HOME"), 'q', *poket->env);
+	if (tmp && !ft_strlen(tmp))
 	{
-		if (!getenv("HOME"))
-			return (ft_strdup(poket->av[1]));
-		s = ft_strdup(getenv("HOME"));
+		free(tmp);
+		tmp = ft_strdup(".");
 	}
-	else
-		s = get_exp(ft_strdup("HOME"), 'q', *(poket->env));
-	if (!poket->av[1] && !s)
-		return (NULL);
+	index = chdir(tmp);
+	free(tmp);
+	return (index);
+}
+
+int	change_dir(t_pokets *poket)
+{
+	int	err;
+
+	err = 0;
 	if (!poket->av[1])
-		return (s);
-	if (*(poket->av[1]) == '~')
-		return (re_join(s, ft_strdup(&poket->av[1][1])));
-	free (s);
-	return (ft_strdup(poket->av[1]));
+		err = change_to_home(poket);
+	else
+		err = chdir(poket->av[1]);
+	return (err);
 }
 
 void	cd(t_pokets *poket)
 {
-	int		i;
-	char	*s1;
-	char	*tmp;
-	char	*s2;
+	char	*oldpwd;
+	char	*pwd;
+	int		err;
 
-	i = -1;
-	s2 = get_str("OLDPWD=");
-	tmp = change(poket);
-	if (tmp)
-		i = chdir(tmp);
-	free(tmp);
-	s1 = get_str("PWD=");
-	if (i == -1)
-		cd_error(poket);
+	oldpwd = get_oldpwd(poket);
+	err = change_dir(poket);
+	pwd = re_join(ft_strdup("PWD="), getcwd(NULL, 0));
+	if (err < 0)
+		cd_error(poket, err);
 	else
-	{
-		*(poket->env) = re_envp(*(poket->env), 1, s1);
-		*(poket->env) = re_envp(*(poket->env), 1, s2);
-	}
-	if (s1)
-		free(s1);
-	if (s2)
-		free(s2);
+		set_env_path(poket, pwd, oldpwd);
+	free(pwd);
+	free(oldpwd);
 }
