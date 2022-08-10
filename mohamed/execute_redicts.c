@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:37:57 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/08/01 00:11:51 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/05 13:25:09 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	open_read(t_pokets *pokets)
 		pokets->infile_fd = 0;
 	while (tmp)
 	{
-		pokets->infile_fd = open(tmp->file_name, tmp->code, 0666);
+		pokets->infile_fd = open(tmp->file_name, tmp->code);
 		if (pokets->infile_fd == -1)
 		{
 			ft_putstr_fd(ult_strjoin("minishell: ", \
@@ -49,7 +49,7 @@ int	open_write(t_pokets *pokets)
 		pokets->outfile_fd = 1;
 	while (tmp)
 	{
-		pokets->outfile_fd = open(tmp->file_name, tmp->code, 0666);
+		pokets->outfile_fd = open(tmp->file_name, tmp->code, 0644);
 		if (pokets->outfile_fd == -1)
 		{
 			ft_putstr_fd(ult_strjoin("minishell: "\
