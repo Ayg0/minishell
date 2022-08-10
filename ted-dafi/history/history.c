@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:55:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/08/04 00:14:42 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/10 22:00:48 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	load_history(void)
 	int		fd;
 	char	*str;
 
-	fd = open(".minishell_history", O_RDONLY | O_CREAT, 0600);
+	fd = open(".minishell_history", O_RDONLY, 0600);
 	if (fd == -1)
 		return (write(2,
 				"minishell: failed to load history, please relaunch\n", 51));
