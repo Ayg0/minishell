@@ -6,12 +6,11 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:28:23 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/08/13 09:03:53 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/13 10:14:26 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ted_dafi.h"
-
 
 char	*srch_sign_null(char *s)
 {

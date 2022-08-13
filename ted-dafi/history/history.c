@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:55:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/08/10 22:00:48 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/13 10:12:52 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,13 @@ char	*make_history(char *cmd)
 int	put_history(void)
 {
 	int		fd;
+	char	*s;
 	char	*history;
 
-	fd = open(".minishell_history", O_RDWR | O_TRUNC | O_CREAT, 0600);
+	s = ft_strdup(getenv("HOME"));
+	s = re_join(s, ft_strdup("/.minishell_history"));
+	fd = open(s, O_WRONLY | O_TRUNC | O_CREAT, 0600);
+	free(s);
 	if (fd == -1)
 		return (write(2, "minishell: failed to save history.\n", 35));
 	history = make_history(NULL);
@@ -44,8 +48,12 @@ int	load_history(void)
 {
 	int		fd;
 	char	*str;
+	char	*s;
 
-	fd = open(".minishell_history", O_RDONLY, 0600);
+	s = ft_strdup(getenv("HOME"));
+	s = re_join(s, ft_strdup("/.minishell_history"));
+	fd = open(s, O_RDONLY, 0600);
+	free(s);
 	if (fd == -1)
 		return (write(2,
 				"minishell: failed to load history, please relaunch\n", 51));

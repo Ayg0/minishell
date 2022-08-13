@@ -24,7 +24,7 @@ TBUILTINS = ted-dafi/builtins/cd.c ted-dafi/builtins/echo.c ted-dafi/builtins/en
 			ted-dafi/builtins/exit.c ted-dafi/builtins/export.c ted-dafi/builtins/pwd.c	\
 			ted-dafi/builtins/unset.c ted-dafi/builtins/unset_valid.c 					\
 			ted-dafi/builtins/util_export.c ted-dafi/builtins/more_to_handle.c			\
-			ted-dafi/builtins/history.c
+			ted-dafi/builtins/history.c ted-dafi/builtins/cd_error.c
 
 TGSRC = ted-dafi/split_list.c ted-dafi/parsing.c ted-dafi/list_func.c ted-dafi/parsing_re_env.c
 
