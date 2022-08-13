@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_fork.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:46:27 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/08/02 11:20:36 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/10 21:57:37 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	helper_loop(t_tokens *itire, char *path, char **envp)
 		{
 			path[13] = (i / 10) + '0';
 			path[14] = (i % 10) + '0';
-			fd = open(path, O_CREAT | O_WRONLY | O_TRUNC, 0666);
+			fd = open(path, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 			if (fd == -1)
 			{
 				ft_putstr_fd("minishell: here_doc tmp file creation faild\n", \

@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 16:09:39 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/08/01 05:04:21 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/12 18:49:11 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char	*ult_strjoin(char *s1, char *s2, int flag)
 {
 	char	*final;
 
+	if (s1 == NULL && s2 == NULL)
+		return (NULL);
 	if (s1 == NULL)
 		return (ft_strdup(s2));
 	if (s2 == NULL)

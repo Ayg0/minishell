@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:24:08 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/07/31 23:22:28 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/11 22:35:34 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	process_av_help(t_tokens **itire, t_pokets *poket)
 	{
 		if (ft_strchr((*itire)->meta_data, 'b'))
 			help_process_av(itire, poket, &i);
-		else
+		else if ((*itire)->flag != -404)
 			(poket->av)[i++] = mft_strdup((*itire)->token);
 		if ((*itire)->next == NULL)
 			break ;
