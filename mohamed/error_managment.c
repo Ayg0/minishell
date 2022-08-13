@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:58:31 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/08/04 00:24:41 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/13 18:18:32 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_pip(t_tokens *itire)
 
 	max = itire->max;
 	len = ft_strlen(itire->meta_data);
-	if (!itire->next || !itire->previous || \
+	if (!itire->next || !itire->previous || *itire->next->meta_data == 'p' || \
 		ft_strchr("rw", *(itire->previous->meta_data)) != 0 || \
 		ft_strlen(itire->meta_data) > 1)
 	{
