@@ -6,11 +6,21 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:28:23 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/08/06 09:12:00 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/13 09:03:53 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ted_dafi.h"
+
+
+char	*srch_sign_null(char *s)
+{
+	if (!s)
+		return (NULL);
+	while (*s && *s != '=')
+		s++;
+	return (s);
+}
 
 int	check_if_equal(char	*srch_for, char	**srch_in)
 {
@@ -40,7 +50,7 @@ int	search_for_them(char **envp, char **av)
 	total = 0;
 	while (envp[i])
 	{
-		equal_sign = ft_strchr(envp[i], '=');
+		equal_sign = srch_sign_null(envp[i]);
 		if (equal_sign)
 			total -= check_if_equal(ft_substr(envp[i],
 						0, equal_sign - envp[i]), av);
@@ -60,7 +70,7 @@ void	cpy_what_not(char **envpd, char **last_env, char **av)
 	j = 0;
 	while (last_env[i])
 	{	
-		equal_sign = ft_strchr(last_env[i], '=');
+		equal_sign = srch_sign_null(last_env[i]);
 		if (equal_sign && check_if_equal(ft_substr(last_env[i],
 					0, equal_sign - last_env[i]), av))
 		{
