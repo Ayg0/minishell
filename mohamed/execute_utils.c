@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:35:10 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/08/12 18:50:15 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/13 12:29:52 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,24 @@ void	ft_dup(int fd_one, int fd_two)
 	close (fd_one);
 }
 
-char	*clean_exit(char *path, char *cmd)
+void	dir_check(char *cmd)
 {
 	struct stat	f_stat;
 
+	stat(cmd, &f_stat);
+	if (S_ISDIR(f_stat.st_mode))
+	{
+		ft_putstr_fd(ult_strjoin(ult_strjoin("minishell: ", cmd, 0) \
+		, ": is a directory\n", 0), 2);
+		exit (126);
+	}
+}
+
+char	*clean_exit(char *path, char *cmd)
+{
 	if (path)
 	{
-		stat(cmd, &f_stat);
-		if (S_ISDIR(f_stat.st_mode))
-		{
-			ft_putstr_fd(ult_strjoin(ult_strjoin("minishell: ", cmd, 0) \
-			, ": is a directory\n", 0), 2);
-			exit (126);
-		}
+		dir_check(cmd);
 		if (access(path, X_OK) == 0)
 			return (path);
 		else if (access(path, F_OK) == 0)
