@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 14:33:24 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/08/05 13:41:34 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/13 10:16:38 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int			check_if_equal(char	*srch_for, char	**srch_in);
 
 void		echo(t_pokets *poket);
 void		cd(t_pokets *poket);
+int			cd_error(t_pokets *poket, int err);
 void		pwd(t_pokets *poket);
 void		export(t_pokets *poket);
 void		unset(t_pokets *poket);

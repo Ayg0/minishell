@@ -6,34 +6,11 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:43:28 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/08/06 09:01:47 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/13 10:16:20 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ted_dafi.h"
-
-int	cd_error(t_pokets *poket, int err)
-{
-	char	*tmp;
-	char	*tmp2;
-
-	tmp2 = NULL;
-	if (err == -1)
-	{
-		if (poket->av[1])
-			tmp2 = ft_strdup(poket->av[1]);
-		else
-			tmp2 = get_exp(ft_strdup("HOME"), 'q', *poket->env);
-		tmp = re_join(ft_strdup("minishell: cd: "), tmp2);
-		perror(tmp);
-		free(tmp);
-	}
-	else
-		ft_putstr_fd(ft_strdup("minishell: cd: HOME not set\n"), 2);
-	set_exit_code(1);
-	set_global_error(1);
-	return (1);
-}
 
 char	*get_oldpwd(t_pokets *poket)
 {
@@ -43,7 +20,8 @@ char	*get_oldpwd(t_pokets *poket)
 	ft_count(*poket->env, "PWD", &place);
 	if (place == -1)
 		return (re_join(ft_strdup("OLDPWD="), getcwd(NULL, 0)));
-	return(re_join(ft_strdup("OLDPWD="), get_exp(ft_strdup("PWD"), 'q', *poket->env)));
+	return (re_join(ft_strdup("OLDPWD="),
+			get_exp(ft_strdup("PWD"), 'q', *poket->env)));
 }
 
 int	set_env_path(t_pokets *poket, char *pwd, char *oldpwd)
