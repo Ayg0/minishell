@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:43:28 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/08/13 11:52:54 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/13 12:21:09 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,11 @@ void	cd(t_pokets *poket)
 	if (err < 0)
 		cd_error(poket, err);
 	else
+	{
 		set_env_path(poket, pwd, oldpwd);
+		set_exit_code(0);
+		set_global_error(0);
+	}
 	free(pwd);
 	free(oldpwd);
 }
