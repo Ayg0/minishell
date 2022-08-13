@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 12:55:37 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/06/16 09:44:36 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/12 18:44:44 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "global_utils.h"
 
 // this is a bomb use it at your own risk no free no protection
-
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char		*s3;

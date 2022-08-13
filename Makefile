@@ -4,7 +4,7 @@ NAME = minishell
 
 # /Users/msouiyeh/goinfre/.brew/opt/readline/include
 # /Users/$(USER)/.brew/opt/readline/include
-CFLAGS = -Wall -Werror -Wextra -g  -I /Users/msouiyeh/goinfre/.brew/opt/readline/include -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g  -I /Users/msouiyeh/goinfre/.brew/opt/readline/include #-fsanitize=address
 
 GSRCS = global_utils/decide.c global_utils/env_scout.c global_utils/ft_calloc.c			  	\
 		global_utils/ft_strcmp.c global_utils/ft_strjoin.c global_utils/ft_strlcpy.c	  	\

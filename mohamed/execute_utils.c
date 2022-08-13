@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 08:35:10 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/08/04 01:28:26 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/12 18:50:15 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*clean_exit(char *path, char *cmd)
 	if (path)
 	{
 		stat(cmd, &f_stat);
-		if (S_ISDIR(f_stat.st_mode) && ft_strchr(cmd, '/'))
+		if (S_ISDIR(f_stat.st_mode))
 		{
 			ft_putstr_fd(ult_strjoin(ult_strjoin("minishell: ", cmd, 0) \
 			, ": is a directory\n", 0), 2);
@@ -33,9 +33,15 @@ char	*clean_exit(char *path, char *cmd)
 		}
 		if (access(path, X_OK) == 0)
 			return (path);
-		else
+		else if (access(path, F_OK) == 0)
 			ft_putstr_fd(ult_strjoin(ult_strjoin("minishell: ", cmd, 0) \
 			, ": permission denied\n", 0), 2);
+		else
+		{	
+			ft_putstr_fd(ult_strjoin(ult_strjoin("minishell: ", cmd, 0) \
+			, ": No such file or directory\n", 0), 2);
+			exit (127);
+		}
 		exit(126);
 	}
 	else
@@ -72,7 +78,7 @@ char	*clean_set_up(char *path, char *cmd)
 	if (path)
 		tmp = exec_join("/", cmd);
 	else if (path == NULL)
-		return (exec_join("./", cmd));
+		return (clean_exit(cmd, cmd));
 	final = exec_join(path, tmp);
 	free(path);
 	free(tmp);
