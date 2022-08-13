@@ -6,7 +6,7 @@
 /*   By: msouiyeh <msouiyeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 10:14:16 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/08/01 00:02:00 by msouiyeh         ###   ########.fr       */
+/*   Updated: 2022/08/13 18:19:09 by msouiyeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	prompt_display(t_data *data, char **envp)
 		data->cmd = readline("minishell$ ");
 		if (data->cmd == NULL)
 			(put_history() && resettermios_attr() && \
-			(write(1, "exit\n", 5) && my_exit(0, NULL)));
+			(write(1, "exit\n", 5) && my_exit(get_exit_code(), NULL)));
 		if (*(data->cmd) == '\0')
 			continue ;
 		make_history(data->cmd);
