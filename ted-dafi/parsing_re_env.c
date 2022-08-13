@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 09:09:19 by msouiyeh          #+#    #+#             */
-/*   Updated: 2022/08/02 12:35:43 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/13 12:00:04 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	search_for_new(char **s, char *new)
 	while (s[i])
 	{
 		tmp = ft_substr(new, 0, ft_strchr_null(new, '+', '='));
-		if (!ft_strncmp(s[i], tmp, ft_strlen(tmp)))
+		if (!ft_strcmp(s[i], tmp))
 		{
 			free(tmp);
 			return (i);
