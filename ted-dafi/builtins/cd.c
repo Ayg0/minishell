@@ -6,7 +6,7 @@
 /*   By: ted-dafi <ted-dafi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:43:28 by ted-dafi          #+#    #+#             */
-/*   Updated: 2022/08/13 10:16:20 by ted-dafi         ###   ########.fr       */
+/*   Updated: 2022/08/13 11:00:22 by ted-dafi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	change_dir(t_pokets *poket)
 	err = 0;
 	if (!poket->av[1])
 		err = change_to_home(poket);
-	else
+	else if (ft_strlen(poket->av[1]))
 		err = chdir(poket->av[1]);
 	return (err);
 }
